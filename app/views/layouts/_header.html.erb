@@ -1,0 +1,95 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper container">
+
+      <!-- Logo -->
+      <%= link_to root_path , class: 'brand-logo' do %>
+        <i class="material-icons left">dashboard</i>
+        Boxes
+      <% end %>
+
+      <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+      <!-- Desktop menu -->
+      <ul class="right hide-on-med-and-down">
+
+        <!-- Login button -->
+        <li><a class="modal-trigger" href="#login-modal"><i class="material-icons left">account_circle</i>Sign in</a></li>
+
+        <!-- About button -->
+        <li>
+          <%= link_to about_path do %>
+            <i class="material-icons left">info</i>
+            About
+          <% end %>
+        </li>
+      </ul>
+
+      <!-- Hamburger menu -->
+      <ul class="side-nav" id="mobile">
+
+        <!-- Login button in Hamburger menu -->
+        <li><a href="#login-modal" class="modal-trigger">Sign in</a></li>
+
+        <!-- About button in Hamburger menu -->
+        <li><%= link_to "About", about_path %></li>
+      </ul>
+
+    </div>
+  </nav>
+</div>
+
+<!-- Login Modal -->
+<div id="login-modal" class="modal" style="opacity: 1; top: 20%; max-width: 500px;">
+  <div class="modal-content">
+    <div class="col m6">
+
+      <h4 class="center-align">Sign in</h4>
+
+
+      <div class="row">
+
+        <form class="col s12">
+
+          <!-- Email field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+
+          <!-- Password field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock_outline</i>
+              <input id="pass" type="password" class="validate">
+              <label for="pass">Password</label>
+            </div>
+          </div>
+
+          <!-- Sign in button -->
+          <div class="row">
+            <div class="col m12">
+              <p class="center-align">
+                <button class="btn-large waves-effect waves-light" type="submit" name="action">
+                  <i class="material-icons left">send</i>Sign in
+                </button>
+              </p>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal(); // Modal trigger
+    $(".button-collapse").sideNav(); // Hamburger menu trigger
+  });
+</script>
