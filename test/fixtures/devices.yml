@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  devtype: MyString
+  model: MyString
+  state: MyString
+  ip: MyString
+  location: MyString
+  sn: MyString
+
+two:
+  name: MyString
+  devtype: MyString
+  model: MyString
+  state: MyString
+  ip: MyString
+  location: MyString
+  sn: MyString
