@@ -8,7 +8,7 @@ class CreateDevices < ActiveRecord::Migration[5.0]
       t.string :ip
       t.string :location
       t.string :sn
-
+      t.belongs_to :site, index: true, unique: true, foreign_key: true
       t.timestamps
     end
   end

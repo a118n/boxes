@@ -6,7 +6,7 @@ class CreateSupplies < ActiveRecord::Migration[5.0]
       t.integer :quantity
       t.integer :threshold, default: 3
       t.boolean :notified, default: false
-
+      t.belongs_to :site, index: true, unique: true, foreign_key: true
       t.timestamps
     end
   end
