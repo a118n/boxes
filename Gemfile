@@ -32,6 +32,25 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # User RSpec for testing
+  gem 'rspec-rails'
+  # Use factory girl for testing
+  gem 'factory_girl_rails'
+  # Simulate users' interactions with application
+  gem 'capybara'
+  # Beautification of output in the console
+  gem 'awesome_print', require: 'ap'
+end
+
+group :test do
+  # Generate names, email addresses, and other placeholders for factories
+  gem 'faker'
+  # Runs specs for you automatically when it detects changes
+  gem 'guard-rspec'
+  # Provides one-line matchers to RSpec
+  gem 'shoulda-matchers'
+  # Clean database between test runs
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -51,9 +70,6 @@ gem 'materialize-sass'
 
 # Use FontAwesome
 gem 'font-awesome-rails'
-
-# Beautification of output in the console
-gem 'awesome_print', require: 'ap'
 
 # Use Devise for authentication
 gem 'devise'
