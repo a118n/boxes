@@ -13,11 +13,12 @@ module Boxes
     # -- all .rb files in that directory are automatically loaded.
 
     config.generators do |g|
-      g.test_framework  :rspec
-      g.view_specs      false
-      g.helper          false
-      g.helper_specs    false
-      g.assets          false
+      g.test_framework      :rspec, fixture: true
+      g.fixture_replacement :factory_girl
+      g.view_specs          false
+      g.helper              false
+      g.helper_specs        false
+      g.assets              false
     end
   end
 end
