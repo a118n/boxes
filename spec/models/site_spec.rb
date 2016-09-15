@@ -2,4 +2,20 @@ require 'rails_helper'
 
 RSpec.describe Site, type: :model do
 
+  it "should have a valid factory" do
+    expect(build(:site)).to be_valid    
+  end
+
+  describe "Associations" do
+    it { should have_many :devices }
+    it { should have_many :supplies }
+  end
+
+  describe "Validations" do
+    it { should validate_presence_of :name }
+    it { should validate_uniqueness_of(:name).case_insensitive }
+    it "should not be valid without a name" do
+      expect(build(:site, name: nil)).not_to be_valid
+    end
+  end
 end
