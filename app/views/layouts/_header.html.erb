@@ -13,12 +13,18 @@
       <!-- Desktop menu -->
       <ul class="right hide-on-med-and-down">
 
-        <!-- If user logged in display log out button -->
+        <!-- If user logged in -->
         <% if current_user %>
+
+          <!-- Username & link to edit profile -->
           <li>
-            <i class="material-icons left">account_circle</i>
-            <%= current_user.email %>
+            <%= link_to edit_user_registration_path do %>
+              <i class="material-icons left">account_circle</i>
+              <%= current_user.email %>
+            <% end %>
           </li>
+
+          <!-- Log out -->
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
               <i class="material-icons left">exit_to_app</i>
