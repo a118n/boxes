@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   authenticate :user do
     get 'overview', to: 'static_pages#overview'
+    get 'settings', to: 'static_pages#settings'
   end
 
 end

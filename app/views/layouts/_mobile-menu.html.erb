@@ -1,0 +1,73 @@
+<!-- If user logged in -->
+<% if current_user %>
+
+<!-- Cover view -->
+<li><div class="userView">
+  <%= image_tag("cover", alt: "Cover", class: "background") %>
+  <a><i class="material-icons medium white-text">face</i></a>
+  <a><span class="white-text name">Daniel Allen</span></a>
+  <a><span class="white-text email">daniel.allen@gmail.com</span></a>
+</div></li>
+
+<!-- Home button -->
+<li>
+  <%= link_to root_path, class: "waves-effect" do %>
+    <i class="material-icons left">home</i>
+    Home
+  <% end %>
+</li>
+
+<!-- About button -->
+<li>
+  <%= link_to about_path, class: "waves-effect" do %>
+    <i class="material-icons left">info</i>
+    About
+  <% end %>
+</li>
+
+<li><div class="divider" style="margin-top: 15px; margin-bottom: 15px;"></div></li>
+
+<!-- Settings -->
+<li>
+  <%= link_to settings_path, class: "waves-effect" do %>
+    <i class="material-icons left">settings</i>
+    Settings
+  <% end %>
+</li>
+
+<!-- Edit profile -->
+<li>
+  <%= link_to edit_user_registration_path, class: "waves-effect" do %>
+    <i class="material-icons left">edit</i>
+    Edit Account
+  <% end %>
+</li>
+
+<!-- Sign out -->
+<li>
+  <%= link_to destroy_user_session_path, method: :delete, class: "waves-effect" do %>
+    <i class="material-icons left">exit_to_app</i>
+    Sign Out
+  <% end %>
+</li>
+
+<!-- Else display login & about buttons -->
+<% else %>
+
+<!-- Login button -->
+<li>
+  <%= link_to new_user_session_path, class: "waves-effect" do %>
+    <i class="material-icons left">account_circle</i>
+    Sign in
+  <% end %>
+</li>
+
+<!-- About button -->
+<li>
+  <%= link_to about_path, class: "waves-effect" do %>
+    <i class="material-icons left">info</i>
+    About
+  <% end %>
+</li>
+
+<% end %>  <!-- end if -->

@@ -1,0 +1,39 @@
+<!-- If user logged in -->
+<% if current_user %>
+
+<!-- Username & link to edit profile -->
+<li>
+  <%= link_to edit_user_registration_path do %>
+    <i class="material-icons left">account_circle</i>
+    <%= current_user.email %>
+  <% end %>
+</li>
+
+<!-- Log out -->
+<li>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+    <i class="material-icons left">exit_to_app</i>
+    Sign Out
+  <% end %>
+</li>
+
+<!-- Else display login & about buttons -->
+<% else %>
+
+<!-- Login button -->
+<li>
+  <%= link_to new_user_session_path do %>
+    <i class="material-icons left">account_circle</i>
+    Sign in
+  <% end %>
+</li>
+
+<!-- About button -->
+<li>
+  <%= link_to about_path do %>
+    <i class="material-icons left">info</i>
+    About
+  <% end %>
+</li>
+
+<% end %>  <!-- end if -->

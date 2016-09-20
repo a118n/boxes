@@ -2,74 +2,25 @@
   <nav>
     <div class="nav-wrapper container">
 
+      <!-- Hamburger button -->
+      <a href="#" data-activates="mobile-menu" class="button-collapse show-on-large" style="margin-right: 20px;"><i class="material-icons">menu</i></a>
+
       <!-- Logo -->
-      <%= link_to root_path , class: 'brand-logo' do %>
-        <i class="material-icons left">dashboard</i>
-        Boxes
-      <% end %>
-
-      <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-
-      <!-- Desktop menu -->
-      <ul class="right hide-on-med-and-down">
-
-        <!-- If user logged in -->
-        <% if current_user %>
-
-          <!-- Username & link to edit profile -->
-          <li>
-            <%= link_to edit_user_registration_path do %>
-              <i class="material-icons left">account_circle</i>
-              <%= current_user.email %>
-            <% end %>
-          </li>
-
-          <!-- Log out -->
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="material-icons left">exit_to_app</i>
-              Sign Out
-            <% end %>
-          </li>
-
-        <!-- Else display login & about buttons -->
-        <% else %>
-
-          <!-- Login button -->
-          <li>
-            <%= link_to new_user_session_path do %>
-              <i class="material-icons left">account_circle</i>
-              Sign in
-            <% end %>
-          </li>
-
-          <!-- About button -->
-          <li>
-            <%= link_to about_path do %>
-              <i class="material-icons left">info</i>
-              About
-            <% end %>
-          </li>
-        </ul>
-
-        <% end %>  <!-- end if -->
-
-      <!-- Hamburger(mobile) menu -->
-      <ul class="side-nav" id="mobile">
-
-        <!-- Login button in Hamburger menu -->
-        <li><%= link_to "Sign in", new_user_session_path %></li>
-
-        <!-- About button in Hamburger menu -->
-        <li><%= link_to "About", about_path %></li>
-      </ul>
+      <%= link_to "Boxes", root_path , class: 'brand-logo center' %>
 
     </div>
+
   </nav>
 </div>
 
+<!-- Hamburger(mobile) menu -->
+<ul class="side-nav" id="mobile-menu">
+  <%= render 'layouts/mobile-menu' %>
+</ul>
+
 <script>
   $(document).ready(function() {
-    $(".button-collapse").sideNav(); // Hamburger menu trigger
+    $('.button-collapse').sideNav(); // Hamburger menu trigger
+    $('.collapsible').collapsible();
   });
 </script>
