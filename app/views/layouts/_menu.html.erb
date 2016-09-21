@@ -1,20 +1,51 @@
 <!-- If user logged in -->
 <% if current_user %>
 
-<!-- Username & link to edit profile -->
-<li>
-  <%= link_to edit_user_registration_path do %>
-    <i class="material-icons left">account_circle</i>
-    <%= current_user.email %>
-  <% end %>
+<!-- Account name & icon -->
+<li style="margin-right: 5px;">
+  <i class="material-icons left">account_circle</i>
+  <%= current_user.email %>
 </li>
 
-<!-- Log out -->
+<!-- More dots -->
 <li>
-  <%= link_to destroy_user_session_path, method: :delete do %>
-    <i class="material-icons left">exit_to_app</i>
-    Sign Out
-  <% end %>
+
+  <!-- Dropdown button -->
+  <a class="dropdown-button" href="#!" data-activates="dropdown-dots" data-beloworigin="true" data-constrainwidth="false">
+    <i class="material-icons">more_vert</i>
+  </a>
+
+  <!-- Dropdown Structure -->
+  <ul id="dropdown-dots" class="dropdown-content" style="min-width: 170px;">
+
+    <!-- Settings -->
+    <li>
+      <%= link_to settings_path, class: "waves-effect" do %>
+        <i class="material-icons left">settings</i>
+        Settings
+      <% end %>
+    </li>
+
+    <!-- Edit account -->
+    <li>
+      <%= link_to edit_user_registration_path, class: "waves-effect" do %>
+        <i class="material-icons left">edit</i>
+        Edit Account
+      <% end %>
+    </li>
+
+    <li class="divider"></li>
+
+    <!-- Log out -->
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="material-icons left">exit_to_app</i>
+        Sign Out
+      <% end %>
+    </li>
+
+  </ul>
+
 </li>
 
 <!-- Else display login & about buttons -->
