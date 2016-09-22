@@ -1,4 +1,4 @@
-<div class="container center-align" style="max-width: 500px;">
+<div class="container center-align" style="max-width: 700px;">
   <div class="row">
     <div class="col s12">
       <div class="card blue-grey lighten-5 z-depth-2">
@@ -7,20 +7,39 @@
         <div class="card-content">
 
           <!-- Card Title -->
-          <div class="row">
-            <span class="card-title" style="font-size: 2.5em; padding-bottom: 15px;">Register</span>
-          </div>
+          <span class="card-title" style="font-size: 2em; padding-bottom: 15px;">
+            Register
+          </span>
+
         </div>  <!-- Card Content -->
 
+        <!-- Form container-->
         <div class="container">
+          
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
+
+            <!-- First & Last name fields -->
+            <div class="row">
+              <!-- First name -->
+              <div class="input-field col s6">
+                <i class="material-icons prefix">text_fields</i>
+                <%= f.text_field :first_name, autofocus: true %>
+                <%= f.label :first_name %>
+              </div>
+
+              <!-- Last name -->
+              <div class="input-field col s6">
+                <%= f.text_field :last_name %>
+                <%= f.label :last_name %>
+              </div>
+            </div>
 
             <!-- Email field -->
             <div class="row">
               <div class="input-field col s12">
-                <i class="material-icons prefix">email</i>
-                <%= f.email_field :email, autofocus: true, class: "validate" %>
+                <i class="material-icons prefix">mail_outline</i>
+                <%= f.email_field :email, class: "validate" %>
                 <%= f.label :email %>
               </div>
             </div>

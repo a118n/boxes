@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Site, type: :model do
 
-  it "has a valid factory" do
-    expect(build(:site)).to be_valid
+  describe "Factory" do
+    it "has a valid factory" do
+      expect(build(:site)).to be_valid
+    end
   end
 
   describe "Associations" do

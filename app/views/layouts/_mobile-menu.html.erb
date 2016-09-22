@@ -3,10 +3,18 @@
 
 <!-- Cover view -->
 <li><div class="userView">
+
+  <!-- Cover image -->
   <%= image_tag("cover", alt: "Cover", class: "background") %>
+
+  <!-- Userpic stub -->
   <a><i class="material-icons medium white-text">face</i></a>
-  <a><span class="white-text name">Daniel Allen</span></a>
-  <a><span class="white-text email">daniel.allen@gmail.com</span></a>
+
+  <!-- Full name -->
+  <a><span class="white-text name"><%= current_user.full_name %></span></a>
+
+  <!-- Email -->
+  <a><span class="white-text email"><%= current_user.email %></span></a>
 </div></li>
 
 <!-- Home button -->

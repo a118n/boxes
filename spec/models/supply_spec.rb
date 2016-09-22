@@ -4,8 +4,10 @@ RSpec.describe Supply, type: :model do
 
   before { create(:site) }
 
-  it "has a valid factory" do
-    expect(build(:supply)).to be_valid
+  describe "Factory" do
+    it "has a valid factory" do
+      expect(build(:supply)).to be_valid
+    end    
   end
 
   describe "Associations" do
