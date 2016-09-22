@@ -1,20 +1,46 @@
-<div class="navbar-fixed">
+<div class="navbar-fixed" style="margin-bottom: 30px;">
   <nav>
-    <div class="nav-wrapper container">
+    <div class="nav-wrapper" style=" padding-left: 30px; padding-right: 30px;">
 
-      <!-- Hamburger button -->
-      <a href="#" data-activates="mobile-menu" class="button-collapse show-on-large" style="margin-right: 20px;"><i class="material-icons">menu</i></a>
+      <div class="row">
 
-      <!-- Logo -->
-      <%= link_to "Boxes", root_path , class: 'brand-logo' %>
+        <div class="col s3">
 
-      <!-- Desktop menu -->
-      <ul class="right hide-on-med-and-down">
-        <%= render 'layouts/menu' %>
-      </ul>
+          <!-- Hamburger button -->
+          <a href="#" data-activates="mobile-menu" class="button-collapse show-on-large" style="margin-right: 20px;"><i class="material-icons">menu</i></a>
+
+          <!-- Logo -->
+          <%= link_to "Boxes", root_path , class: 'brand-logo' %>
+        </div>
+
+        <div class="col s6" style="margin-top: 10px; margin-bottom: 10px;">
+
+          <!-- Display search bar if user logged in -->
+          <% if current_user %>
+
+            <!-- Search bar -->
+            <form class="hide-on-med-and-down" style="height: 44px !important; background-color: #1e282c;">
+              <div class="input-field">
+                <input id="search" type="search" required>
+                <label for="search"><i class="material-icons" style="line-height: 44px;">search</i></label>
+                <i class="material-icons" style="line-height: 44px;">close</i>
+              </div>
+            </form>
+            
+          <% end %>
+        </div>
+
+        <div class="col s3">
+
+          <!-- Desktop menu -->
+          <ul class="right hide-on-med-and-down">
+            <%= render 'layouts/menu' %>
+          </ul>
+        </div>
+
+      </div>
 
     </div>
-
   </nav>
 </div>
 
@@ -26,6 +52,7 @@
 <script>
   $(document).ready(function() {
     $('.button-collapse').sideNav(); // Hamburger menu trigger
-    $('.dropdown-button').dropdown(); // Dots dropdown trigger
+    $('.dropdown-button').dropdown(); // Dropdowns trigger
+    $('.collapsible').collapsible(); //Collapsibles trigger
   });
 </script>
