@@ -2,6 +2,9 @@ class SitesController < ApplicationController
 
   def index
     @sites = Site.all
+    if @sites.empty?
+      redirect_to root_path
+    end
   end
 
   def show

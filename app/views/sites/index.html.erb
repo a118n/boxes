@@ -3,7 +3,10 @@
 
     <% @sites.each do |site| %>
 
-      <div class="col s12 l6">
+      <div class="col s12
+      <% if @sites.count == 1 %>l12
+      <% else %>l6
+      <% end %> ">
         <div class="card hoverable">
           <div class="card-content">
 
@@ -72,4 +75,11 @@
     <% end %>
 
   </div>
+
+  <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Site">
+    <%= link_to new_site_path, class: "btn-floating btn-large red" do %>
+      <i class="large material-icons">add</i>
+    <% end %>
+  </div>
+
 </div>

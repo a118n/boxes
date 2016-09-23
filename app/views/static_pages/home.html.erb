@@ -1,10 +1,20 @@
 <div class="container center-align" style="max-width: 700px;">
-  <div class="card-panel blue-grey lighten-5 z-depth-2" style="margin-top: 60px; margin-bottom: 60px;">
+  <div class="card blue-grey lighten-5 z-depth-2" style="margin-top: 60px; margin-bottom: 60px;">
     <div class="card-content">
-      <%= image_tag("boxes.png", alt: "Boxes") %>
-      <h2>Welcome to Boxes:<br>a simple inventory application.</h2>
+      <h4>Meet your new asset manager</h4>
+      <!-- <%= image_tag("boxes.png", alt: "Boxes") %> -->
+      <i class="material-icons" style="font-size: 10rem;">dashboard</i>
       <br>
-      <p style="font-size: 1.3em;">Please sign in above using your email and password.</p>
+      <br>
+      <%= link_to "Create account", new_user_registration_path, class: "btn waves-effect waves-light" %>
+
+      <%= link_to "Learn More", about_path, class: "btn blue-grey waves-effect waves-light" %>
+
+
+      <br>
+      <br>
+      <br>
+      <p style="font-size: 1em;">Already have an account? Please sign in above using your email and password.</p>
     </div>
   </div>
 </div>

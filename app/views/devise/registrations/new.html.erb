@@ -8,14 +8,14 @@
 
           <!-- Card Title -->
           <span class="card-title" style="font-size: 2em; padding-bottom: 15px;">
-            Register
+            New User
           </span>
 
         </div>  <!-- Card Content -->
 
         <!-- Form container-->
         <div class="container">
-          
+
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
 
@@ -67,7 +67,7 @@
 
               <!-- Sign up button -->
               <button class="btn waves-effect waves-light">
-                <%= f.submit "Register" %>
+                <%= f.submit "Create My Account" %>
               </button>
             </div>
 
