@@ -1,109 +1,12 @@
 <div class="container center-align">
-
   <div class="row">
 
     <div class="col s12 l6">
-
-      <div class="card hoverable">
-        <div class="card-content">
-          <span class="card-title">
-            <i class="material-icons left">schedule</i>
-            Ending soon
-            <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-ending" data-constrainwidth="false"><i class="material-icons black-text">more_vert</i></a>
-
-            <!-- Dropdown Structure -->
-            <ul id="dropdown-supplies-ending" class="dropdown-content" style="min-width: 150px;">
-
-              <!-- Export -->
-              <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
-
-            </ul>
-
-
-          </span>
-
-          <table class="highlight">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>CE390A</td>
-                <td>Black Cartridge</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>CC364A</td>
-                <td>Magenta Cartridge</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>CB381A</td>
-                <td>Cyan Cartridge</td>
-                <td>1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
+      <%= render 'layouts/overview-ending-soon' %>
     </div>
 
     <div class="col s12 l6">
-
-      <div class="card hoverable">
-
-        <div class="card-content">
-
-          <span class="card-title">
-            <i class="material-icons left">build</i>
-            Devices in repair
-            <a class="dropdown-button right" href="#!" data-activates="dropdown-devices-repair" data-constrainwidth="false"><i class="material-icons black-text">more_vert</i></a>
-
-            <!-- Dropdown Structure -->
-            <ul id="dropdown-devices-repair" class="dropdown-content" style="min-width: 150px;">
-
-              <!-- Export -->
-              <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
-
-            </ul>
-          </span>
-
-          <table class="highlight">
-            <thead>
-              <tr>
-                <th data-field="id">Name</th>
-                <th data-field="name">Model</th>
-                <th data-field="price">Location</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>PBLK0050A3</td>
-                <td>HP Color LaserJet 5550</td>
-                <td>German Space Research Organization</td>
-              </tr>
-              <tr>
-                <td>PBLK0052A4</td>
-                <td>HP Color LaserJet CP3505</td>
-                <td>European Space Agency</td>
-              </tr>
-              <tr>
-                <td>PBLK0023A4</td>
-                <td>HP LaserJet Pro MFP M521dn</td>
-                <td>Japan Aerospace Exploration Agency</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
+      <%= render 'layouts/overview-in-repair' %>
     </div>
 
   </div>
@@ -111,75 +14,12 @@
   <div class="row">
 
     <div class="col s12 l6">
-
-      <div class="card hoverable">
-
-        <div class="card-content">
-
-          <span class="card-title">
-            <i class="material-icons left">location_city</i>
-            Sites
-            <!-- <i class="material-icons right">more_vert</i> -->
-          </span>
-
-          <ul class="collapsible popout" data-collapsible="expandable">
-              <li>
-                <div class="collapsible-header"><i class="material-icons">business</i>Head Office</div>
-                <div class="collapsible-body">
-                  <div class="collection left-align">
-                      <a class="collection-item"><i class="material-icons left">print</i>Total Devices<span class="badge">14</span></a>
-                      <a class="collection-item"><i class="material-icons left">web_asset</i>Total Supplies<span class="badge">14</span></a>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="collapsible-header"><i class="material-icons">place</i>Second Site</div>
-                <div class="collapsible-body">
-                  <div class="collection left-align">
-                      <a class="collection-item"><i class="material-icons left">print</i>Total Devices<span class="badge">14</span></a>
-                      <a class="collection-item"><i class="material-icons left">web_asset</i>Total Supplies<span class="badge">14</span></a>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="collapsible-header"><i class="material-icons">kitchen</i>Third Site</div>
-                <div class="collapsible-body">
-                  <div class="collection left-align">
-                      <a class="collection-item"><i class="material-icons left">print</i>Total Devices<span class="badge">14</span></a>
-                      <a class="collection-item"><i class="material-icons left">web_asset</i>Total Supplies<span class="badge">14</span></a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-
-        </div>
-
-      </div>
+      <%= render 'layouts/overview-sites' %>
     </div>
 
     <div class="col s12 l6">
-
-      <div class="card hoverable">
-
-        <div class="card-content">
-
-          <span class="card-title">
-            <i class="material-icons left">all_inclusive</i>
-            Total
-            <!-- <i class="material-icons right">more_vert</i> -->
-          </span>
-
-          <div class="collection left-align">
-              <a class="collection-item"><i class="material-icons left">location_city</i>Sites<span class="badge">3</span></a>
-              <a class="collection-item"><i class="material-icons left">print</i>Devices<span class="badge">42</span></a>
-              <a class="collection-item"><i class="material-icons left">web_asset</i>Supplies<span class="badge">42</span></a>
-          </div>
-
-        </div>
-
-      </div>
-
+      <%= render 'layouts/overview-total' %>
     </div>
-  </div>
 
+  </div>
 </div>

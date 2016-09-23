@@ -26,7 +26,7 @@
                 <i class="material-icons" style="line-height: 44px;">close</i>
               </div>
             </form>
-            
+
           <% end %>
         </div>
 
@@ -46,7 +46,7 @@
 
 <!-- Hamburger(mobile) menu -->
 <ul class="side-nav" id="mobile-menu">
-  <%= render 'layouts/mobile-menu' %>
+  <%= render 'layouts/menu-mobile' %>
 </ul>
 
 <script>
@@ -54,5 +54,6 @@
     $('.button-collapse').sideNav(); // Hamburger menu trigger
     $('.dropdown-button').dropdown(); // Dropdowns trigger
     $('.collapsible').collapsible(); //Collapsibles trigger
+    $('.tooltipped').tooltip();
   });
 </script>

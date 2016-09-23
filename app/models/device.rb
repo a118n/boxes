@@ -7,4 +7,5 @@ class Device < ApplicationRecord
   validates :devtype, presence: true
   validates :state, presence: true
 
+  scope :in_repair, -> { where("state = 'In Repair'") }
 end

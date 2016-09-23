@@ -1,0 +1,37 @@
+<div class="card hoverable">
+  <div class="card-content">
+    <span class="card-title">
+      <i class="material-icons left">location_city</i>
+      Sites
+      <!-- <i class="material-icons right">more_vert</i> -->
+    </span>
+
+    <ul class="collapsible popout" data-collapsible="expandable">
+
+      <% @sites.each do |site| %>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">business</i><%= site.name %></div>
+            <div class="collapsible-body">
+              <div class="collection left-align">
+
+                <a class="collection-item">
+                  <i class="material-icons left">print</i>
+                  Total Devices
+                  <span class="badge"><%= site.devices.count %></span>
+                </a>
+
+                <a class="collection-item">
+                  <i class="material-icons left">web_asset</i>
+                  Total Supplies
+                  <span class="badge"><%= site.supplies.count %></span>
+                </a>
+              </div>
+            </div>
+        </li>
+
+      <% end %>
+
+    </ul>
+
+  </div>
+</div>

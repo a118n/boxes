@@ -36,6 +36,8 @@ group :development, :test do
   gem 'rspec-rails'
   # Use factory girl for testing
   gem 'factory_girl_rails'
+  # Generate names, email addresses, and other placeholders for factories
+  gem 'faker'
   # Simulate users' interactions with application
   gem 'capybara'
   # Beautification of output in the console
@@ -43,8 +45,6 @@ group :development, :test do
 end
 
 group :test do
-  # Generate names, email addresses, and other placeholders for factories
-  gem 'faker'
   # Runs specs for you automatically when it detects changes
   gem 'guard-rspec'
   # Provides one-line matchers to RSpec
