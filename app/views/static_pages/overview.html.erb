@@ -3,29 +3,13 @@
   <% if @sites.any? %>
 
     <div class="row">
+      <%= render 'layouts/overview-ending-soon' %>
+      <%= render 'layouts/overview-in-repair' %>
+    </div>
 
-      <% if @supplies_ending.any? %>
-        <%= render 'layouts/overview-ending-soon' %>
-      <% end %>
-
-      <% if @devices_repair.any? %>
-        <%= render 'layouts/overview-in-repair' %>
-      <% end %>
-
-      <% if @supplies_ending.any? && @devices_repair.any? %>
-        </div>
-        <div class="row">
-      <% end %>
-
+    <div class="row">
       <%= render 'layouts/overview-sites' %>
-
-      <% if @supplies_ending.empty? || @devices_repair.empty? %>
-        </div>
-        <div class="row">
-      <% end %>
-
       <%= render 'layouts/overview-total' %>
-
     </div>
 
   <% else %>

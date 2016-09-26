@@ -16,29 +16,39 @@
         </ul>
       </span>
 
-      <table class="highlight">
+      <% if @devices_repair.any? %>
 
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Model</th>
-            <th>Location</th>
-          </tr>
-        </thead>
+        <table class="highlight">
 
-        <tbody>
-          <% @devices_repair.each do |device| %>
+          <thead>
             <tr>
-              <td><%= link_to device.name, device_path(device) %></td>
-              <td><%= device.devtype %></td>
-              <td><%= device.model %></td>
-              <td><%= device.location %></td>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Model</th>
+              <th>Location</th>
             </tr>
-          <% end %>
-        </tbody>
+          </thead>
 
-      </table>
-    </div>
+          <tbody>
+            <% @devices_repair.each do |device| %>
+              <tr>
+                <td><%= link_to device.name, device_path(device) %></td>
+                <td><%= device.devtype %></td>
+                <td><%= device.model %></td>
+                <td><%= device.location %></td>
+              </tr>
+            <% end %>
+          </tbody>
+
+        </table>
+
+      <% else %>
+        <br>
+        <br>
+        <p>Nothing</p>
+        <br>
+      <% end %>
+
+    </div>  <!-- Card content -->
   </div>
 </div>
