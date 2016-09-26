@@ -1,33 +1,38 @@
 <div class="container center-align">
 
-  <div class="row">
+  <% if @sites.any? %>
 
-    <% if @sites.any? %>
+    <div class="row">
 
       <% if @supplies_ending.any? %>
-        <div class="col s12 l6">
-          <%= render 'layouts/overview-ending-soon' %>
-        </div>
+        <%= render 'layouts/overview-ending-soon' %>
       <% end %>
 
       <% if @devices_repair.any? %>
-        <div class="col s12 l6">
-          <%= render 'layouts/overview-in-repair' %>
-        </div>
+        <%= render 'layouts/overview-in-repair' %>
       <% end %>
 
-      <div class="col s12 l6">
-        <%= render 'layouts/overview-sites' %>
-      </div>
+      <% if @supplies_ending.any? && @devices_repair.any? %>
+        </div>
+        <div class="row">
+      <% end %>
 
-      <div class="col s12 l6">
-        <%= render 'layouts/overview-total' %>
-      </div>
+      <%= render 'layouts/overview-sites' %>
 
-    <% else %>
-      <div class="col s12">
-        <%= render 'layouts/overview-welcome' %>
-      </div>
+      <% if @supplies_ending.empty? || @devices_repair.empty? %>
+        </div>
+        <div class="row">
+      <% end %>
+
+      <%= render 'layouts/overview-total' %>
+
+    </div>
+
+  <% else %>
+    <div class="row">
+      <%= render 'layouts/overview-welcome' %>
+    </div>
+
   <% end %>
-  </div>
+
 </div>

@@ -47,16 +47,19 @@
             </tbody>
           </table>
 
-          <ul class="collapsible popout" data-collapsible="expandable">
+          <!-- Devices and Supplies Popout -->
+          <ul class="collapsible popout left-align" data-collapsible="expandable">
 
             <% if @site.devices.any? %>
 
               <li>
                 <div class="collapsible-header">
-                  <i class="material-icons">print</i>Devices
+                  <i class="material-icons">print</i>
+                  Devices
+                  <span class="right"><%= @site.devices.count %></span>
                 </div>
 
-                <div class="collapsible-body" style="margin-left: 15px; margin-right: 15px;">
+                <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
                   <table class="highlight">
                     <thead>
                       <tr>
@@ -65,8 +68,7 @@
                         <th>Model</th>
                         <th>State</th>
                         <th>Location</th>
-                        <th>Serial Number</th>
-                        <th>WebUI</th>
+                        <th></th>
                       </tr>
                     </thead>
 
@@ -76,10 +78,52 @@
                           <td><%= link_to device.name, device_path(device) %></td>
                           <td><%= device.devtype %></td>
                           <td><%= device.model %></td>
-                          <td><%= device.state %></td>
+                          <td>
+                            <% if device.state == "Inactive" %>
+                              <i class="material-icons left">clear</i>
+                            <% elsif device.state == "In Repair" %>
+                              <i class="material-icons left">build</i>
+                            <% else %>
+                              <i class="material-icons left">check</i>
+                            <% end %>
+                            <%= device.state %>
+                          </td>
                           <td><%= device.location %></td>
-                          <td><%= device.sn %></td>
-                          <td><%= link_to "Open", "http://" + device.ip %></td>
+                          <td>
+                            <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= device.id %>" data-constrainwidth="false">
+                              <i class="material-icons black-text">more_vert</i>
+                            </a>
+
+                            <!-- Dropdown Structure -->
+                            <ul id="dropdown-device-<%= device.id %>" class="dropdown-content" style="min-width: 170px;">
+
+                              <!-- Link to WebUI -->
+                              <li>
+                                <%= link_to "http://#{device.ip}", target: "_blank" do %>
+                                  <i class="material-icons left">public</i>
+                                  WebUI
+                                <% end %>
+                              </li>
+
+                              <!-- Edit device button-->
+                              <li>
+                                <%= link_to edit_device_path(device) do %>
+                                  <i class="material-icons left">edit</i>
+                                  Edit device
+                                <% end %>
+                              </li>
+
+                              <!-- Delete device button-->
+                              <li>
+                                <%= link_to device_path(device), method: :delete, data: { confirm: "Are you sure? You're about to delete this Device. This action is irreversible." } do %>
+                                  <i class="material-icons left">delete</i>
+                                  Delete device
+                                <% end %>
+                              </li>
+
+                            </ul>
+
+                          </td>
                         </tr>
                       <% end %>
                     </tbody>
@@ -93,25 +137,54 @@
 
               <li>
                 <div class="collapsible-header">
-                  <i class="material-icons">web_asset</i>Supplies
+                  <i class="material-icons">web_asset</i>
+                  Supplies
+                  <span class="right"><%= @site.supplies.count %></span>
                 </div>
 
-                <div class="collapsible-body" style="margin-left: 15px; margin-right: 15px;">
+                <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
                   <table class="highlight">
                     <thead>
                       <tr>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Quantity</th>
+                        <th></th>
                       </tr>
                     </thead>
 
                     <tbody>
                       <% @site.supplies.each do |supply| %>
                         <tr>
-                          <td><%= supply.name %></td>
+                          <td><%= link_to supply.name, supply_path(supply) %></td>
                           <td><%= supply.description %></td>
                           <td><%= supply.quantity %></td>
+                          <td>
+                            <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
+                              <i class="material-icons black-text">more_vert</i>
+                            </a>
+
+                            <!-- Dropdown Structure -->
+                            <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
+
+                              <!-- Edit supply button-->
+                              <li>
+                                <%= link_to edit_supply_path(supply) do %>
+                                  <i class="material-icons left">edit</i>
+                                  Edit supply
+                                <% end %>
+                              </li>
+
+                              <!-- Delete supply button-->
+                              <li>
+                                <%= link_to supply_path(supply), method: :delete, data: { confirm: "Are you sure? You're about to delete this Supply. This action is irreversible." } do %>
+                                  <i class="material-icons left">delete</i>
+                                  Delete supply
+                                <% end %>
+                              </li>
+
+                            </ul>
+                          </td>
                         </tr>
                       <% end %>
                     </tbody>
@@ -121,27 +194,32 @@
 
             <% end %>
 
-          </ul>
+          </ul>  <!-- Devices and Supplies Popout -->
 
         </div>  <!-- Card content -->
 
+        <div class="card-action">
+
+          <!-- Back button -->
+          <%= link_to "Back", sites_path, class: "btn btn-flat waves-effect waves-light" %>
+        </div>
+
       </div>  <!-- Card -->
     </div>
-
   </div>
+</div>  <!-- Container -->
 
-  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-   <a class="btn-floating btn-large red">
-     <i class="material-icons">add</i>
-   </a>
-   <ul>
-    <li>
-      <a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Add Supply"><i class="material-icons">web_asset</i></a>
-    </li>
-    <li>
-      <a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Add Device"><i class="material-icons">print</i></a>
-    </li>
-   </ul>
-  </div>
 
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+ <a class="btn-floating btn-large red">
+   <i class="material-icons">add</i>
+ </a>
+ <ul>
+  <li>
+    <a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Add Supply"><i class="material-icons">web_asset</i></a>
+  </li>
+  <li>
+    <a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Add Device"><i class="material-icons">print</i></a>
+  </li>
+ </ul>
 </div>

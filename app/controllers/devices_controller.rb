@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
   end
 
   def destroy
-
+    Device.find(params[:id]).destroy
   end
 
   private
