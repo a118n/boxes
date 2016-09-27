@@ -1,0 +1,164 @@
+<div class="container center-align">
+  <div class="row">
+    <div class="col s12">
+      <div class="card hoverable">
+
+        <div class="card-content">
+
+          <i class="material-icons left">print</i>
+
+          <!-- Device name -->
+          <span class="card-title"><%= @device.name %></span>
+
+          <!-- Dots Dropdown -->
+          <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= @device.id %>" data-constrainwidth="false">
+            <i class="material-icons black-text">more_vert</i>
+          </a>
+
+          <!-- Dropdown Structure -->
+          <ul id="dropdown-device-<%= @device.id %>" class="dropdown-content" style="min-width: 150px;">
+
+
+            <!-- Link to WebUI -->
+            <li>
+              <%= link_to "http://#{@device.ip}", target: "_blank" do %>
+                <i class="material-icons left">public</i>
+                WebUI
+              <% end %>
+            </li>
+
+            <!-- Edit device button-->
+            <li>
+              <%= link_to edit_device_path(@device) do %>
+                <i class="material-icons left">edit</i>
+                Edit device
+              <% end %>
+            </li>
+          </ul>
+
+          <!-- Device information -->
+          <div class="row">
+            <div class="col s12">
+              <table class="highlight">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Model</th>
+                    <th>State</th>
+                    <th>Location</th>
+                    <th>Serial Number</th>
+                    <th>Site</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= @device.devtype %></td>
+                    <td><%= @device.model %></td>
+                    <td>
+                      <% if @device.state == "Inactive" %>
+                        <i class="material-icons left">clear</i>
+                      <% elsif @device.state == "In Repair" %>
+                        <i class="material-icons left">build</i>
+                      <% else %>
+                        <i class="material-icons left">check</i>
+                      <% end %>
+                      <%= @device.state %>
+                    </td>
+                    <td><%= @device.location %></td>
+                    <td><%= @device.sn %></td>
+                    <td><%= link_to @device.site.name, @device.site %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Supplies table -->
+          <div class="row">
+            <div class="col s12">
+              <% if @device.supplies.any? %>
+                <ul class="collapsible popout left-align" data-collapsible="expandable">
+                  <li>
+                    <div class="collapsible-header active">
+                      <i class="material-icons">web_asset</i>
+                      Assigned Supplies
+                      <span class="right"><%= @device.supplies.count %></span>
+                    </div>
+
+                    <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
+                      <table class="highlight">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <% @device.supplies.each do |supply| %>
+                            <tr>
+                              <td><%= link_to supply.name, supply_path(supply) %></td>
+                              <td><%= supply.description %></td>
+                              <td><%= supply.quantity %></td>
+                              <td>
+                                <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
+                                  <i class="material-icons black-text">more_vert</i>
+                                </a>
+
+                                <!-- Dropdown Structure -->
+                                <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
+
+                                  <!-- Edit supply button-->
+                                  <li>
+                                    <%= link_to edit_supply_path(supply) do %>
+                                      <i class="material-icons left">edit</i>
+                                      Edit supply
+                                    <% end %>
+                                  </li>
+
+                                  <!-- Delete supply button-->
+                                  <li>
+                                    <%= link_to supply_path(supply), method: :delete, data: { confirm: "Are you sure? You're about to delete this Supply. This action is irreversible." } do %>
+                                      <i class="material-icons left">delete</i>
+                                      Delete supply
+                                    <% end %>
+                                  </li>
+
+                                </ul>
+                              </td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+
+        </div>  <!-- Card content -->
+
+        <div class="card-action">
+
+          <!-- Back button -->
+          <%= link_to "Back", devices_path, class: "btn btn-flat waves-effect waves-light" %>
+        </div>
+
+      </div>  <!-- Card -->
+    </div>
+  </div>
+</div>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <a class="btn-floating btn-large red">
+    <i class="material-icons">add</i>
+  </a>
+  <ul>
+    <li>
+      <a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Assign Supplies"><i class="material-icons">assignment</i></a>
+    </li>
+  </ul>
+</div>

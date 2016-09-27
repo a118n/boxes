@@ -13,20 +13,33 @@
           <li>
             <div class="collapsible-header"><i class="material-icons">business</i><%= site.name %></div>
               <div class="collapsible-body">
-                <div class="collection left-align">
+                <ul class="collection left-align">
 
-                  <a class="collection-item">
+                  <li class="collection-item">
                     <i class="material-icons left">print</i>
                     Total Devices
                     <span class="badge"><%= site.devices.count %></span>
-                  </a>
+                  </li>
 
-                  <a class="collection-item">
+                  <li class="collection-item">
                     <i class="material-icons left">web_asset</i>
                     Total Supplies
                     <span class="badge"><%= site.supplies.count %></span>
-                  </a>
-                </div>
+                  </li>
+
+                  <li class="collection-item">
+                    <i class="material-icons left">build</i>
+                    Devices in repair
+                    <span class="badge"><%= site.devices.in_repair.count %></span>
+                  </li>
+
+                  <li class="collection-item">
+                    <i class="material-icons left">schedule</i>
+                    Supplies ending soon
+                    <span class="badge"><%= site.supplies.ending_soon.count %></span>
+                  </li>
+
+                </ul>
               </div>
           </li>
 
