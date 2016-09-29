@@ -4,38 +4,39 @@
       <div class="card hoverable">
         <div class="card-content">
 
-          <span class="card-title">
-            <i class="material-icons left">domain</i>
+          <i class="material-icons left">domain</i>
 
-            <!-- Site name -->
-            Edit: <%= @site.name %>
-          </span>
+          <!-- Site name -->
+          <span class="card-title">Edit: <%= @site.name %></span>
 
           <div class="container">
 
             <%= form_for @site do |f| %>
 
+              <!-- Name -->
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">text_fields</i>
-                  <%= f.text_field :name %>
                   <%= f.label :name, class: "active" %>
+                  <%= f.text_field :name %>
                 </div>
               </div>
 
+              <!-- Location -->
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">location_on</i>
-                  <%= f.text_field :location %>
                   <%= f.label :location, class: "active" %>
+                  <%= f.text_field :location %>
                 </div>
               </div>
 
+              <!-- Description -->
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">description</i>
-                  <%= f.text_field :description %>
                   <%= f.label :description, class: "active" %>
+                  <%= f.text_field :description %>
                 </div>
               </div>
 
@@ -45,7 +46,7 @@
 
                   <!-- Update button -->
                   <button class="btn waves-effect waves-light">
-                    <%= f.submit "Update" %>
+                    <%= f.submit "Save" %>
                   </button>
 
                   <!-- Back button -->
@@ -65,8 +66,7 @@
           </div>
 
         </div>  <!-- Card content -->
-
-      </div>
-    </div>
-  </div>
-</div>
+      </div>  <!-- Card -->
+    </div>  <!-- Col -->
+  </div>  <!-- Row -->
+</div>  <!-- Container -->

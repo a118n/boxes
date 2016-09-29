@@ -68,8 +68,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Use Materialize Framework
 gem 'materialize-sass'
 
-# Use FontAwesome
-gem 'font-awesome-rails'
-
 # Use Devise for authentication
 gem 'devise'

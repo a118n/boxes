@@ -39,7 +39,7 @@ class DevicesController < ApplicationController
   def destroy
     Device.find(params[:id]).destroy
     flash[:warning] = "Device deleted"
-    redirect_back(fallback_location: devices_url)
+    redirect_to devices_url
   end
 
   private

@@ -1,0 +1,75 @@
+<div class="container center-align">
+  <div class="row">
+    <div class="col s12">
+      <div class="card hoverable">
+        <div class="card-content">
+
+          <i class="material-icons left">web_asset</i>
+
+          <!-- Card title -->
+          <span class="card-title">New Supply</span>
+
+          <div class="container">
+
+            <%= form_for @supply do |f| %>
+
+              <div class="row">
+
+                <!-- Name -->
+                <div class="input-field col s6">
+                  <%= f.label :name %>
+                  <%= f.text_field :name, required: true, autofocus: true %>
+                </div>
+
+                <!-- Description -->
+                <div class="input-field col s6">
+                  <%= f.label :description %>
+                  <%= f.text_field :description %>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <!-- Quantity -->
+                <div class="input-field col s6">
+                  <%= f.label :quantity %>
+                  <%= f.text_field :quantity, required: true %>
+                </div>
+
+                <!-- Ending threshold -->
+                <div class="input-field col s6">
+                  <%= f.label :threshold, "Ending Threshold", class: "active" %>
+                  <%= f.text_field :threshold, required: true %>
+                </div>
+              </div>
+
+              <!-- Site -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <%= f.label :site, class: "active" %>
+                  <%= f.collection_select(:site_id, Site.all, :id, :name) %>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div class="row">
+                <div class="col s12">
+
+                  <!-- Create button -->
+                  <button class="btn waves-effect waves-light">
+                    <%= f.submit "Create" %>
+                  </button>
+
+                  <!-- Back button -->
+                  <%= link_to "Back", supplies_path, class: "btn btn-flat waves-effect waves-light" %>
+                </div>
+              </div>  <!-- Buttons -->
+
+            <% end %>
+
+          </div>  <!-- Form container -->
+        </div>  <!-- Card content -->
+      </div>  <!-- Card -->
+    </div>  <!-- Col -->
+  </div>  <!-- Row -->
+</div>  <!-- Container -->

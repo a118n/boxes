@@ -55,7 +55,7 @@
               </tbody>
             </table>
 
-          </div>
+          </div>  <!-- Card-content -->
 
           <div class="card-action">
 
@@ -71,17 +71,16 @@
 
           </div>
 
-        </div>
-      </div>
+        </div>  <!-- Card -->
+      </div>  <!-- Col -->
 
     <% end %>
 
-  </div>
+  </div>  <!-- Row -->
+</div>  <!-- Container -->
 
-  <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Site">
-    <%= link_to new_site_path, class: "btn-floating btn-large red" do %>
-      <i class="large material-icons">add</i>
-    <% end %>
-  </div>
-
+<div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Site">
+  <%= link_to new_site_path, class: "btn-floating btn-large red" do %>
+    <i class="large material-icons">add</i>
+  <% end %>
 </div>

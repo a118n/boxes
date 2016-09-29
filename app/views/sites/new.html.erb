@@ -4,25 +4,25 @@
       <div class="card hoverable">
         <div class="card-content">
 
-          <span class="card-title">
-            <i class="material-icons left">domain</i>
+          <i class="material-icons left">domain</i>
 
-            <!-- Site name -->
-            New Site
-          </span>
+          <!-- Card title -->
+          <span class="card-title">New Site</span>
 
           <div class="container">
 
             <%= form_for @site do |f| %>
 
+              <!-- Name -->
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">text_fields</i>
-                  <%= f.text_field :name %>
+                  <%= f.text_field :name, required: true, autofocus: true %>
                   <%= f.label :name %>
                 </div>
               </div>
 
+              <!-- Location -->
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">location_on</i>
@@ -31,6 +31,7 @@
                 </div>
               </div>
 
+              <!-- Description -->
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">description</i>
@@ -50,7 +51,6 @@
 
                   <!-- Back button -->
                   <%= link_to "Back", sites_path, class: "btn btn-flat waves-effect waves-light" %>
-
                 </div>
               </div>
 
@@ -60,7 +60,7 @@
 
         </div>  <!-- Card content -->
 
-      </div>
-    </div>
-  </div>
-</div>
+      </div>  <!-- Card -->
+    </div>  <!-- Col -->
+  </div>  <!-- Row -->
+</div>  <!-- Container -->

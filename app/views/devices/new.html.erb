@@ -6,8 +6,8 @@
 
           <i class="material-icons left">print</i>
 
-          <!-- Device name -->
-          <span class="card-title">Edit: <%= @device.name %></span>
+          <!-- Card title -->
+          <span class="card-title">New Device</span>
 
           <div class="container">
 
@@ -16,8 +16,8 @@
               <!-- Name -->
               <div class="row">
                 <div class="input-field col s12">
-                  <%= f.label :name, class: "active" %>
-                  <%= f.text_field :name, required: true %>
+                  <%= f.label :name %>
+                  <%= f.text_field :name, required: true, autofocus: true %>
                 </div>
               </div>
 
@@ -40,13 +40,13 @@
 
                 <!-- Model -->
                 <div class="input-field col s6">
-                  <%= f.label :model, class: "active" %>
+                  <%= f.label :model %>
                   <%= f.text_field :model %>
                 </div>
 
                 <!-- IP -->
                 <div class="input-field col s6">
-                  <%= f.label :ip, "WebUI Address", class: "active" %>
+                  <%= f.label :ip, "WebUI Address" %>
                   <%= f.text_field :ip %>
                 </div>
               </div>
@@ -54,7 +54,7 @@
               <!-- Location -->
               <div class="row">
                 <div class="input-field col s12">
-                  <%= f.label :location, class: "active" %>
+                  <%= f.label :location %>
                   <%= f.text_field :location %>
                 </div>
               </div>
@@ -63,7 +63,7 @@
 
                 <!-- Serial Number -->
                 <div class="input-field col s6">
-                  <%= f.label :sn, "Serial Number", class: "active" %>
+                  <%= f.label :sn, "Serial Number" %>
                   <%= f.text_field :sn %>
                 </div>
 
@@ -78,27 +78,19 @@
               <div class="row">
                 <div class="col s12">
 
-                  <!-- Save button -->
+                  <!-- Create button -->
                   <button class="btn waves-effect waves-light">
-                    <%= f.submit "Save" %>
+                    <%= f.submit "Create" %>
                   </button>
 
                   <!-- Back button -->
-                  <%= link_to "Back", device_path(@device), class: "btn btn-flat waves-effect waves-light" %>
+                  <%= link_to "Back", devices_path, class: "btn btn-flat waves-effect waves-light" %>
                 </div>
               </div>  <!-- Buttons -->
 
             <% end %>
 
           </div>  <!-- Form container -->
-
-          <!-- Delete device button -->
-          <div class="row">
-            <div class="col s12">
-              <%= button_to "Delete device", @device, data: { confirm: "Are you sure? You're about to delete this Device. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
-            </div>
-          </div>
-
         </div>  <!-- Card content -->
       </div>  <!-- Card -->
     </div>  <!-- Col -->

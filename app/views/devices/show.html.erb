@@ -73,71 +73,7 @@
             </div>
           </div>
 
-          <!-- Supplies table -->
-          <div class="row">
-            <div class="col s12">
-              <% if @device.supplies.any? %>
-                <ul class="collapsible popout left-align" data-collapsible="expandable">
-                  <li>
-                    <div class="collapsible-header active">
-                      <i class="material-icons">web_asset</i>
-                      Assigned Supplies
-                      <span class="right"><%= @device.supplies.count %></span>
-                    </div>
-
-                    <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
-                      <table class="highlight">
-                        <thead>
-                          <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Quantity</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <% @device.supplies.each do |supply| %>
-                            <tr>
-                              <td><%= link_to supply.name, supply_path(supply) %></td>
-                              <td><%= supply.description %></td>
-                              <td><%= supply.quantity %></td>
-                              <td>
-                                <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
-                                  <i class="material-icons black-text">more_vert</i>
-                                </a>
-
-                                <!-- Dropdown Structure -->
-                                <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
-
-                                  <!-- Edit supply button-->
-                                  <li>
-                                    <%= link_to edit_supply_path(supply) do %>
-                                      <i class="material-icons left">edit</i>
-                                      Edit supply
-                                    <% end %>
-                                  </li>
-
-                                  <!-- Delete supply button-->
-                                  <li>
-                                    <%= link_to supply_path(supply), method: :delete, data: { confirm: "Are you sure? You're about to delete this Supply. This action is irreversible." } do %>
-                                      <i class="material-icons left">delete</i>
-                                      Delete supply
-                                    <% end %>
-                                  </li>
-
-                                </ul>
-                              </td>
-                            </tr>
-                          <% end %>
-                        </tbody>
-                      </table>
-                    </div>
-                  </li>
-                </ul>
-              <% end %>
-            </div>
-          </div>
+          <%= render 'layouts/assets-popout-device' %>
 
         </div>  <!-- Card content -->
 
@@ -148,9 +84,9 @@
         </div>
 
       </div>  <!-- Card -->
-    </div>
-  </div>
-</div>
+    </div>  <!-- Col -->
+  </div>  <!-- Row -->
+</div>  <!-- Container -->
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
   <a class="btn-floating btn-large red">
