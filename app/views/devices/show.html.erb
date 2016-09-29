@@ -88,13 +88,8 @@
   </div>  <!-- Row -->
 </div>  <!-- Container -->
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-  <a class="btn-floating btn-large red">
-    <i class="material-icons">add</i>
-  </a>
-  <ul>
-    <li>
-      <a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Assign Supplies"><i class="material-icons">assignment</i></a>
-    </li>
-  </ul>
+<div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Assign Supplies">
+  <%= link_to assign_device_path, class: "btn-floating btn-large green" do %>
+    <i class="material-icons">assignment</i>
+  <% end %>
 </div>

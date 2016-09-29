@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     get 'overview', to: 'static_pages#overview'
     get 'settings', to: 'static_pages#settings'
     resources :sites
-    resources :devices
+    resources :devices do
+      member { get :assign }
+    end
     resources :supplies
   end
 
