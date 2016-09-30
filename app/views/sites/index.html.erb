@@ -59,12 +59,12 @@
 
           <div class="card-action">
 
-            <%= link_to devices_path(site_id: site.id), class: "btn btn-flat waves-effect" do %>
+            <%= link_to site_devices_path(site), class: "btn btn-flat waves-effect" do %>
               <i class="material-icons left">print</i>
               View Devices
             <% end %>
 
-            <%= link_to supplies_path(site_id: site.id), class: "btn btn-flat waves-effect" do %>
+            <%= link_to site_supplies_path(site), class: "btn btn-flat waves-effect" do %>
               <i class="material-icons left">web_asset</i>
                View Supplies
             <% end %>

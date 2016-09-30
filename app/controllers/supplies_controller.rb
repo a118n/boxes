@@ -8,6 +8,10 @@ class SuppliesController < ApplicationController
     end
   end
 
+  def all
+    @supplies = Supply.all.includes(:site)
+  end
+
   def show
     @supply = Supply.includes(:site, :devices).find(params[:id])
   end

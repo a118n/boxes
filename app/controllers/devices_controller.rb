@@ -1,11 +1,12 @@
 class DevicesController < ApplicationController
 
   def index
+    @site = Site.find(params[:site_id])
+    @devices = @site.devices
+  end
+
+  def all
     @devices = Device.all.includes(:site)
-    if params[:site_id]
-      @devices = Device.includes(:site).where(site_id: params[:site_id])
-      @site = Site.find(params[:site_id])
-    end
   end
 
   def show
@@ -13,10 +14,7 @@ class DevicesController < ApplicationController
   end
 
   def new
-    @device = Device.new
-    if params[:site_id]
-      @device.site_id = params[:site_id]
-    end
+    @device = Site.find(params[:site_id]).devices.build
   end
 
   def edit

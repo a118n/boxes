@@ -7,11 +7,7 @@
           <i class="material-icons left">print</i>
 
           <!-- Card title -->
-          <% if params[:site_id] %>
-            <span class="card-title"><%= @site.name %> - All Devices</span>
-          <% else %>
-            <span class="card-title">All Devices</span>
-          <% end %>
+          <span class="card-title"><%= @site.name %> - All Devices</span>
 
           <!-- Dots Dropdown -->
           <a class="dropdown-button right" href="#!" data-activates="dropdown-devices-all" data-constrainwidth="false">
@@ -34,7 +30,6 @@
                 <th>State</th>
                 <th>Location</th>
                 <th>Serial Number</th>
-                <th>Site</th>
                 <th></th>
               </tr>
             </thead>
@@ -42,7 +37,7 @@
             <tbody>
               <% @devices.each do |device| %>
                 <tr>
-                  <td><%= link_to device.name, device_path(device) %></td>
+                  <td><%= link_to device.name, site_device_path(@site, device) %></td>
                   <td><%= device.devtype %></td>
                   <td><%= device.model %></td>
                   <td>
@@ -57,7 +52,6 @@
                   </td>
                   <td><%= device.location %></td>
                   <td><%= device.sn %></td>
-                  <td><%= link_to device.site.name, device.site %></td>
                   <td>
                     <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= device.id %>" data-constrainwidth="false">
                       <i class="material-icons black-text">more_vert</i>
@@ -76,7 +70,7 @@
 
                       <!-- Edit device button-->
                       <li>
-                        <%= link_to edit_device_path(device) do %>
+                        <%= link_to edit_site_device_path(@site, device) do %>
                           <i class="material-icons left">edit</i>
                           Edit device
                         <% end %>
@@ -97,7 +91,7 @@
 </div>  <!-- Container -->
 
 <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Device">
-  <%= link_to new_device_path(site_id: params[:site_id] || nil), class: "btn-floating btn-large red" do %>
+  <%= link_to new_site_device_path(@site), class: "btn-floating btn-large red" do %>
     <i class="large material-icons">add</i>
   <% end %>
 </div>

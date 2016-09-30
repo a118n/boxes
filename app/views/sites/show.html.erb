@@ -65,14 +65,14 @@
   <ul>
     <li>
       <div class="tooltipped" data-position="left" data-delay="50" data-tooltip="Add Supply">
-        <%= link_to new_supply_path(site_id: @site.id), class: "btn-floating green" do %>
+        <%= link_to new_site_supply_path(@site), class: "btn-floating green" do %>
           <i class="material-icons">web_asset</i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="tooltipped" data-position="left" data-delay="50" data-tooltip="Add Device">
-        <%= link_to new_device_path(site_id: @site.id), class: "btn-floating blue" do %>
+        <%= link_to new_site_device_path(@site), class: "btn-floating blue" do %>
           <i class="material-icons">print</i>
         <% end %>
       </div>
