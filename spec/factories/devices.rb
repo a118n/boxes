@@ -7,6 +7,6 @@ FactoryGirl.define do
     ip { Faker::Internet.ip_v4_address }
     location { Faker::Space.agency }
     sn { Faker::Code.asin }
-    site_id 1
+    site # Associated to :site
   end
 end

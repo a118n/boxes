@@ -3,7 +3,8 @@ class Supply < ApplicationRecord
   has_many :devices, through: :device_supplies
   belongs_to :site
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :site,
+                                                 case_sensitive: false }
   validates :quantity, presence: true,
                        numericality: { greater_than_or_equal_to: 0,
                                        less_than: 2147483648 }

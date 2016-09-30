@@ -11,7 +11,7 @@
 
           <div class="container">
 
-            <%= form_for @supply do |f| %>
+            <%= form_for [@site, @supply] do |f| %>
 
               <table class="highlight">
                 <thead>
@@ -64,7 +64,7 @@
                   </button>
 
                   <!-- Back button -->
-                  <%= link_to "Back", supply_path(@supply), class: "btn btn-flat waves-effect waves-light" %>
+                  <%= link_to "Back", site_supply_path(@supply.site, @supply), class: "btn btn-flat waves-effect waves-light" %>
                 </div>
               </div>  <!-- Buttons -->
 

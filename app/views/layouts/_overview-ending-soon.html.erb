@@ -34,7 +34,7 @@
           <tbody>
             <% @supplies_ending.each do |supply| %>
               <tr>
-                <td><%= link_to supply.name, supply_path(supply) %></td>
+                <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
                 <td><%= supply.description %></td>
                 <td><%= supply.quantity %></td>
                 <td><%= link_to supply.site.name, supply.site %></td>

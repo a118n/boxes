@@ -33,7 +33,7 @@
           <tbody>
             <% @devices_repair.each do |device| %>
               <tr>
-                <td><%= link_to device.name, device_path(device) %></td>
+                <td><%= link_to device.name, site_device_path(device.site, device) %></td>
                 <td><%= device.devtype %></td>
                 <td><%= device.model %></td>
                 <td><%= device.location %></td>

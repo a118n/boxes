@@ -1,41 +1,49 @@
 class DevicesController < ApplicationController
 
   def index
-    @site = Site.find(params[:site_id])
+    @site = Site.includes(:devices).find(params[:site_id])
     @devices = @site.devices
   end
 
   def all
     @devices = Device.all.includes(:site)
+    redirect_to root_path unless Site.any?
   end
 
   def show
-    @device = Device.includes(:site, :supplies).find(params[:id])
+    @site = Site.find(params[:site_id])
+    @device = @site.devices.find(params[:id])
   end
 
   def new
-    @device = Site.find(params[:site_id]).devices.build
+    @site =  Site.find(params[:site_id])
+    @device = @site.devices.build
   end
 
   def edit
-    @device = Device.find(params[:id])
+    @site =  Site.find(params[:site_id])
+    @device = @site.devices.find(params[:id])
   end
 
   def create
-    @device = Device.new(device_params)
+    @site =  Site.find(params[:site_id])
+    @device = @site.devices.build(device_params)
     if @device.save
       flash[:success] = "Device added"
-      redirect_to @device
+      redirect_to site_device_url(@site, @device)
     else
       render 'new'
     end
   end
 
   def update
-    @device = Device.find(params[:id])
+    @site = Site.find(params[:site_id])
+    @device = @site.devices.find(params[:id])
     if @device.update_attributes(device_params)
       flash[:success] = "#{@device.name} saved"
-      redirect_to @device
+      # Needed for changing Site in form, for site_id to be updated for the redirect
+      @device.reload
+      redirect_to site_device_url(@device.site, @device)
     else
       render 'edit'
     end
@@ -44,12 +52,13 @@ class DevicesController < ApplicationController
   def destroy
     Device.find(params[:id]).destroy
     flash[:warning] = "Device deleted"
-    redirect_to devices_url
+    redirect_to site_devices_url
   end
 
   def assign
-    @device = Device.find(params[:id])
-    @supplies = Supply.where(site_id: @device.site_id).order("name")
+    @site = Site.find(params[:site_id])
+    @device = @site.devices.find(params[:id])
+    @supplies = @site.supplies.order("name")
   end
 
   private

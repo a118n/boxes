@@ -11,7 +11,7 @@
 
           <div class="container">
 
-            <%= form_for @device do |f| %>
+            <%= form_for [@device.site, @device] do |f| %>
 
               <!-- Name -->
               <div class="row">
@@ -84,7 +84,7 @@
                   </button>
 
                   <!-- Back button -->
-                  <%= link_to "Back", device_path(@device), class: "btn btn-flat waves-effect waves-light" %>
+                  <%= link_to "Back", site_device_path(@device.site, @device), class: "btn btn-flat waves-effect waves-light" %>
                 </div>
               </div>  <!-- Buttons -->
 
@@ -95,7 +95,7 @@
           <!-- Delete device button -->
           <div class="row">
             <div class="col s12">
-              <%= button_to "Delete device", @device, data: { confirm: "Are you sure? You're about to delete this Device. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
+              <%= button_to "Delete device", site_device_path(@device.site, @device), data: { confirm: "Are you sure? You're about to delete this Device. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
             </div>
           </div>
 

@@ -11,7 +11,7 @@
 
           <div class="container">
 
-            <%= form_for @device do |f| %>
+            <%= form_for [@device.site, @device] do |f| %>
 
               <table class="highlight">
                 <thead>
@@ -60,7 +60,7 @@
                   </button>
 
                   <!-- Back button -->
-                  <%= link_to "Back", device_path(@device), class: "btn btn-flat waves-effect waves-light" %>
+                  <%= link_to "Back", site_device_path(@device.site, @device), class: "btn btn-flat waves-effect waves-light" %>
                 </div>
               </div>  <!-- Buttons -->
 

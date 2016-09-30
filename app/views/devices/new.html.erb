@@ -7,11 +7,11 @@
           <i class="material-icons left">print</i>
 
           <!-- Card title -->
-          <span class="card-title">New Device</span>
+          <span class="card-title"><%= @site.name %> - New Device</span>
 
           <div class="container">
 
-            <%= form_for @device do |f| %>
+            <%= form_for [@site, @device] do |f| %>
 
               <!-- Name -->
               <div class="row">
@@ -53,24 +53,16 @@
 
               <!-- Location -->
               <div class="row">
-                <div class="input-field col s12">
+
+                <div class="input-field col s6">
                   <%= f.label :location %>
                   <%= f.text_field :location %>
                 </div>
-              </div>
-
-              <div class="row">
 
                 <!-- Serial Number -->
                 <div class="input-field col s6">
                   <%= f.label :sn, "Serial Number" %>
                   <%= f.text_field :sn %>
-                </div>
-
-                <!-- Site -->
-                <div class="input-field col s6">
-                  <%= f.label :site, class: "active" %>
-                  <%= f.collection_select(:site_id, Site.all, :id, :name) %>
                 </div>
               </div>
 

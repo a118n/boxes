@@ -7,7 +7,8 @@
           <i class="material-icons left">web_asset</i>
 
           <!-- Card title -->
-          <span class="card-title"><%= @site.name %> - All Supplies</span>
+          <span class="card-title">All Supplies</span>
+
 
           <!-- Dots Dropdown -->
           <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-all" data-constrainwidth="false">
@@ -27,6 +28,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Quantity</th>
+                <th>Site</th>
                 <th></th>
               </tr>
             </thead>
@@ -37,6 +39,7 @@
                   <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
                   <td><%= supply.description %></td>
                   <td><%= supply.quantity %></td>
+                  <td><%= link_to supply.site.name, supply.site %></td>
                   <td>
                     <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
                       <i class="material-icons black-text">more_vert</i>
@@ -66,9 +69,3 @@
     </div>  <!-- Col -->
   </div>  <!-- Row -->
 </div>  <!-- Container -->
-
-<div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Supply">
-  <%= link_to new_site_supply_path(@site), class: "btn-floating btn-large red" do %>
-    <i class="large material-icons">add</i>
-  <% end %>
-</div>

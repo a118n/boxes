@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :supply do
-    name { ["CB381A", "CC364A", "CE250A", "CE390A", "CF300A"].sample }
+    name { ["CA", "CB", "CC", "CE", "CF"].sample + Faker::Number.number(3) + "A" }
     description { Faker::Color.color_name.capitalize + " Cartridge" }
     quantity { Faker::Number.number(2) }
-    site_id 1
+    site # Associated to :site
   end
 end
