@@ -7,7 +7,11 @@
           <i class="material-icons left">print</i>
 
           <!-- Card title -->
-          <span class="card-title">All Devices</span>
+          <% if params[:site_id] %>
+            <span class="card-title"><%= @site.name %> - All Devices</span>
+          <% else %>
+            <span class="card-title">All Devices</span>
+          <% end %>
 
           <!-- Dots Dropdown -->
           <a class="dropdown-button right" href="#!" data-activates="dropdown-devices-all" data-constrainwidth="false">
@@ -16,7 +20,7 @@
 
           <!-- Dropdown Structure -->
           <ul id="dropdown-devices-all" class="dropdown-content" style="min-width: 150px;">
-            
+
             <!-- Export button-->
             <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
           </ul>
@@ -93,7 +97,7 @@
 </div>  <!-- Container -->
 
 <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Device">
-  <%= link_to new_device_path, class: "btn-floating btn-large red" do %>
+  <%= link_to new_device_path(site_id: params[:site_id] || nil), class: "btn-floating btn-large red" do %>
     <i class="large material-icons">add</i>
   <% end %>
 </div>

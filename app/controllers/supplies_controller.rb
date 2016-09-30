@@ -2,6 +2,10 @@ class SuppliesController < ApplicationController
 
   def index
     @supplies = Supply.all.includes(:site)
+    if params[:site_id]
+      @supplies = Supply.includes(:site).where(site_id: params[:site_id])
+      @site = Site.find(params[:site_id])
+    end
   end
 
   def show
@@ -10,6 +14,9 @@ class SuppliesController < ApplicationController
 
   def new
     @supply = Supply.new
+    if params[:site_id]
+      @supply.site_id = params[:site_id]
+    end
   end
 
   def edit

@@ -8,7 +8,7 @@
         l6 offset-l3
       <% else %>
         l6
-      <% end %> ">
+      <% end %> ">  <!-- if only one site is present, make it l6 with l3 offset -->
         <div class="card hoverable">
           <div class="card-content">
 
@@ -59,12 +59,12 @@
 
           <div class="card-action">
 
-            <%= link_to devices_path, class: "btn btn-flat waves-effect" do %>
+            <%= link_to devices_path(site_id: site.id), class: "btn btn-flat waves-effect" do %>
               <i class="material-icons left">print</i>
               View Devices
             <% end %>
 
-            <%= link_to supplies_path, class: "btn btn-flat waves-effect" do %>
+            <%= link_to supplies_path(site_id: site.id), class: "btn btn-flat waves-effect" do %>
               <i class="material-icons left">web_asset</i>
                View Supplies
             <% end %>

@@ -7,7 +7,11 @@
           <i class="material-icons left">web_asset</i>
 
           <!-- Card title -->
-          <span class="card-title">All Supplies</span>
+          <% if params[:site_id] %>
+            <span class="card-title"><%= @site.name %> - All Supplies</span>
+          <% else %>
+            <span class="card-title">All Supplies</span>
+          <% end %>
 
           <!-- Dots Dropdown -->
           <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-all" data-constrainwidth="false">
@@ -70,7 +74,7 @@
 </div>  <!-- Container -->
 
 <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Supply">
-  <%= link_to new_supply_path, class: "btn-floating btn-large red" do %>
+  <%= link_to new_supply_path(site_id: params[:site_id] || nil), class: "btn-floating btn-large red" do %>
     <i class="large material-icons">add</i>
   <% end %>
 </div>

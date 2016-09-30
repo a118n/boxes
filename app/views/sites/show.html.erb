@@ -64,14 +64,18 @@
   </a>
   <ul>
     <li>
-      <a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Add Supply">
-        <i class="material-icons">web_asset</i>
-      </a>
+      <div class="tooltipped" data-position="left" data-delay="50" data-tooltip="Add Supply">
+        <%= link_to new_supply_path(site_id: @site.id), class: "btn-floating green" do %>
+          <i class="material-icons">web_asset</i>
+        <% end %>
+      </div>
     </li>
     <li>
-      <a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Add Device">
-        <i class="material-icons">print</i>
-      </a>
+      <div class="tooltipped" data-position="left" data-delay="50" data-tooltip="Add Device">
+        <%= link_to new_device_path(site_id: @site.id), class: "btn-floating blue" do %>
+          <i class="material-icons">print</i>
+        <% end %>
+      </div>
     </li>
   </ul>
 </div>

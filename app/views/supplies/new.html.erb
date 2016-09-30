@@ -33,13 +33,13 @@
                 <!-- Quantity -->
                 <div class="input-field col s6">
                   <%= f.label :quantity %>
-                  <%= f.text_field :quantity, required: true %>
+                  <%= f.number_field :quantity, required: true, min: 0, max: 2147483647 %>
                 </div>
 
                 <!-- Ending threshold -->
                 <div class="input-field col s6">
                   <%= f.label :threshold, "Ending Threshold", class: "active" %>
-                  <%= f.text_field :threshold, required: true %>
+                  <%= f.number_field :threshold, required: true, min: 0, max: 2147483647 %>
                 </div>
               </div>
 

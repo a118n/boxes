@@ -26,6 +26,7 @@
               <th>Type</th>
               <th>Model</th>
               <th>Location</th>
+              <th>Site</th>
             </tr>
           </thead>
 
@@ -36,6 +37,7 @@
                 <td><%= device.devtype %></td>
                 <td><%= device.model %></td>
                 <td><%= device.location %></td>
+                <td><%= link_to device.site.name, device.site %></td>
               </tr>
             <% end %>
           </tbody>

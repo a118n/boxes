@@ -6,8 +6,8 @@ class StaticPagesController < ApplicationController
   end
 
   def overview
-    @supplies_ending = Supply.ending_soon.order("quantity")
-    @devices_repair = Device.in_repair.order("name")
+    @supplies_ending = Supply.includes(:site).ending_soon.order("quantity")
+    @devices_repair = Device.includes(:site).in_repair.order("name")
     @sites = Site.all
     @devices = Device.all
     @supplies = Supply.all

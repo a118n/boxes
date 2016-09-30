@@ -2,6 +2,10 @@ class DevicesController < ApplicationController
 
   def index
     @devices = Device.all.includes(:site)
+    if params[:site_id]
+      @devices = Device.includes(:site).where(site_id: params[:site_id])
+      @site = Site.find(params[:site_id])
+    end
   end
 
   def show
@@ -10,6 +14,9 @@ class DevicesController < ApplicationController
 
   def new
     @device = Device.new
+    if params[:site_id]
+      @device.site_id = params[:site_id]
+    end
   end
 
   def edit
