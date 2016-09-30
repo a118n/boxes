@@ -1,11 +1,11 @@
 class DevicesController < ApplicationController
 
   def index
-    @devices = Device.all
+    @devices = Device.all.includes(:site)
   end
 
   def show
-    @device = Device.find(params[:id])
+    @device = Device.includes(:site, :supplies).find(params[:id])
   end
 
   def new
@@ -44,8 +44,7 @@ class DevicesController < ApplicationController
 
   def assign
     @device = Device.find(params[:id])
-    @site = @device.site
-    @supplies = @site.supplies
+    @supplies = Supply.where(site_id: @device.site_id).order("name")
   end
 
   private

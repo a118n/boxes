@@ -8,11 +8,16 @@ Rails.application.routes.draw do
   authenticate :user do
     get 'overview', to: 'static_pages#overview'
     get 'settings', to: 'static_pages#settings'
+    
     resources :sites
+
     resources :devices do
       member { get :assign }
     end
-    resources :supplies
-  end
 
+    resources :supplies do
+      member { get :assign }
+    end
+
+  end
 end

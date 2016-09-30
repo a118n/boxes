@@ -1,11 +1,11 @@
 class SuppliesController < ApplicationController
 
   def index
-    @supplies = Supply.all
+    @supplies = Supply.all.includes(:site)
   end
 
   def show
-    @supply = Supply.find(params[:id])
+    @supply = Supply.includes(:site, :devices).find(params[:id])
   end
 
   def new
@@ -42,11 +42,16 @@ class SuppliesController < ApplicationController
     redirect_to supplies_url
   end
 
+  def assign
+    @supply = Supply.find(params[:id])
+    @devices = Device.where(site_id: @supply.site_id).order("name")
+  end
+
   private
 
   def supply_params
     params.require(:supply).permit(:name, :description, :quantity, :threshold,
-                                   :site_id)
+                                   :site_id, device_ids: [])
   end
 
 end

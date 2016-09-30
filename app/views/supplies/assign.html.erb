@@ -7,36 +7,40 @@
           <i class="material-icons left">assignment</i>
 
           <!-- Card title -->
-          <span class="card-title"><%= @device.name %> - Assign Supplies</span>
+          <span class="card-title"><%= @supply.name %> - Assign Devices</span>
 
           <div class="container">
 
-            <%= form_for @device do |f| %>
+            <%= form_for @supply do |f| %>
 
               <table class="highlight">
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Description</th>
-                    <th>Quantity</th>
+                    <th>Type</th>
+                    <th>Model</th>
+                    <th>State</th>
+                    <th>Location</th>
                   </tr>
                 </thead>
 
                 <tbody>
 
-                  <!-- Needed for successful update if no supplies assigned -->
-                  <%= hidden_field_tag "device[supply_ids][]" %>
+                  <!-- Needed for successful update if no devices assigned -->
+                  <%= hidden_field_tag "supply[device_ids][]" %>
 
-                  <% @supplies.each do |supply| %>
+                  <% @devices.each do |device| %>
                     <tr>
                       <td>
 
-                        <!-- f.object.supplies.include?(supply) used to set checkbox status, but generates N+1 Query problem. Not sure how to fix that yet. -->
-                        <%= check_box_tag "device[supply_ids][]", supply.id, f.object.supplies.include?(supply), id: "device_supply_ids_#{supply.id}" %>
-                        <label for="device_supply_ids_<%= supply.id %>"><%= supply.name %></label>
+                        <!-- f.object.devices.include?(device) used to set checkbox status, but generates N+1 Query problem. Not sure how to fix that yet. -->
+                        <%= check_box_tag "supply[device_ids][]", device.id, f.object.devices.include?(device), id: "supply_device_ids_#{ device.id }" %>
+                        <label for="supply_device_ids_<%= device.id %>"><%= device.name %></label>
                       </td>
-                      <td><%= supply.description %></td>
-                      <td><%= supply.quantity %></td>
+                      <td><%= device.devtype %></td>
+                      <td><%= device.model %></td>
+                      <td><%= device.state %></td>
+                      <td><%= device.location %></td>
                     </tr>
                   <% end %>
                 </tbody>
@@ -60,7 +64,7 @@
                   </button>
 
                   <!-- Back button -->
-                  <%= link_to "Back", device_path(@device), class: "btn btn-flat waves-effect waves-light" %>
+                  <%= link_to "Back", supply_path(@supply), class: "btn btn-flat waves-effect waves-light" %>
                 </div>
               </div>  <!-- Buttons -->
 
