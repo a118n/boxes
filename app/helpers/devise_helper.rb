@@ -15,8 +15,8 @@ module DeviseHelper
 
     html = <<-HTML
     <div id="error_explanation" class="row">
-      <h4 style="font-size: 1.5em;">#{sentence}</h4>
-      <ul class="red lighten-3">#{messages}</ul>
+      <!-- <h4 style="font-size: 1.5em;">#{sentence}</h4> -->
+      <ul class="red-text">#{messages}</ul>
     </div>
     HTML
 

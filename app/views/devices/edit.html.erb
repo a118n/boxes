@@ -13,6 +13,8 @@
 
             <%= form_for [@device.site, @device] do |f| %>
 
+              <%= form_errors_for @device %>
+
               <!-- Name -->
               <div class="row">
                 <div class="input-field col s12">

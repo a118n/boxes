@@ -11,6 +11,15 @@ class Supply < ApplicationRecord
   validates :threshold, presence: true,
                         numericality: { greater_than_or_equal_to: 0,
                                         less_than: 2147483648 }
+  validate :associations
 
   scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0") }
+
+  private
+
+  def associations
+    if self.devices.any? && site_id_changed?
+      errors.add(:site_id, "cannot be changed. Remove assigned devices first.")
+    end
+  end
 end
