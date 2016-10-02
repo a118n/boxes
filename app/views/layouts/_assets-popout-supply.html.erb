@@ -1,13 +1,13 @@
 <!-- Devices table -->
 <div class="row">
   <div class="col s12">
-    <% if @supply.devices.any? %>
+    <% if @supply_devices.any? %>
       <ul class="collapsible popout left-align" data-collapsible="expandable">
         <li>
           <div class="collapsible-header active">
             <i class="material-icons">print</i>
             Assigned Devices
-            <span class="right"><%= @supply.devices.count %></span>
+            <span class="right"><%= @supply_devices.count %></span>
           </div>
 
           <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
@@ -24,7 +24,7 @@
               </thead>
 
               <tbody>
-                <% @supply.devices.each do |device| %>
+                <% @supply_devices.each do |device| %>
                   <tr>
                     <td><%= link_to device.name, site_device_path(device.site, device) %></td>
                     <td><%= device.devtype %></td>
