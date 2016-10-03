@@ -1,83 +1,81 @@
-<div class="container center-align">
-  <div class="row">
+<div class="row">
 
-    <% @sites.each do |site| %>
+  <% @sites.each do |site| %>
 
-      <div class="col s12
-      <% if @sites.count == 1 %>
-        l6 offset-l3
-      <% else %>
-        l6
-      <% end %> ">  <!-- if only one site is present, make it l6 with l3 offset -->
-        <div class="card hoverable">
-          <div class="card-content">
+    <div class="col s12
+    <% if @sites.count == 1 %>
+      l6 offset-l3
+    <% else %>
+      l6
+    <% end %> ">  <!-- if only one site is present, make it l6 with l3 offset -->
+      <div class="card hoverable">
+        <div class="card-content">
 
-            <span class="card-title">
+          <span class="card-title">
 
-              <i class="material-icons left">domain</i>
+            <i class="material-icons left">domain</i>
 
-              <!-- Site name -->
-              <%= link_to site.name, site_path(site), class: "black-text" %>
+            <!-- Site name -->
+            <%= link_to site.name, site_path(site), class: "black-text" %>
 
-              <!-- Dots Dropdown -->
-              <a class="dropdown-button right" href="#!" data-activates="dropdown-site-<%= site.id %>" data-constrainwidth="false">
-                <i class="material-icons black-text">more_vert</i>
-              </a>
+            <!-- Dots Dropdown -->
+            <a class="dropdown-button right" href="#!" data-activates="dropdown-site-<%= site.id %>" data-constrainwidth="false">
+              <i class="material-icons black-text">more_vert</i>
+            </a>
 
-              <!-- Dropdown Structure -->
-              <ul id="dropdown-site-<%= site.id %>" class="dropdown-content" style="min-width: 150px;">
+            <!-- Dropdown Structure -->
+            <ul id="dropdown-site-<%= site.id %>" class="dropdown-content" style="min-width: 150px;">
 
-                <!-- Edit site button-->
-                <li>
-                  <%= link_to edit_site_path(site) do %>
-                    <i class="material-icons left">edit</i>
-                    Edit site
-                  <% end %>
-                </li>
+              <!-- Edit site button-->
+              <li>
+                <%= link_to edit_site_path(site) do %>
+                  <i class="material-icons left">edit</i>
+                  Edit site
+                <% end %>
+              </li>
 
-              </ul>
+            </ul>
 
-            </span>
+          </span>
 
-            <table class="highlight">
-              <thead>
-                <tr>
-                  <th>Location</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
+          <table class="highlight">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Description</th>
+              </tr>
+            </thead>
 
-              <tbody>
-                <tr>
-                  <td><%= site.location %></td>
-                  <td><%= site.description %></td>
-                </tr>
-              </tbody>
-            </table>
+            <tbody>
+              <tr>
+                <td><%= site.location %></td>
+                <td><%= site.description %></td>
+              </tr>
+            </tbody>
+          </table>
 
-          </div>  <!-- Card-content -->
+        </div>  <!-- Card-content -->
 
-          <div class="card-action">
+        <div class="card-action">
 
-            <%= link_to site_devices_path(site), class: "btn btn-flat waves-effect" do %>
-              <i class="material-icons left">print</i>
-              View Devices
-            <% end %>
+          <%= link_to site_devices_path(site), class: "btn btn-flat waves-effect" do %>
+            <i class="material-icons left">print</i>
+            View Devices
+          <% end %>
 
-            <%= link_to site_supplies_path(site), class: "btn btn-flat waves-effect" do %>
-              <i class="material-icons left">web_asset</i>
-               View Supplies
-            <% end %>
+          <%= link_to site_supplies_path(site), class: "btn btn-flat waves-effect" do %>
+            <i class="material-icons left">web_asset</i>
+             View Supplies
+          <% end %>
 
-          </div>
+        </div>
 
-        </div>  <!-- Card -->
-      </div>  <!-- Col -->
+      </div>  <!-- Card -->
+    </div>  <!-- Col -->
 
-    <% end %>
+  <% end %>
 
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+</div>  <!-- Row -->
 
 <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Site">
   <%= link_to new_site_path, class: "btn-floating btn-large red" do %>

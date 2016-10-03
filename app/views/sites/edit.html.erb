@@ -1,72 +1,70 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card hoverable">
-        <div class="card-content">
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
 
-          <i class="material-icons left">domain</i>
+        <i class="material-icons left">domain</i>
 
-          <!-- Site name -->
-          <span class="card-title">Edit: <%= @site.name %></span>
+        <!-- Site name -->
+        <span class="card-title">Edit: <%= @site.name %></span>
 
-          <div class="container">
+        <div class="container">
 
-            <%= form_for @site do |f| %>
+          <%= form_for @site do |f| %>
 
-              <!-- Name -->
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">text_fields</i>
-                  <%= f.label :name, class: "active" %>
-                  <%= f.text_field :name %>
-                </div>
+            <!-- Name -->
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">text_fields</i>
+                <%= f.label :name, class: "active" %>
+                <%= f.text_field :name %>
               </div>
-
-              <!-- Location -->
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">location_on</i>
-                  <%= f.label :location, class: "active" %>
-                  <%= f.text_field :location %>
-                </div>
-              </div>
-
-              <!-- Description -->
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">description</i>
-                  <%= f.label :description, class: "active" %>
-                  <%= f.text_field :description %>
-                </div>
-              </div>
-
-              <!-- Buttons -->
-              <div class="row">
-                <div class="col s12">
-
-                  <!-- Update button -->
-                  <button class="btn waves-effect waves-light">
-                    <%= f.submit "Save" %>
-                  </button>
-
-                  <!-- Back button -->
-                  <%= link_to "Back", site_path(@site), class: "btn btn-flat waves-effect waves-light" %>
-                </div>
-              </div>
-
-            <% end %>
-
-          </div>  <!-- Form container -->
-
-          <!-- Delete site button -->
-          <div class="row">
-            <div class="col s12">
-              <%= button_to "Delete site", @site, data: { confirm: "Are you sure? You're about to delete this Site as well as all associated Devices and Supplies. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
             </div>
-          </div>
 
-        </div>  <!-- Card content -->
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+            <!-- Location -->
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">location_on</i>
+                <%= f.label :location, class: "active" %>
+                <%= f.text_field :location %>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">description</i>
+                <%= f.label :description, class: "active" %>
+                <%= f.text_field :description %>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col s12">
+
+                <!-- Update button -->
+                <button class="btn waves-effect waves-light">
+                  <%= f.submit "Save" %>
+                </button>
+
+                <!-- Back button -->
+                <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+              </div>
+            </div>
+
+          <% end %>
+
+        </div>  <!-- Form container -->
+
+        <!-- Delete site button -->
+        <div class="row">
+          <div class="col s12">
+            <%= button_to "Delete site", @site, data: { confirm: "Are you sure? You're about to delete this Site as well as all associated Devices and Supplies. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
+          </div>
+        </div>
+
+      </div>  <!-- Card content -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->

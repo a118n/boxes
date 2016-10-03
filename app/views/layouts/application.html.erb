@@ -25,7 +25,13 @@
       </script>
     <% end %>
 
-    <%= yield %>
+    <div class="container center-align">
+      <%= yield %>
+    </div>
+
+    <% if controller.controller_name == "static_pages" && controller.action_name == "home" %>
+      <%= render 'layouts/footer' %>
+    <% end %>
 
   </body>
 </html>

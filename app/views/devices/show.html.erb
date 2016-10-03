@@ -1,95 +1,93 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card hoverable">
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
 
-        <div class="card-content">
+      <div class="card-content">
 
-          <i class="material-icons left">print</i>
+        <i class="material-icons left">print</i>
 
-          <!-- Device name -->
-          <span class="card-title"><%= @device.name %></span>
+        <!-- Device name -->
+        <span class="card-title"><%= @device.name %></span>
 
-          <!-- Dots Dropdown -->
-          <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= @device.id %>" data-constrainwidth="false">
-            <i class="material-icons black-text">more_vert</i>
-          </a>
+        <!-- Dots Dropdown -->
+        <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= @device.id %>" data-constrainwidth="false">
+          <i class="material-icons black-text">more_vert</i>
+        </a>
 
-          <!-- Dropdown Structure -->
-          <ul id="dropdown-device-<%= @device.id %>" class="dropdown-content" style="min-width: 150px;">
+        <!-- Dropdown Structure -->
+        <ul id="dropdown-device-<%= @device.id %>" class="dropdown-content" style="min-width: 150px;">
 
 
-            <!-- Link to WebUI -->
-            <li>
-              <%= link_to "http://#{@device.ip}", target: "_blank" do %>
-                <i class="material-icons left">public</i>
-                WebUI
-              <% end %>
-            </li>
+          <!-- Link to WebUI -->
+          <li>
+            <%= link_to "http://#{@device.ip}", target: "_blank" do %>
+              <i class="material-icons left">public</i>
+              WebUI
+            <% end %>
+          </li>
 
-            <!-- Edit device button-->
-            <li>
-              <%= link_to edit_site_device_path(@device.site, @device) do %>
-                <i class="material-icons left">edit</i>
-                Edit device
-              <% end %>
-            </li>
-          </ul>
+          <!-- Edit device button-->
+          <li>
+            <%= link_to edit_site_device_path(@site, @device) do %>
+              <i class="material-icons left">edit</i>
+              Edit device
+            <% end %>
+          </li>
+        </ul>
 
-          <!-- Device information -->
-          <div class="row">
-            <div class="col s12">
-              <table class="highlight">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Model</th>
-                    <th>State</th>
-                    <th>Location</th>
-                    <th>Serial Number</th>
-                    <th>Site</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= @device.devtype %></td>
-                    <td><%= @device.model %></td>
-                    <td>
-                      <% if @device.state == "Inactive" %>
-                        <i class="material-icons left">clear</i>
-                      <% elsif @device.state == "In Repair" %>
-                        <i class="material-icons left">build</i>
-                      <% else %>
-                        <i class="material-icons left">check</i>
-                      <% end %>
-                      <%= @device.state %>
-                    </td>
-                    <td><%= @device.location %></td>
-                    <td><%= @device.sn %></td>
-                    <td><%= link_to @device.site.name, @device.site %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <!-- Device information -->
+        <div class="row">
+          <div class="col s12">
+            <table class="highlight">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Model</th>
+                  <th>State</th>
+                  <th>Location</th>
+                  <th>Serial Number</th>
+                  <th>Site</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @device.devtype %></td>
+                  <td><%= @device.model %></td>
+                  <td>
+                    <% if @device.state == "Inactive" %>
+                      <i class="material-icons left">clear</i>
+                    <% elsif @device.state == "In Repair" %>
+                      <i class="material-icons left">build</i>
+                    <% else %>
+                      <i class="material-icons left">check</i>
+                    <% end %>
+                    <%= @device.state %>
+                  </td>
+                  <td><%= @device.location %></td>
+                  <td><%= @device.sn %></td>
+                  <td><%= link_to @device.site.name, @site %></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-
-          <%= render 'layouts/assets-popout-device' %>
-
-        </div>  <!-- Card content -->
-
-        <div class="card-action">
-
-          <!-- Back button -->
-          <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
         </div>
 
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+        <%= render 'layouts/assets-popout-device' %>
+
+      </div>  <!-- Card content -->
+
+      <div class="card-action">
+
+        <!-- Back button -->
+        <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+      </div>
+
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->
 
 <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Assign Supplies">
-  <%= link_to assign_site_device_path(@device.site, @device), class: "btn-floating btn-large green" do %>
+  <%= link_to assign_site_device_path(@site, @device), class: "btn-floating btn-large green" do %>
     <i class="material-icons">assignment</i>
   <% end %>
 </div>

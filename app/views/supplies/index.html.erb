@@ -1,78 +1,76 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card">
-        <div class="card-content">
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
 
-          <i class="material-icons left">web_asset</i>
+        <i class="material-icons left">web_asset</i>
 
-          <!-- Card title -->
-          <span class="card-title"><%= @site.name %> - All Supplies</span>
+        <!-- Card title -->
+        <span class="card-title"><%= @site.name %> - All Supplies</span>
 
-          <!-- Dots Dropdown -->
-          <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-all" data-constrainwidth="false">
-            <i class="material-icons black-text">more_vert</i>
-          </a>
+        <!-- Dots Dropdown -->
+        <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-all" data-constrainwidth="false">
+          <i class="material-icons black-text">more_vert</i>
+        </a>
 
-          <!-- Dropdown Structure -->
-          <ul id="dropdown-supplies-all" class="dropdown-content" style="min-width: 150px;">
+        <!-- Dropdown Structure -->
+        <ul id="dropdown-supplies-all" class="dropdown-content" style="min-width: 150px;">
 
-            <!-- Export button-->
-            <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
-          </ul>
+          <!-- Export button-->
+          <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
+        </ul>
 
-          <table class="highlight">
-            <thead>
+        <table class="highlight">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @supplies.each do |supply| %>
               <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th></th>
+                <td><%= link_to supply.name, site_supply_path(@site, supply) %></td>
+                <td><%= supply.description %></td>
+                <td><%= supply.quantity %></td>
+                <td>
+                  <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
+                    <i class="material-icons black-text">more_vert</i>
+                  </a>
+
+                  <!-- Dropdown Structure -->
+                  <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
+
+                    <!-- Edit supply button-->
+                    <li>
+                      <%= link_to edit_site_supply_path(@site, supply) do %>
+                        <i class="material-icons left">edit</i>
+                        Edit supply
+                      <% end %>
+                    </li>
+
+                  </ul>
+
+                </td>
               </tr>
-            </thead>
+            <% end %>
+          </tbody>
+        </table>
 
-            <tbody>
-              <% @supplies.each do |supply| %>
-                <tr>
-                  <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
-                  <td><%= supply.description %></td>
-                  <td><%= supply.quantity %></td>
-                  <td>
-                    <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
-                      <i class="material-icons black-text">more_vert</i>
-                    </a>
+      </div>  <!-- Card content -->
 
-                    <!-- Dropdown Structure -->
-                    <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
+      <div class="card-action">
 
-                      <!-- Edit supply button-->
-                      <li>
-                        <%= link_to edit_site_supply_path(supply.site, supply) do %>
-                          <i class="material-icons left">edit</i>
-                          Edit supply
-                        <% end %>
-                      </li>
+        <!-- Back button -->
+        <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+      </div>
 
-                    </ul>
-
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-
-        </div>  <!-- Card content -->
-
-        <div class="card-action">
-
-          <!-- Back button -->
-          <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
-        </div>
-        
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->
 
 <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Supply">
   <%= link_to new_site_supply_path(@site), class: "btn-floating btn-large red" do %>

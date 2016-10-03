@@ -9,6 +9,8 @@ class SitesController < ApplicationController
 
   def show
     @site = Site.includes(:devices, :supplies).find(params[:id])
+    @site_devices = @site.devices
+    @site_supplies = @site.supplies
   end
 
   def new

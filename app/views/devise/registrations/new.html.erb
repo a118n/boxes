@@ -1,87 +1,85 @@
-<div class="container center-align" style="max-width: 700px;">
-  <div class="row">
-    <div class="col s12">
-      <div class="card blue-grey lighten-5 z-depth-2">
+<div class="row">
+  <div class="col s6 offset-s3">
+    <div class="card blue-grey lighten-5 z-depth-2">
 
-        <!-- Card Content -->
-        <div class="card-content">
+      <!-- Card Content -->
+      <div class="card-content">
 
-          <!-- Card Title -->
-          <span class="card-title" style="font-size: 2em; padding-bottom: 15px;">
-            New User
-          </span>
+        <!-- Card Title -->
+        <span class="card-title" style="font-size: 2em; padding-bottom: 15px;">
+          New User
+        </span>
 
-        </div>  <!-- Card Content -->
+      </div>  <!-- Card Content -->
 
-        <!-- Form container-->
-        <div class="container">
+      <!-- Form container-->
+      <div class="container">
 
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
 
-            <!-- First & Last name fields -->
-            <div class="row">
-              <!-- First name -->
-              <div class="input-field col s6">
-                <i class="material-icons prefix">text_fields</i>
-                <%= f.text_field :first_name, required: true, autofocus: true %>
-                <%= f.label :first_name %>
-              </div>
-
-              <!-- Last name -->
-              <div class="input-field col s6">
-                <%= f.text_field :last_name, required: true %>
-                <%= f.label :last_name %>
-              </div>
+          <!-- First & Last name fields -->
+          <div class="row">
+            <!-- First name -->
+            <div class="input-field col s6">
+              <i class="material-icons prefix">text_fields</i>
+              <%= f.text_field :first_name, required: true, autofocus: true %>
+              <%= f.label :first_name %>
             </div>
 
-            <!-- Email field -->
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">mail_outline</i>
-                <%= f.email_field :email, required: true, class: "validate" %>
-                <%= f.label :email %>
-              </div>
+            <!-- Last name -->
+            <div class="input-field col s6">
+              <%= f.text_field :last_name, required: true %>
+              <%= f.label :last_name %>
             </div>
-
-            <!-- Password field -->
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">lock_outline</i>
-                <%= f.password_field :password, required: true, autocomplete: "off" %>
-                <%= f.label :password, "Password (6 characters minimum)" %>
-              </div>
-            </div>
-
-            <!-- Password confirmation field -->
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">lock_outline</i>
-                <%= f.password_field :password_confirmation, required: true, autocomplete: "off" %>
-                <%= f.label :password_confirmation %>
-              </div>
-            </div>
-
-            <!-- Card Actions -->
-            <div class="card-action">
-
-              <!-- Sign up button -->
-              <button class="btn waves-effect waves-light">
-                <%= f.submit "Create My Account" %>
-              </button>
-            </div>
-
-          <% end %>  <!-- Form end -->
-        </div>
-
-        <!-- Devise shared links -->
-        <div class="row" style="padding-bottom: 20px;">
-          <div class="col s12">
-            <%= render "devise/shared/links" %>
           </div>
-        </div>
 
+          <!-- Email field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mail_outline</i>
+              <%= f.email_field :email, required: true, class: "validate" %>
+              <%= f.label :email %>
+            </div>
+          </div>
+
+          <!-- Password field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock_outline</i>
+              <%= f.password_field :password, required: true, autocomplete: "off" %>
+              <%= f.label :password, "Password (6 characters minimum)" %>
+            </div>
+          </div>
+
+          <!-- Password confirmation field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock_outline</i>
+              <%= f.password_field :password_confirmation, required: true, autocomplete: "off" %>
+              <%= f.label :password_confirmation %>
+            </div>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="card-action">
+
+            <!-- Sign up button -->
+            <button class="btn waves-effect waves-light">
+              <%= f.submit "Create My Account" %>
+            </button>
+          </div>
+
+        <% end %>  <!-- Form end -->
       </div>
+
+      <!-- Devise shared links -->
+      <div class="row" style="padding-bottom: 20px;">
+        <div class="col s12">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

@@ -1,73 +1,71 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card hoverable">
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
 
-        <div class="card-content">
+      <div class="card-content">
 
-          <i class="material-icons left">web_asset</i>
+        <i class="material-icons left">web_asset</i>
 
-          <!-- Supply name -->
-          <span class="card-title"><%= @supply.name %></span>
+        <!-- Supply name -->
+        <span class="card-title"><%= @supply.name %></span>
 
-          <!-- Dots Dropdown -->
-          <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= @supply.id %>" data-constrainwidth="false">
-            <i class="material-icons black-text">more_vert</i>
-          </a>
+        <!-- Dots Dropdown -->
+        <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= @supply.id %>" data-constrainwidth="false">
+          <i class="material-icons black-text">more_vert</i>
+        </a>
 
-          <!-- Dropdown Structure -->
-          <ul id="dropdown-supply-<%= @supply.id %>" class="dropdown-content" style="min-width: 150px;">
+        <!-- Dropdown Structure -->
+        <ul id="dropdown-supply-<%= @supply.id %>" class="dropdown-content" style="min-width: 150px;">
 
-            <!-- Edit supply button-->
-            <li>
-              <%= link_to edit_site_supply_path(@supply.site, @supply) do %>
-                <i class="material-icons left">edit</i>
-                Edit supply
-              <% end %>
-            </li>
-          </ul>
+          <!-- Edit supply button-->
+          <li>
+            <%= link_to edit_site_supply_path(@site, @supply) do %>
+              <i class="material-icons left">edit</i>
+              Edit supply
+            <% end %>
+          </li>
+        </ul>
 
-          <!-- Supply information -->
-          <div class="row">
-            <div class="col s12">
-              <table class="highlight">
-                <thead>
-                  <tr>
-                    <th>Description</th>
-                    <th>Quantity</th>
-                    <th>Ending Threshold</th>
-                    <th>Site</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= @supply.description %></td>
-                    <td><%= @supply.quantity %></td>
-                    <td><%= @supply.threshold %></td>
-                    <td><%= link_to @supply.site.name, @supply.site %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <!-- Supply information -->
+        <div class="row">
+          <div class="col s12">
+            <table class="highlight">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Ending Threshold</th>
+                  <th>Site</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @supply.description %></td>
+                  <td><%= @supply.quantity %></td>
+                  <td><%= @supply.threshold %></td>
+                  <td><%= link_to @site.name, @site %></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-
-          <%= render 'layouts/assets-popout-supply' %>
-
-        </div>  <!-- Card content -->
-
-        <div class="card-action">
-
-          <!-- Back button -->
-          <%= link_to "Back", site_supplies_path(@site), class: "btn btn-flat waves-effect waves-light" %>
         </div>
 
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+        <%= render 'layouts/assets-popout-supply' %>
+
+      </div>  <!-- Card content -->
+
+      <div class="card-action">
+
+        <!-- Back button -->
+        <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+      </div>
+
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->
 
 <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Assign Devices">
-  <%= link_to assign_site_supply_path(@supply.site, @supply), class: "btn-floating btn-large blue" do %>
+  <%= link_to assign_site_supply_path(@site, @supply), class: "btn-floating btn-large blue" do %>
     <i class="material-icons">assignment</i>
   <% end %>
 </div>

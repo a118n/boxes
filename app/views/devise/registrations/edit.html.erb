@@ -1,104 +1,102 @@
-<div class="container center-align" style="max-width: 700px;">
-  <div class="row">
-    <div class="col s12">
-      <div class="card blue-grey lighten-5 z-depth-2">
+<div class="row">
+  <div class="col s6 offset-s3">
+    <div class="card blue-grey lighten-5 z-depth-2">
 
-        <!-- Card Content -->
-        <div class="card-content">
+      <!-- Card Content -->
+      <div class="card-content">
 
-          <!-- Card Title -->
-          <span class="card-title" style="font-size: 2em; padding-bottom: 15px;">
-            Edit Account
-          </span>
+        <!-- Card Title -->
+        <span class="card-title" style="font-size: 2em; padding-bottom: 15px;">
+          Edit Account
+        </span>
 
-        </div>  <!-- Card Content -->
+      </div>  <!-- Card Content -->
 
-        <!-- Form container-->
-        <div class="container">
+      <!-- Form container-->
+      <div class="container">
 
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
 
-            <!-- First & Last name fields -->
-            <div class="row">
-              <!-- First name -->
-              <div class="input-field col s6">
-                <i class="material-icons prefix">text_fields</i>
-                <%= f.text_field :first_name %>
-                <%= f.label :first_name, class: "active" %>
-              </div>
-
-              <!-- Last name -->
-              <div class="input-field col s6">
-                <%= f.text_field :last_name %>
-                <%= f.label :last_name, class: "active" %>
-              </div>
-            </div>
-
-            <!-- Email field -->
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">mail_outline</i>
-                <%= f.email_field :email, class: "validate" %>
-                <%= f.label :email, class: "active" %>
-              </div>
-            </div>
-
-            <!-- New password field -->
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">lock_outline</i>
-                <%= f.password_field :password, autocomplete: "off" %>
-                <%= f.label :password, "New password" %>
-                (Leave blank if you don't want to change it)
-              </div>
-            </div>
-
-            <!-- New password confirmation field -->
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">lock_outline</i>
-                <%= f.password_field :password_confirmation, autocomplete: "off" %>
-                <%= f.label :password_confirmation, "New password confirmation" %>
-              </div>
-            </div>
-
-            <!-- Current password field -->
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">lock</i>
-                <%= f.password_field :current_password, autocomplete: "off" %>
-                <%= f.label :current_password %>
-                (Enter current password to confirm changes)
-              </div>
-            </div>
-
-          <!-- Buttons -->
+          <!-- First & Last name fields -->
           <div class="row">
-            <div class="col s12">
+            <!-- First name -->
+            <div class="input-field col s6">
+              <i class="material-icons prefix">text_fields</i>
+              <%= f.text_field :first_name %>
+              <%= f.label :first_name, class: "active" %>
+            </div>
 
-              <!-- Update button -->
-              <button class="btn waves-effect waves-light" style="margin-top: 10px; margin-bottom: 10px;">
-                <%= f.submit "Save" %>
-              </button>
-
-              <!-- Back button -->
-              <%= link_to "Back", :back, class: "btn-flat waves-effect waves-light" %>
+            <!-- Last name -->
+            <div class="input-field col s6">
+              <%= f.text_field :last_name %>
+              <%= f.label :last_name, class: "active" %>
             </div>
           </div>
 
-        <% end %>  <!-- Form end -->
-
-          <!-- Delete account button -->
-          <div class="row" style="padding-bottom: 20px;">
-            <div class="col s12">
-              <%= button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn-flat waves-effect waves-light red-text" %>
+          <!-- Email field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mail_outline</i>
+              <%= f.email_field :email, class: "validate" %>
+              <%= f.label :email, class: "active" %>
             </div>
           </div>
 
-        </div>  <!-- Form container-->
+          <!-- New password field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock_outline</i>
+              <%= f.password_field :password, autocomplete: "off" %>
+              <%= f.label :password, "New password" %>
+              (Leave blank if you don't want to change it)
+            </div>
+          </div>
 
-      </div>
-    </div>
-  </div>
-</div>
+          <!-- New password confirmation field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock_outline</i>
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              <%= f.label :password_confirmation, "New password confirmation" %>
+            </div>
+          </div>
+
+          <!-- Current password field -->
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
+              <%= f.password_field :current_password, autocomplete: "off" %>
+              <%= f.label :current_password %>
+              (Enter current password to confirm changes)
+            </div>
+          </div>
+
+        <!-- Buttons -->
+        <div class="row">
+          <div class="col s12">
+
+            <!-- Update button -->
+            <button class="btn waves-effect waves-light" style="margin-top: 10px; margin-bottom: 10px;">
+              <%= f.submit "Save" %>
+            </button>
+
+            <!-- Back button -->
+            <%= link_to "Back", :back, class: "btn-flat waves-effect waves-light" %>
+          </div>
+        </div>
+
+      <% end %>  <!-- Form end -->
+
+        <!-- Delete account button -->
+        <div class="row" style="padding-bottom: 20px;">
+          <div class="col s12">
+            <%= button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn-flat waves-effect waves-light red-text" %>
+          </div>
+        </div>
+
+      </div>  <!-- Form container-->
+
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->

@@ -24,7 +24,7 @@
               <tbody>
                 <% @device_supplies.each do |supply| %>
                   <tr>
-                    <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
+                    <td><%= link_to supply.name, site_supply_path(@site, supply) %></td>
                     <td><%= supply.description %></td>
                     <td><%= supply.quantity %></td>
                     <td>
@@ -37,7 +37,7 @@
 
                         <!-- Edit supply button-->
                         <li>
-                          <%= link_to edit_site_supply_path(supply.site, supply) do %>
+                          <%= link_to edit_site_supply_path(@site, supply) do %>
                             <i class="material-icons left">edit</i>
                             Edit supply
                           <% end %>

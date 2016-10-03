@@ -26,7 +26,7 @@
               <tbody>
                 <% @supply_devices.each do |device| %>
                   <tr>
-                    <td><%= link_to device.name, site_device_path(device.site, device) %></td>
+                    <td><%= link_to device.name, site_device_path(@site, device) %></td>
                     <td><%= device.devtype %></td>
                     <td><%= device.model %></td>
                     <td>
@@ -58,7 +58,7 @@
 
                         <!-- Edit device button-->
                         <li>
-                          <%= link_to edit_site_device_path(device.site, device) do %>
+                          <%= link_to edit_site_device_path(@site, device) do %>
                             <i class="material-icons left">edit</i>
                             Edit device
                           <% end %>

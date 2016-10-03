@@ -1,82 +1,78 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card hoverable">
-        <div class="card-content">
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
 
-          <i class="material-icons left">assignment</i>
+        <i class="material-icons left">assignment</i>
 
-          <!-- Card title -->
-          <span class="card-title"><%= @supply.name %> - Assign Devices</span>
+        <!-- Card title -->
+        <span class="card-title"><%= @supply.name %> - Assign Devices</span>
 
-          <div class="container">
+        <div class="container">
 
-            <%= form_for [@site, @supply] do |f| %>
+          <%= form_for [@site, @supply] do |f| %>
 
-              <table class="highlight">
-                <thead>
+            <table class="highlight">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Model</th>
+                  <th>State</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <!-- Needed for successful update if no devices assigned -->
+                <%= hidden_field_tag "supply[device_ids][]" %>
+
+                <% @devices.each do |device| %>
                   <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Model</th>
-                    <th>State</th>
-                    <th>Location</th>
+                    <td>
+                      <!-- f.object.devices.include?(device) used to set checkbox status, but generates N+1 Query problem. Not sure how to fix that yet. -->
+                      <%= check_box_tag "supply[device_ids][]", device.id, f.object.devices.include?(device), id: "supply_device_ids_#{ device.id }" %>
+                      <label for="supply_device_ids_<%= device.id %>"><%= device.name %></label>
+                    </td>
+                    <td><%= device.devtype %></td>
+                    <td><%= device.model %></td>
+                    <td><%= device.state %></td>
+                    <td><%= device.location %></td>
                   </tr>
-                </thead>
+                <% end %>
+              </tbody>
+            </table>
 
-                <tbody>
+            <!-- Buttons -->
 
-                  <!-- Needed for successful update if no devices assigned -->
-                  <%= hidden_field_tag "supply[device_ids][]" %>
-
-                  <% @devices.each do |device| %>
-                    <tr>
-                      <td>
-
-                        <!-- f.object.devices.include?(device) used to set checkbox status, but generates N+1 Query problem. Not sure how to fix that yet. -->
-                        <%= check_box_tag "supply[device_ids][]", device.id, f.object.devices.include?(device), id: "supply_device_ids_#{ device.id }" %>
-                        <label for="supply_device_ids_<%= device.id %>"><%= device.name %></label>
-                      </td>
-                      <td><%= device.devtype %></td>
-                      <td><%= device.model %></td>
-                      <td><%= device.state %></td>
-                      <td><%= device.location %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-
-              <!-- Buttons -->
-
-              <!-- Uncheck all button -->
-              <div class="row">
-                <div class="col s12" style="margin-top: 10px; margin-bottom: 10px;">
-                  <a id="uncheck-all" href="javascript:void(0);" class="btn btn-flat">Uncheck All</a>
-                </div>
+            <!-- Uncheck all button -->
+            <div class="row">
+              <div class="col s12" style="margin-top: 10px; margin-bottom: 10px;">
+                <a id="uncheck-all" href="javascript:void(0);" class="btn btn-flat">Uncheck All</a>
               </div>
+            </div>
 
-              <div class="row">
-                <div class="col s12">
+            <div class="row">
+              <div class="col s12">
 
-                  <!-- Save button -->
-                  <button class="btn waves-effect waves-light">
-                    <%= f.submit "Save" %>
-                  </button>
+                <!-- Save button -->
+                <button class="btn waves-effect waves-light">
+                  <%= f.submit "Save" %>
+                </button>
 
-                  <!-- Back button -->
-                  <%= link_to "Back", site_supply_path(@supply.site, @supply), class: "btn btn-flat waves-effect waves-light" %>
-                </div>
-              </div>  <!-- Buttons -->
+                <!-- Back button -->
+                <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+              </div>
+            </div>  <!-- Buttons -->
 
-            <% end %>  <!-- Form end -->
+          <% end %>  <!-- Form end -->
 
-          </div>  <!-- Form container -->
-        </div>  <!-- Card content -->
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
-
+        </div>  <!-- Form container -->
+      </div>  <!-- Card content -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->
 
 <!-- Uncheck all checkboxes function -->
 <script>

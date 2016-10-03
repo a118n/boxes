@@ -1,108 +1,106 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card hoverable">
-        <div class="card-content">
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
 
-          <i class="material-icons left">print</i>
+        <i class="material-icons left">print</i>
 
-          <!-- Device name -->
-          <span class="card-title">Edit: <%= @device.name %></span>
+        <!-- Device name -->
+        <span class="card-title">Edit: <%= @device.name %></span>
 
-          <div class="container">
+        <div class="container">
 
-            <%= form_for [@device.site, @device] do |f| %>
+          <%= form_for [@site, @device] do |f| %>
 
-              <%= form_errors_for @device %>
+            <%= form_errors_for @device %>
 
-              <!-- Name -->
-              <div class="row">
-                <div class="input-field col s12">
-                  <%= f.label :name, class: "active" %>
-                  <%= f.text_field :name, required: true %>
-                </div>
+            <!-- Name -->
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :name, class: "active" %>
+                <%= f.text_field :name, required: true %>
               </div>
-
-              <div class="row">
-
-                <!-- Type -->
-                <div class="input-field col s6">
-                  <%= f.label :devtype, "Type", class: "active" %>
-                  <%= f.select :devtype, ['Printer', 'Scanner', 'Other'] %>
-                </div>
-
-                <!-- State -->
-                <div class="input-field col s6">
-                  <%= f.label :state, class: "active" %>
-                  <%= f.select :state, ['Active', 'Inactive', 'In Repair'] %>
-                </div>
-              </div>
-
-              <div class="row">
-
-                <!-- Model -->
-                <div class="input-field col s6">
-                  <%= f.label :model, class: "active" %>
-                  <%= f.text_field :model %>
-                </div>
-
-                <!-- IP -->
-                <div class="input-field col s6">
-                  <%= f.label :ip, "WebUI Address", class: "active" %>
-                  <%= f.text_field :ip %>
-                </div>
-              </div>
-
-              <!-- Location -->
-              <div class="row">
-                <div class="input-field col s12">
-                  <%= f.label :location, class: "active" %>
-                  <%= f.text_field :location %>
-                </div>
-              </div>
-
-              <div class="row">
-
-                <!-- Serial Number -->
-                <div class="input-field col s6">
-                  <%= f.label :sn, "Serial Number", class: "active" %>
-                  <%= f.text_field :sn %>
-                </div>
-
-                <!-- Site -->
-                <div class="input-field col s6">
-                  <%= f.label :site, class: "active" %>
-                  <%= f.collection_select(:site_id, Site.all, :id, :name) %>
-                </div>
-              </div>
-
-              <!-- Buttons -->
-              <div class="row">
-                <div class="col s12">
-
-                  <!-- Save button -->
-                  <button class="btn waves-effect waves-light">
-                    <%= f.submit "Save" %>
-                  </button>
-
-                  <!-- Back button -->
-                  <%= link_to "Back", site_device_path(@device.site, @device), class: "btn btn-flat waves-effect waves-light" %>
-                </div>
-              </div>  <!-- Buttons -->
-
-            <% end %>
-
-          </div>  <!-- Form container -->
-
-          <!-- Delete device button -->
-          <div class="row">
-            <div class="col s12">
-              <%= button_to "Delete device", site_device_path(@device.site, @device), data: { confirm: "Are you sure? You're about to delete this Device. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
             </div>
-          </div>
 
-        </div>  <!-- Card content -->
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+            <div class="row">
+
+              <!-- Type -->
+              <div class="input-field col s6">
+                <%= f.label :devtype, "Type", class: "active" %>
+                <%= f.select :devtype, ['Printer', 'Scanner', 'Other'] %>
+              </div>
+
+              <!-- State -->
+              <div class="input-field col s6">
+                <%= f.label :state, class: "active" %>
+                <%= f.select :state, ['Active', 'Inactive', 'In Repair'] %>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <!-- Model -->
+              <div class="input-field col s6">
+                <%= f.label :model, class: "active" %>
+                <%= f.text_field :model %>
+              </div>
+
+              <!-- IP -->
+              <div class="input-field col s6">
+                <%= f.label :ip, "WebUI Address", class: "active" %>
+                <%= f.text_field :ip %>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :location, class: "active" %>
+                <%= f.text_field :location %>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <!-- Serial Number -->
+              <div class="input-field col s6">
+                <%= f.label :sn, "Serial Number", class: "active" %>
+                <%= f.text_field :sn %>
+              </div>
+
+              <!-- Site -->
+              <div class="input-field col s6">
+                <%= f.label :site, class: "active" %>
+                <%= f.collection_select(:site_id, Site.all, :id, :name) %>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col s12">
+
+                <!-- Save button -->
+                <button class="btn waves-effect waves-light">
+                  <%= f.submit "Save" %>
+                </button>
+
+                <!-- Back button -->
+                <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+              </div>
+            </div>  <!-- Buttons -->
+
+          <% end %>
+
+        </div>  <!-- Form container -->
+
+        <!-- Delete device button -->
+        <div class="row">
+          <div class="col s12">
+            <%= button_to "Delete device", site_device_path(@site, @device), data: { confirm: "Are you sure? You're about to delete this Device. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
+          </div>
+        </div>
+
+      </div>  <!-- Card content -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->

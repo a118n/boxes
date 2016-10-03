@@ -1,101 +1,99 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card">
-        <div class="card-content">
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
 
-          <i class="material-icons left">print</i>
+        <i class="material-icons left">print</i>
 
-          <!-- Card title -->
-          <span class="card-title"><%= @site.name %> - All Devices</span>
+        <!-- Card title -->
+        <span class="card-title"><%= @site.name %> - All Devices</span>
 
-          <!-- Dots Dropdown -->
-          <a class="dropdown-button right" href="#!" data-activates="dropdown-devices-all" data-constrainwidth="false">
-            <i class="material-icons black-text">more_vert</i>
-          </a>
+        <!-- Dots Dropdown -->
+        <a class="dropdown-button right" href="#!" data-activates="dropdown-devices-all" data-constrainwidth="false">
+          <i class="material-icons black-text">more_vert</i>
+        </a>
 
-          <!-- Dropdown Structure -->
-          <ul id="dropdown-devices-all" class="dropdown-content" style="min-width: 150px;">
+        <!-- Dropdown Structure -->
+        <ul id="dropdown-devices-all" class="dropdown-content" style="min-width: 150px;">
 
-            <!-- Export button-->
-            <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
-          </ul>
+          <!-- Export button-->
+          <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
+        </ul>
 
-          <table class="highlight">
-            <thead>
+        <table class="highlight">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Model</th>
+              <th>State</th>
+              <th>Location</th>
+              <th>Serial Number</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @devices.each do |device| %>
               <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Model</th>
-                <th>State</th>
-                <th>Location</th>
-                <th>Serial Number</th>
-                <th></th>
+                <td><%= link_to device.name, site_device_path(@site, device) %></td>
+                <td><%= device.devtype %></td>
+                <td><%= device.model %></td>
+                <td>
+                  <% if device.state == "Inactive" %>
+                    <i class="material-icons left">clear</i>
+                  <% elsif device.state == "In Repair" %>
+                    <i class="material-icons left">build</i>
+                  <% else %>
+                    <i class="material-icons left">check</i>
+                  <% end %>
+                  <%= device.state %>
+                </td>
+                <td><%= device.location %></td>
+                <td><%= device.sn %></td>
+                <td>
+                  <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= device.id %>" data-constrainwidth="false">
+                    <i class="material-icons black-text">more_vert</i>
+                  </a>
+
+                  <!-- Dropdown Structure -->
+                  <ul id="dropdown-device-<%= device.id %>" class="dropdown-content" style="min-width: 170px;">
+
+                    <!-- Link to WebUI -->
+                    <li>
+                      <%= link_to "http://#{device.ip}", target: "_blank" do %>
+                        <i class="material-icons left">public</i>
+                        WebUI
+                      <% end %>
+                    </li>
+
+                    <!-- Edit device button-->
+                    <li>
+                      <%= link_to edit_site_device_path(@site, device) do %>
+                        <i class="material-icons left">edit</i>
+                        Edit device
+                      <% end %>
+                    </li>
+
+                  </ul>
+
+                </td>
               </tr>
-            </thead>
+            <% end %>
+          </tbody>
+        </table>
 
-            <tbody>
-              <% @devices.each do |device| %>
-                <tr>
-                  <td><%= link_to device.name, site_device_path(device.site, device) %></td>
-                  <td><%= device.devtype %></td>
-                  <td><%= device.model %></td>
-                  <td>
-                    <% if device.state == "Inactive" %>
-                      <i class="material-icons left">clear</i>
-                    <% elsif device.state == "In Repair" %>
-                      <i class="material-icons left">build</i>
-                    <% else %>
-                      <i class="material-icons left">check</i>
-                    <% end %>
-                    <%= device.state %>
-                  </td>
-                  <td><%= device.location %></td>
-                  <td><%= device.sn %></td>
-                  <td>
-                    <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= device.id %>" data-constrainwidth="false">
-                      <i class="material-icons black-text">more_vert</i>
-                    </a>
+      </div>  <!-- Card content -->
 
-                    <!-- Dropdown Structure -->
-                    <ul id="dropdown-device-<%= device.id %>" class="dropdown-content" style="min-width: 170px;">
+      <div class="card-action">
 
-                      <!-- Link to WebUI -->
-                      <li>
-                        <%= link_to "http://#{device.ip}", target: "_blank" do %>
-                          <i class="material-icons left">public</i>
-                          WebUI
-                        <% end %>
-                      </li>
+        <!-- Back button -->
+        <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+      </div>
 
-                      <!-- Edit device button-->
-                      <li>
-                        <%= link_to edit_site_device_path(device.site, device) do %>
-                          <i class="material-icons left">edit</i>
-                          Edit device
-                        <% end %>
-                      </li>
-
-                    </ul>
-
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-
-        </div>  <!-- Card content -->
-
-        <div class="card-action">
-
-          <!-- Back button -->
-          <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
-        </div>
-        
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->
 
 <div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Add Device">
   <%= link_to new_site_device_path(@site), class: "btn-floating btn-large red" do %>

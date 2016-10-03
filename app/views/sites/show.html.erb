@@ -1,62 +1,59 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card hoverable">
-        <div class="card-content">
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
 
-          <i class="material-icons left">domain</i>
+        <i class="material-icons left">domain</i>
 
-          <!-- Site name -->
-          <span class="card-title"><%= @site.name %></span>
+        <!-- Site name -->
+        <span class="card-title"><%= @site.name %></span>
 
-          <!-- Dots Dropdown -->
-          <a class="dropdown-button right" href="#!" data-activates="dropdown-site-<%= @site.id %>" data-constrainwidth="false">
-            <i class="material-icons black-text">more_vert</i>
-          </a>
+        <!-- Dots Dropdown -->
+        <a class="dropdown-button right" href="#!" data-activates="dropdown-site-<%= @site.id %>" data-constrainwidth="false">
+          <i class="material-icons black-text">more_vert</i>
+        </a>
 
-          <!-- Dropdown Structure -->
-          <ul id="dropdown-site-<%= @site.id %>" class="dropdown-content" style="min-width: 150px;">
+        <!-- Dropdown Structure -->
+        <ul id="dropdown-site-<%= @site.id %>" class="dropdown-content" style="min-width: 150px;">
 
-            <!-- Edit site button-->
-            <li>
-              <%= link_to edit_site_path(@site) do %>
-                <i class="material-icons left">edit</i>
-                Edit site
-              <% end %>
-            </li>
-          </ul>
+          <!-- Edit site button-->
+          <li>
+            <%= link_to edit_site_path(@site) do %>
+              <i class="material-icons left">edit</i>
+              Edit site
+            <% end %>
+          </li>
+        </ul>
 
-          <table class="highlight">
-            <thead>
-              <tr>
-                <th>Location</th>
-                <th>Description</th>
-              </tr>
-            </thead>
+        <table class="highlight">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Description</th>
+            </tr>
+          </thead>
 
-            <tbody>
-              <tr>
-                <td><%= @site.location %></td>
-                <td><%= @site.description %></td>
-              </tr>
-            </tbody>
-          </table>
+          <tbody>
+            <tr>
+              <td><%= @site.location %></td>
+              <td><%= @site.description %></td>
+            </tr>
+          </tbody>
+        </table>
 
-          <%= render 'layouts/assets-popout-site' %>
+        <%= render 'layouts/assets-popout-site' %>
 
-        </div>  <!-- Card content -->
+      </div>  <!-- Card content -->
 
-        <div class="card-action">
+      <div class="card-action">
 
-          <!-- Back button -->
-          <%= link_to "Back", sites_path, class: "btn btn-flat waves-effect waves-light" %>
-        </div>
+        <!-- Back button -->
+        <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+      </div>
 
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
-
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
   <a class="btn-floating btn-large red">

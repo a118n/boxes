@@ -3,13 +3,13 @@
     <!-- Devices and Supplies Popout -->
     <ul class="collapsible popout left-align" data-collapsible="expandable">
 
-      <% if @site.devices.any? %>
+      <% if @site_devices.any? %>
 
         <li>
           <div class="collapsible-header">
             <i class="material-icons">print</i>
             Devices
-            <span class="right"><%= @site.devices.count %></span>
+            <span class="right"><%= @site_devices.count %></span>
           </div>
 
           <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
@@ -26,9 +26,9 @@
               </thead>
 
               <tbody>
-                <% @site.devices.each do |device| %>
+                <% @site_devices.each do |device| %>
                   <tr>
-                    <td><%= link_to device.name, site_device_path(device.site, device) %></td>
+                    <td><%= link_to device.name, site_device_path(@site, device) %></td>
                     <td><%= device.devtype %></td>
                     <td><%= device.model %></td>
                     <td>
@@ -60,7 +60,7 @@
 
                         <!-- Edit device button-->
                         <li>
-                          <%= link_to edit_site_device_path(device.site, device) do %>
+                          <%= link_to edit_site_device_path(@site, device) do %>
                             <i class="material-icons left">edit</i>
                             Edit device
                           <% end %>
@@ -77,13 +77,13 @@
 
       <% end %>
 
-      <% if @site.supplies.any? %>
+      <% if @site_supplies.any? %>
 
         <li>
           <div class="collapsible-header">
             <i class="material-icons">web_asset</i>
             Supplies
-            <span class="right"><%= @site.supplies.count %></span>
+            <span class="right"><%= @site_supplies.count %></span>
           </div>
 
           <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
@@ -98,9 +98,9 @@
               </thead>
 
               <tbody>
-                <% @site.supplies.each do |supply| %>
+                <% @site_supplies.each do |supply| %>
                   <tr>
-                    <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
+                    <td><%= link_to supply.name, site_supply_path(@site, supply) %></td>
                     <td><%= supply.description %></td>
                     <td><%= supply.quantity %></td>
                     <td>
@@ -113,7 +113,7 @@
 
                         <!-- Edit supply button-->
                         <li>
-                          <%= link_to edit_site_supply_path(supply.site, supply) do %>
+                          <%= link_to edit_site_supply_path(@site, supply) do %>
                             <i class="material-icons left">edit</i>
                             Edit supply
                           <% end %>

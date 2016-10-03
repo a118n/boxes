@@ -1,27 +1,27 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card">
-        <div class="card-content">
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
 
-          <i class="material-icons left">web_asset</i>
+        <i class="material-icons left">web_asset</i>
 
-          <!-- Card title -->
-          <span class="card-title">All Supplies</span>
+        <!-- Card title -->
+        <span class="card-title">All Supplies</span>
 
 
-          <!-- Dots Dropdown -->
-          <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-all" data-constrainwidth="false">
-            <i class="material-icons black-text">more_vert</i>
-          </a>
+        <!-- Dots Dropdown -->
+        <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-all" data-constrainwidth="false">
+          <i class="material-icons black-text">more_vert</i>
+        </a>
 
-          <!-- Dropdown Structure -->
-          <ul id="dropdown-supplies-all" class="dropdown-content" style="min-width: 150px;">
+        <!-- Dropdown Structure -->
+        <ul id="dropdown-supplies-all" class="dropdown-content" style="min-width: 150px;">
 
-            <!-- Export button-->
-            <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
-          </ul>
+          <!-- Export button-->
+          <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
+        </ul>
 
+        <% if @supplies.any? %>
           <table class="highlight">
             <thead>
               <tr>
@@ -64,8 +64,11 @@
             </tbody>
           </table>
 
-        </div>  <!-- Card content -->
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+        <% else %>
+          <h5 style="font-size: 1.3em;">Looks like you have no supplies yet.</h5>
+        <% end %>
+
+      </div>  <!-- Card content -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->

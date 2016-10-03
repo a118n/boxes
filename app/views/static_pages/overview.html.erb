@@ -1,22 +1,18 @@
-<div class="container center-align">
+<% if @sites.any? %>
 
-  <% if @sites.any? %>
+  <div class="row">
+    <%= render 'layouts/overview-ending-soon' %>
+    <%= render 'layouts/overview-in-repair' %>
+  </div>
 
-    <div class="row">
-      <%= render 'layouts/overview-ending-soon' %>
-      <%= render 'layouts/overview-in-repair' %>
-    </div>
+  <div class="row">
+    <%= render 'layouts/overview-sites' %>
+    <%= render 'layouts/overview-total' %>
+  </div>
 
-    <div class="row">
-      <%= render 'layouts/overview-sites' %>
-      <%= render 'layouts/overview-total' %>
-    </div>
+<% else %>
+  <div class="row">
+    <%= render 'layouts/overview-welcome' %>
+  </div>
 
-  <% else %>
-    <div class="row">
-      <%= render 'layouts/overview-welcome' %>
-    </div>
-
-  <% end %>
-
-</div>
+<% end %>

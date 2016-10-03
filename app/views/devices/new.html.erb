@@ -1,90 +1,88 @@
-<div class="container center-align">
-  <div class="row">
-    <div class="col s12">
-      <div class="card hoverable">
-        <div class="card-content">
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
 
-          <i class="material-icons left">print</i>
+        <i class="material-icons left">print</i>
 
-          <!-- Card title -->
-          <span class="card-title"><%= @site.name %> - New Device</span>
+        <!-- Card title -->
+        <span class="card-title"><%= @site.name %> - New Device</span>
 
-          <div class="container">
+        <div class="container">
 
-            <%= form_for [@site, @device] do |f| %>
+          <%= form_for [@site, @device] do |f| %>
 
-              <!-- Name -->
-              <div class="row">
-                <div class="input-field col s12">
-                  <%= f.label :name %>
-                  <%= f.text_field :name, required: true, autofocus: true %>
-                </div>
+            <!-- Name -->
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :name %>
+                <%= f.text_field :name, required: true, autofocus: true %>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <!-- Type -->
+              <div class="input-field col s6">
+                <%= f.label :devtype, "Type", class: "active" %>
+                <%= f.select :devtype, ['Printer', 'Scanner', 'Other'] %>
               </div>
 
-              <div class="row">
+              <!-- State -->
+              <div class="input-field col s6">
+                <%= f.label :state, class: "active" %>
+                <%= f.select :state, ['Active', 'Inactive', 'In Repair'] %>
+              </div>
+            </div>
 
-                <!-- Type -->
-                <div class="input-field col s6">
-                  <%= f.label :devtype, "Type", class: "active" %>
-                  <%= f.select :devtype, ['Printer', 'Scanner', 'Other'] %>
-                </div>
+            <div class="row">
 
-                <!-- State -->
-                <div class="input-field col s6">
-                  <%= f.label :state, class: "active" %>
-                  <%= f.select :state, ['Active', 'Inactive', 'In Repair'] %>
-                </div>
+              <!-- Model -->
+              <div class="input-field col s6">
+                <%= f.label :model %>
+                <%= f.text_field :model %>
               </div>
 
-              <div class="row">
+              <!-- IP -->
+              <div class="input-field col s6">
+                <%= f.label :ip, "WebUI Address" %>
+                <%= f.text_field :ip %>
+              </div>
+            </div>
 
-                <!-- Model -->
-                <div class="input-field col s6">
-                  <%= f.label :model %>
-                  <%= f.text_field :model %>
-                </div>
+            <!-- Location -->
+            <div class="row">
 
-                <!-- IP -->
-                <div class="input-field col s6">
-                  <%= f.label :ip, "WebUI Address" %>
-                  <%= f.text_field :ip %>
-                </div>
+              <div class="input-field col s6">
+                <%= f.label :location %>
+                <%= f.text_field :location %>
               </div>
 
-              <!-- Location -->
-              <div class="row">
-
-                <div class="input-field col s6">
-                  <%= f.label :location %>
-                  <%= f.text_field :location %>
-                </div>
-
-                <!-- Serial Number -->
-                <div class="input-field col s6">
-                  <%= f.label :sn, "Serial Number" %>
-                  <%= f.text_field :sn %>
-                </div>
+              <!-- Serial Number -->
+              <div class="input-field col s6">
+                <%= f.label :sn, "Serial Number" %>
+                <%= f.text_field :sn %>
               </div>
+            </div>
 
-              <!-- Buttons -->
-              <div class="row">
-                <div class="col s12">
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col s12">
 
-                  <!-- Create button -->
-                  <button class="btn waves-effect waves-light">
-                    <%= f.submit "Create" %>
-                  </button>
+                <!-- Create button -->
+                <button class="btn waves-effect waves-light">
+                  <%= f.submit "Create" %>
+                </button>
 
-                  <!-- Back button -->
-                  <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
-                </div>
-              </div>  <!-- Buttons -->
+                <!-- Back button -->
+                <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+              </div>
+            </div>  <!-- Buttons -->
 
-            <% end %>
+          <% end %>
 
-          </div>  <!-- Form container -->
-        </div>  <!-- Card content -->
-      </div>  <!-- Card -->
-    </div>  <!-- Col -->
-  </div>  <!-- Row -->
-</div>  <!-- Container -->
+        </div>  <!-- Form container -->
+      </div>  <!-- Card content -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->
