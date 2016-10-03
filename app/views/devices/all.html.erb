@@ -17,7 +17,12 @@
         <ul id="dropdown-devices-all" class="dropdown-content" style="min-width: 150px;">
 
           <!-- Export button-->
-          <li><a href="#"><i class="material-icons left">import_export</i>Export</a></li>
+          <li>
+            <%= link_to export_devices_path(all: true, format: "csv") do %>
+              <i class="material-icons left">import_export</i>
+              Export
+            <% end %>
+          </li>
         </ul>
 
         <% if @devices.any? %>

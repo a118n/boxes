@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     end
 
     get 'all_devices', to: 'devices#all'
+    get 'export_devices', to: 'devices#export'
     get 'all_supplies', to: 'supplies#all'
-    
+    get 'export_supplies', to: 'supplies#export'
+
   end
 end

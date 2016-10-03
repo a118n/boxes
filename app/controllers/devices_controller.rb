@@ -62,6 +62,24 @@ class DevicesController < ApplicationController
     @supplies = @site.supplies.order("name")
   end
 
+  def export
+    if params[:repair]
+      @devices = Device.includes(:site).in_repair
+    elsif params[:all]
+      @devices = Device.includes(:site).all
+    else
+      @site = Site.find(params[:site_id])
+      @devices = @site.devices
+    end
+
+    respond_to do |format|
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"Devices.csv\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
+  end
+
   private
 
   def device_params

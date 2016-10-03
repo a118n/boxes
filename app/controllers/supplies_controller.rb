@@ -62,6 +62,24 @@ class SuppliesController < ApplicationController
     @devices = @site.devices.order("name")
   end
 
+  def export
+    if params[:ending]
+      @supplies = Supply.includes(:site).ending_soon
+    elsif params[:all]
+      @supplies = Supply.includes(:site).all
+    else
+      @site = Site.find(params[:site_id])
+      @supplies = @site.supplies
+    end
+
+    respond_to do |format|
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"Supplies.csv\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
+  end
+
   private
 
   def supply_params

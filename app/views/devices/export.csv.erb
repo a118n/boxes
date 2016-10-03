@@ -1,0 +1,9 @@
+<% headers = ['Name', 'Type', 'Model', 'Location', 'State', 'Serial Number',
+              'Supplies', 'Site'] %>
+<%= CSV.generate_line(headers, { col_sep: "\t" }) %>
+<% @devices.each do |device| %>
+<%= CSV.generate_line( [ device.name, device.devtype, device.model,
+                         device.state, device.location, device.sn,
+                         device.supplies.pluck(:name).uniq.join(", "),
+                         device.site.name ], {col_sep: "\t"} ).html_safe %>
+<% end %>
