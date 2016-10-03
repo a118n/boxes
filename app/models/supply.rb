@@ -1,4 +1,6 @@
 class Supply < ApplicationRecord
+  before_save :waste, if: :quantity_changed?
+
   has_many :device_supplies
   has_many :devices, through: :device_supplies
   belongs_to :site
@@ -21,5 +23,9 @@ class Supply < ApplicationRecord
     if self.devices.any? && site_id_changed?
       errors.add(:site_id, "cannot be changed. Remove assigned devices first.")
     end
+  end
+
+  def waste
+    self.wasted += quantity_was - quantity if quantity < quantity_was
   end
 end

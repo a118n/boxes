@@ -34,6 +34,7 @@
                 <tr>
                   <th>Description</th>
                   <th>Quantity</th>
+                  <th>Wasted</th>
                   <th>Ending Threshold</th>
                   <th>Site</th>
                 </tr>
@@ -42,6 +43,7 @@
                 <tr>
                   <td><%= @supply.description %></td>
                   <td><%= @supply.quantity %></td>
+                  <td><%= @supply.wasted %></td>
                   <td><%= @supply.threshold %></td>
                   <td><%= link_to @site.name, @site %></td>
                 </tr>
