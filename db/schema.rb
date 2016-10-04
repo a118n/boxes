@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003154646) do
+ActiveRecord::Schema.define(version: 20161004131340) do
 
   create_table "device_supplies", force: :cascade do |t|
     t.integer  "device_id"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20161003154646) do
     t.index ["site_id"], name: "index_devices_on_site_id"
   end
 
+  create_table "settings", force: :cascade do |t|
+    t.boolean  "notifiable",   default: true
+    t.integer  "primary_site"
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["user_id"], name: "index_settings_on_user_id"
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
@@ -47,7 +56,7 @@ ActiveRecord::Schema.define(version: 20161003154646) do
     t.string   "name"
     t.string   "description"
     t.integer  "quantity"
-    t.integer  "used",      default: 0
+    t.integer  "used",        default: 0
     t.integer  "threshold",   default: 3
     t.boolean  "notified",    default: false
     t.integer  "site_id"

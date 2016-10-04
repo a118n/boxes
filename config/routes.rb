@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'settings/edit'
+
+  get 'settings/update'
+
   devise_for :users
 
   root 'static_pages#home'
@@ -7,7 +11,8 @@ Rails.application.routes.draw do
 
   authenticate :user do
     get 'overview', to: 'static_pages#overview'
-    get 'settings', to: 'static_pages#settings'
+
+    resource :settings, only: [:edit, :update]
 
     resources :sites do
 
