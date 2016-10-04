@@ -31,7 +31,7 @@
               <div class="input-field col s12">
                 <%= f.label :primary_site, class: "active" %>
                 <%= f.collection_select(:primary_site, Site.all, :id, :name, include_blank: "None") %>
-                <!-- f.select :primary_site Site.all.collect { |u| [u.name, u.id] } -->
+                <h6 class="grey-text">(Select to display overview information for this site only)</h6>
               </div>
             </div>
 
