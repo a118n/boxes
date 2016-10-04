@@ -2,17 +2,17 @@
   <div class="card hoverable">
     <div class="card-content">
       <span class="card-title">
-        <i class="material-icons left">timelapse</i>
-        Ending soon
+        <i class="material-icons left">star</i>
+        Most used
         <!-- Dots Dropdown -->
-        <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-ending" data-constrainwidth="false"><i class="material-icons black-text">more_vert</i></a>
+        <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-most-used" data-constrainwidth="false"><i class="material-icons black-text">more_vert</i></a>
 
         <!-- Dropdown Structure -->
-        <ul id="dropdown-supplies-ending" class="dropdown-content" style="min-width: 150px;">
+        <ul id="dropdown-supplies-most-used" class="dropdown-content" style="min-width: 150px;">
 
           <!-- Export button -->
           <li>
-            <%= link_to export_supplies_path(ending: true, format: "csv") do %>
+            <%= link_to export_supplies_path(most_used: true, format: "csv") do %>
               <i class="material-icons left">import_export</i>
               Export
             <% end %>
@@ -23,7 +23,7 @@
 
       </span>
 
-      <% if @supplies_ending.any? %>
+      <% if @supplies_most_used.any? %>
 
         <table class="highlight">
 
@@ -32,16 +32,18 @@
               <th>Name</th>
               <th>Description</th>
               <th>Quantity</th>
+              <th>Used</th>
               <th>Site</th>
             </tr>
           </thead>
 
           <tbody>
-            <% @supplies_ending.each do |supply| %>
+            <% @supplies_most_used.each do |supply| %>
               <tr>
                 <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
                 <td><%= supply.description %></td>
                 <td><%= supply.quantity %></td>
+                <td><%= supply.used %></td>
                 <td><%= link_to supply.site.name, supply.site %></td>
               </tr>
             <% end %>

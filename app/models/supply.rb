@@ -14,6 +14,7 @@ class Supply < ApplicationRecord
   validate :associations
 
   scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0") }
+  scope :most_used, -> { where("used > 0").order("used DESC").limit(10) }
 
   private
 
@@ -24,6 +25,7 @@ class Supply < ApplicationRecord
   end
 
   def use
+    # Add substracted amount to :used attribute
     if !quantity_was.nil? && quantity < quantity_was
       self.used += quantity_was - quantity
     end

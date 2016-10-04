@@ -65,6 +65,8 @@ class SuppliesController < ApplicationController
   def export
     if params[:ending]
       @supplies = Supply.includes(:site).ending_soon
+    elsif params[:most_used]
+      @supplies = Supply.includes(:site).most_used
     elsif params[:all]
       @supplies = Supply.includes(:site).all
     else
