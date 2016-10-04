@@ -9,8 +9,8 @@ RSpec.describe Site, type: :model do
   end
 
   describe "Associations" do
-    it { should have_many :devices }
-    it { should have_many :supplies }
+    it { should have_many(:devices).dependent(:destroy) }
+    it { should have_many(:supplies).dependent(:destroy) }
   end
 
   describe "Validations" do

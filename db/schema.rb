@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(version: 20161003154646) do
     t.string   "name"
     t.string   "description"
     t.integer  "quantity"
+    t.integer  "used",      default: 0
     t.integer  "threshold",   default: 3
     t.boolean  "notified",    default: false
     t.integer  "site_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "wasted",      default: 0
     t.index ["site_id"], name: "index_supplies_on_site_id"
   end
 

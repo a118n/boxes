@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Device, type: :model do
 
-  before { create(:site) }
+  before { build(:site) }
 
   describe "Factory" do
     it "has a valid factory" do
       expect(build(:device)).to be_valid
-    end    
+    end
   end
 
   describe "Associations" do
@@ -21,7 +21,8 @@ RSpec.describe Device, type: :model do
       it { should validate_presence_of :name }
       it { should validate_presence_of :devtype }
       it { should validate_presence_of :state }
-      it { should validate_uniqueness_of(:name).case_insensitive }
+      # Seems like scoped_to is bugged, see: https://github.com/thoughtbot/shoulda-matchers/issues/814
+      xit { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:site) }
     end
 
     context "invalid data" do

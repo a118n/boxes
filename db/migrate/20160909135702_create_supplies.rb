@@ -4,6 +4,7 @@ class CreateSupplies < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :description
       t.integer :quantity
+      t.integer :used, default: 0
       t.integer :threshold, default: 3
       t.boolean :notified, default: false
       t.belongs_to :site, index: true

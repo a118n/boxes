@@ -1,5 +1,5 @@
 class Supply < ApplicationRecord
-  before_save :waste, if: :quantity_changed?
+  before_save :use, if: :quantity_changed?, on: :update
 
   has_many :device_supplies
   has_many :devices, through: :device_supplies
@@ -7,12 +7,10 @@ class Supply < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: :site,
                                                  case_sensitive: false }
-  validates :quantity, presence: true,
-                       numericality: { greater_than_or_equal_to: 0,
-                                       less_than: 2147483648 }
-  validates :threshold, presence: true,
-                        numericality: { greater_than_or_equal_to: 0,
-                                        less_than: 2147483648 }
+  validates :quantity, :threshold, presence: true, numericality:
+                                  { greater_than_or_equal_to: 0,
+                                    less_than: 2147483648 }
+
   validate :associations
 
   scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0") }
@@ -25,7 +23,9 @@ class Supply < ApplicationRecord
     end
   end
 
-  def waste
-    self.wasted += quantity_was - quantity if quantity < quantity_was
+  def use
+    if !quantity_was.nil? && quantity < quantity_was
+      self.used += quantity_was - quantity
+    end
   end
 end
