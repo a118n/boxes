@@ -24,5 +24,7 @@ module Boxes
 
     # Do not wrap invalid form fields because it breaks layout
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag.html_safe }
+    # Use Sidekiq for background processing
+    config.active_job.queue_adapter = :sidekiq
   end
 end

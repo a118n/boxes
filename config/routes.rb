@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'settings/edit'
-
-  get 'settings/update'
+  require 'sidekiq/web'
 
   devise_for :users
 
@@ -10,6 +8,8 @@ Rails.application.routes.draw do
   get 'about', to: 'static_pages#about'
 
   authenticate :user do
+    mount Sidekiq::Web => "/sidekiq"
+
     get 'overview', to: 'static_pages#overview'
 
     resource :settings, only: [:edit, :update]

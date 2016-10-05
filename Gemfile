@@ -66,9 +66,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
 # Use Materialize Framework
 gem 'materialize-sass'
-
 # Use Devise for authentication
 gem 'devise'
+# Use Sidekiq as jobs backend
+gem 'sidekiq'
