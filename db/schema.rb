@@ -38,9 +38,10 @@ ActiveRecord::Schema.define(version: 20161004131340) do
   create_table "settings", force: :cascade do |t|
     t.boolean  "notifiable",   default: true
     t.integer  "primary_site"
+    t.string   "time_zone",    default: "UTC"
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["user_id"], name: "index_settings_on_user_id"
   end
 

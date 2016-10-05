@@ -18,6 +18,6 @@ class SettingsController < ApplicationController
   private
 
   def settings_params
-    params.require(:settings).permit(:notifiable, :primary_site)
+    params.require(:settings).permit(:notifiable, :primary_site, :time_zone)
   end
 end
