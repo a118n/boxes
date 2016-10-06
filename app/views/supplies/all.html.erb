@@ -8,7 +8,6 @@
         <!-- Card title -->
         <span class="card-title">All Supplies</span>
 
-
         <!-- Dots Dropdown -->
         <a class="dropdown-button right" href="#!" data-activates="dropdown-supplies-all" data-constrainwidth="false">
           <i class="material-icons black-text">more_vert</i>
@@ -28,47 +27,8 @@
         </ul>
 
         <% if @supplies.any? %>
-          <table class="highlight">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Site</th>
-                <th></th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <% @supplies.each do |supply| %>
-                <tr>
-                  <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
-                  <td><%= supply.description %></td>
-                  <td><%= supply.quantity %></td>
-                  <td><%= link_to supply.site.name, supply.site %></td>
-                  <td>
-                    <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
-                      <i class="material-icons black-text">more_vert</i>
-                    </a>
-
-                    <!-- Dropdown Structure -->
-                    <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
-
-                      <!-- Edit supply button-->
-                      <li>
-                        <%= link_to edit_site_supply_path(supply.site, supply) do %>
-                          <i class="material-icons left">edit</i>
-                          Edit supply
-                        <% end %>
-                      </li>
-
-                    </ul>
-
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+          <%= table_for_supplies(@supplies) %>
 
         <% else %>
           <h5 style="font-size: 1.3em;">Looks like you have no supplies yet.</h5>

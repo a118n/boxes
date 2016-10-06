@@ -23,31 +23,7 @@
 
       <% if @devices_repair.any? %>
 
-        <table class="highlight">
-
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Model</th>
-              <th>Location</th>
-              <th>Site</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @devices_repair.each do |device| %>
-              <tr>
-                <td><%= link_to device.name, site_device_path(device.site, device) %></td>
-                <td><%= device.devtype %></td>
-                <td><%= device.model %></td>
-                <td><%= device.location %></td>
-                <td><%= link_to device.site.name, device.site %></td>
-              </tr>
-            <% end %>
-          </tbody>
-
-        </table>
+        <%= table_for_devices(@devices_repair) %>
 
       <% else %>
         <br>

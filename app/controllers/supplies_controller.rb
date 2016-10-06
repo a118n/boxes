@@ -13,7 +13,7 @@ class SuppliesController < ApplicationController
   def show
     @site = Site.find(params[:site_id])
     @supply = @site.supplies.find(params[:id])
-    @supply_devices = @supply.devices
+    @supply_devices = @supply.devices.includes(:site)
   end
 
   def new

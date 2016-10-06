@@ -25,29 +25,7 @@
 
       <% if @supplies_ending.any? %>
 
-        <table class="highlight">
-
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Quantity</th>
-              <th>Site</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @supplies_ending.each do |supply| %>
-              <tr>
-                <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
-                <td><%= supply.description %></td>
-                <td><%= supply.quantity %></td>
-                <td><%= link_to supply.site.name, supply.site %></td>
-              </tr>
-            <% end %>
-          </tbody>
-
-        </table>
+        <%= table_for_supplies(@supplies_ending) %>
 
       <% else %>
         <br>
@@ -55,6 +33,6 @@
         <p>Nothing</p>
         <br>
       <% end %>
-    </div><!-- Card content -->
-  </div>
-</div>
+    </div>  <!-- Card content -->
+  </div>  <!-- Card -->
+</div>  <!-- Col -->

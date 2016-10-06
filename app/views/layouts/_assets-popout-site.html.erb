@@ -13,65 +13,9 @@
           </div>
 
           <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
-            <table class="highlight">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Model</th>
-                  <th>State</th>
-                  <th>Location</th>
-                  <th></th>
-                </tr>
-              </thead>
 
-              <tbody>
-                <% @site_devices.each do |device| %>
-                  <tr>
-                    <td><%= link_to device.name, site_device_path(@site, device) %></td>
-                    <td><%= device.devtype %></td>
-                    <td><%= device.model %></td>
-                    <td>
-                      <% if device.state == "Inactive" %>
-                        <i class="material-icons left">clear</i>
-                      <% elsif device.state == "In Repair" %>
-                        <i class="material-icons left">build</i>
-                      <% else %>
-                        <i class="material-icons left">check</i>
-                      <% end %>
-                      <%= device.state %>
-                    </td>
-                    <td><%= device.location %></td>
-                    <td>
-                      <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= device.id %>" data-constrainwidth="false">
-                        <i class="material-icons black-text">more_vert</i>
-                      </a>
-
-                      <!-- Dropdown Structure -->
-                      <ul id="dropdown-device-<%= device.id %>" class="dropdown-content" style="min-width: 170px;">
-
-                        <!-- Link to WebUI -->
-                        <li>
-                          <%= link_to "http://#{device.ip}", target: "_blank" do %>
-                            <i class="material-icons left">public</i>
-                            WebUI
-                          <% end %>
-                        </li>
-
-                        <!-- Edit device button-->
-                        <li>
-                          <%= link_to edit_site_device_path(@site, device) do %>
-                            <i class="material-icons left">edit</i>
-                            Edit device
-                          <% end %>
-                        </li>
-                      </ul>
-
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+            <%= table_for_devices(@site_devices) %>
+            
           </div>
         </li>
 
@@ -87,44 +31,9 @@
           </div>
 
           <div class="collapsible-body" style="margin-left: 20px; margin-right: 20px;">
-            <table class="highlight">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Quantity</th>
-                  <th></th>
-                </tr>
-              </thead>
 
-              <tbody>
-                <% @site_supplies.each do |supply| %>
-                  <tr>
-                    <td><%= link_to supply.name, site_supply_path(@site, supply) %></td>
-                    <td><%= supply.description %></td>
-                    <td><%= supply.quantity %></td>
-                    <td>
-                      <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
-                        <i class="material-icons black-text">more_vert</i>
-                      </a>
+            <%= table_for_supplies(@site_supplies) %>
 
-                      <!-- Dropdown Structure -->
-                      <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
-
-                        <!-- Edit supply button-->
-                        <li>
-                          <%= link_to edit_site_supply_path(@site, supply) do %>
-                            <i class="material-icons left">edit</i>
-                            Edit supply
-                          <% end %>
-                        </li>
-                      </ul>
-
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
           </div>
         </li>
 

@@ -1,0 +1,65 @@
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Used</th>
+
+      <% unless action?("overview") %>
+        <th>Ending Threshold</th>
+      <% end %>
+
+      <% if action?("overview") || controller?("supplies") && action?("all") %>
+        <th>Site</th>
+      <% end %>
+
+      <% unless action?("overview") %>
+        <th></th>
+      <% end %>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% object.each do |supply| %>
+      <tr>
+        <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
+        <td><%= supply.description %></td>
+        <td><%= supply.quantity %></td>
+        <td><%= supply.used %></td>
+
+        <% unless action?("overview") %>
+          <td><%= supply.threshold %></td>
+        <% end %>
+
+        <% if action?("overview") || controller?("supplies") && action?("all") %>
+          <td><%= link_to supply.site.name, supply.site %></td>
+        <% end %>
+
+        <% unless action?("overview") %>
+          <td>
+            <!-- Dropdown -->
+            <a class="dropdown-button right" href="#!" data-activates="dropdown-supply-<%= supply.id %>" data-constrainwidth="false">
+              <i class="material-icons black-text">more_vert</i>
+            </a>
+
+            <!-- Dropdown Structure -->
+            <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
+
+              <!-- Edit supply button-->
+              <li>
+                <%= link_to edit_site_supply_path(supply.site, supply) do %>
+                  <i class="material-icons left">edit</i>
+                  Edit supply
+                <% end %>
+              </li>
+            </ul>  <!-- Dropdown -->
+          </td>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

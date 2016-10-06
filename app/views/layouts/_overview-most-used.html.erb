@@ -25,31 +25,7 @@
 
       <% if @supplies_most_used.any? %>
 
-        <table class="highlight">
-
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Quantity</th>
-              <th>Used</th>
-              <th>Site</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @supplies_most_used.each do |supply| %>
-              <tr>
-                <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
-                <td><%= supply.description %></td>
-                <td><%= supply.quantity %></td>
-                <td><%= supply.used %></td>
-                <td><%= link_to supply.site.name, supply.site %></td>
-              </tr>
-            <% end %>
-          </tbody>
-
-        </table>
+        <%= table_for_supplies(@supplies_most_used) %>
 
       <% else %>
         <br>

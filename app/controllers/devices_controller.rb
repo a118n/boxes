@@ -13,7 +13,7 @@ class DevicesController < ApplicationController
   def show
     @site = Site.find(params[:site_id])
     @device = @site.devices.find(params[:id])
-    @device_supplies = @device.supplies
+    @device_supplies = @device.supplies.includes(:site)
   end
 
   def new

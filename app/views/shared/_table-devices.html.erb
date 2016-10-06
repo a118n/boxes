@@ -1,0 +1,91 @@
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Model</th>
+
+      <% unless action?("overview") %>
+        <th>State</th>
+      <% end %>
+
+      <th>Location</th>
+
+      <% unless action?("overview") %>
+        <th>Serial Number</th>
+      <% end %>
+
+      <% if action?("overview") || controller?("devices") && action?("all") %>
+        <th>Site</th>
+      <% end %>
+
+      <% unless action?("overview") %>
+        <th></th>
+      <% end %>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% object.each do |device| %>
+      <tr>
+        <td><%= link_to device.name, site_device_path(device.site, device) %></td>
+        <td><%= device.devtype %></td>
+        <td><%= device.model %></td>
+
+        <% unless action?("overview") %>
+          <td>
+            <% if device.state == "Inactive" %>
+              <i class="material-icons left">clear</i>
+            <% elsif device.state == "In Repair" %>
+              <i class="material-icons left">build</i>
+            <% else %>
+              <i class="material-icons left">check</i>
+            <% end %>
+            <%= device.state %>
+          </td>
+        <% end %>
+
+        <td><%= device.location %></td>
+
+        <% unless action?("overview") %>
+          <td><%= device.sn %></td>
+        <% end %>
+
+        <% if action?("overview") || controller?("devices") && action?("all") %>
+          <td><%= link_to device.site.name, device.site %></td>
+        <% end %>
+
+        <% unless action?("overview") %>
+          <td>
+            <a class="dropdown-button right" href="#!" data-activates="dropdown-device-<%= device.id %>" data-constrainwidth="false">
+              <i class="material-icons black-text">more_vert</i>
+            </a>
+
+            <!-- Dropdown Structure -->
+            <ul id="dropdown-device-<%= device.id %>" class="dropdown-content" style="min-width: 170px;">
+
+              <!-- Link to WebUI -->
+              <li>
+                <%= link_to "http://#{device.ip}", target: "_blank" do %>
+                  <i class="material-icons left">public</i>
+                  WebUI
+                <% end %>
+              </li>
+
+              <!-- Edit device button-->
+              <li>
+                <%= link_to edit_site_device_path(device.site, device) do %>
+                  <i class="material-icons left">edit</i>
+                  Edit device
+                <% end %>
+              </li>
+
+            </ul>
+          </td>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
