@@ -72,3 +72,5 @@ gem 'materialize-sass'
 gem 'devise'
 # Use Sidekiq as jobs backend
 gem 'sidekiq'
+# Scheduler for Sidekiq
+gem 'sidekiq-scheduler'

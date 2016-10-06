@@ -1,0 +1,5 @@
+ResetUsedSuppliesCount:
+  cron: "0 0 1 * *"
+  class: SupplyWorker
+  queue: default
+  description: "Reset used counter on all of the supplies every month"

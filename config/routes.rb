@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
+  require 'sidekiq-scheduler/web'
 
   devise_for :users
 
