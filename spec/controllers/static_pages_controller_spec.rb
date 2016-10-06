@@ -1,15 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe StaticPagesController, type: :controller do
-  describe "Get views" do
-      it "renders the :home view" do
-        get :home
-      end
-      it "renders the :about view" do
-        get :about
-      end
-      it "renders the :overview view" do
-        get :overview
-      end
+
+  describe "GET #home" do
+    it "returns http success" do
+      get :home
+      expect(response).to have_http_status(:success)
     end
+  end
 end
