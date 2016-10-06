@@ -16,6 +16,9 @@ class Supply < ApplicationRecord
   scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0") }
   scope :most_used, -> { where("used > 0").order("used DESC").limit(10) }
 
+  # Don't create versions automatically
+  has_paper_trail on: []
+
   private
 
   def check_associations

@@ -74,3 +74,5 @@ gem 'devise'
 gem 'sidekiq'
 # Scheduler for Sidekiq
 gem 'sidekiq-scheduler'
+# Model versioning
+gem 'paper_trail'
