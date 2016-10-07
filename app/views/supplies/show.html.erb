@@ -17,6 +17,14 @@
         <!-- Dropdown Structure -->
         <ul id="dropdown-supply-<%= @supply.id %>" class="dropdown-content" style="min-width: 150px;">
 
+          <!-- Supply history button-->
+          <li>
+            <%= link_to history_site_supply_path(@site, @supply) do %>
+              <i class="material-icons left">history</i>
+              History
+            <% end %>
+          </li>
+
           <!-- Edit supply button-->
           <li>
             <%= link_to edit_site_supply_path(@site, @supply) do %>

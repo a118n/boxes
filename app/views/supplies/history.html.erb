@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+
+      <div class="card-content">
+
+        <i class="material-icons left">web_asset</i>
+
+        <!-- Supply name -->
+        <span class="card-title"><%= @supply.name %> - Usage History for <%= Date.current.year %></span>
+
+        <!-- Usage information -->
+            <% if @versions.any? %>
+
+              <table class="highlight">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Used</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @versions.each do |v| %>
+                    <tr>
+                      <td><%= v.created_at.strftime("%B") %></td>
+                      <td><%= v.used %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+            <% else %>
+              <br>
+              <br>
+              <p>Nothing</p>
+              <br>
+            <% end %>
+
+      </div>  <!-- Card content -->
+
+      <div class="card-action">
+
+        <!-- Back button -->
+        <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+      </div>
+
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->

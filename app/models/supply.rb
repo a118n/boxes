@@ -3,21 +3,18 @@ class Supply < ApplicationRecord
 
   has_many :device_supplies
   has_many :devices, through: :device_supplies
+  has_many :versions, dependent: :destroy
   belongs_to :site
 
   validates :name, presence: true, uniqueness: { scope: :site,
                                                  case_sensitive: false }
-  validates :quantity, :threshold, presence: true, numericality:
-                                  { greater_than_or_equal_to: 0,
-                                    less_than: 2147483648 }
+  validates :quantity, :threshold, :used, presence: true,
+            numericality: { greater_than_or_equal_to: 0, less_than: 2147483648 }
 
   validate :check_associations
 
   scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0") }
   scope :most_used, -> { where("used > 0").order("used DESC").limit(10) }
-
-  # Don't create versions automatically
-  has_paper_trail on: []
 
   private
 

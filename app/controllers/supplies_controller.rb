@@ -82,6 +82,12 @@ class SuppliesController < ApplicationController
     end
   end
 
+  def history
+    @site = Site.find(params[:site_id])
+    @supply = @site.supplies.find(params[:id])
+    @versions = @supply.versions.by_year(Date.current.year).order("created_at DESC")
+  end
+
   private
 
   def supply_params
