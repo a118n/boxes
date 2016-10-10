@@ -35,6 +35,15 @@
               </div>
             </div>
 
+            <!-- Overview limit -->
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :overview_limit, class: "active" %>
+                <%= f.select :overview_limit, [5, 10, 15, 30], include_blank: "None" %>
+                <h6 class="grey-text">(Limits displayed supplies)</h6>
+              </div>
+            </div>
+
             <!-- Time zone -->
             <div class="row">
               <div class="input-field col s12">

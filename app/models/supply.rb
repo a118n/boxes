@@ -12,8 +12,8 @@ class Supply < ApplicationRecord
   validate :check_associations
 
   scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0")
-                           .order("quantity").limit(10) }
-  scope :most_used, -> { where("used > 0").order("used DESC").limit(10) }
+                           .order("quantity") }
+  scope :most_used, -> { where("used > 0").order("used DESC") }
 
   before_save :add_used_supplies, :notify, if: :quantity_changed?, on: :update
 

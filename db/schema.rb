@@ -12,16 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20161007115717) do
 
-  create_table "device_supplies", force: :cascade do |t|
+  create_table "device_supplies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "device_id"
     t.integer  "supply_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["device_id"], name: "index_device_supplies_on_device_id"
-    t.index ["supply_id"], name: "index_device_supplies_on_supply_id"
+    t.index ["device_id"], name: "index_device_supplies_on_device_id", using: :btree
+    t.index ["supply_id"], name: "index_device_supplies_on_supply_id", using: :btree
   end
 
-  create_table "devices", force: :cascade do |t|
+  create_table "devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "devtype"
     t.string   "model"
@@ -32,20 +32,21 @@ ActiveRecord::Schema.define(version: 20161007115717) do
     t.integer  "site_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.index ["site_id"], name: "index_devices_on_site_id"
+    t.index ["site_id"], name: "index_devices_on_site_id", using: :btree
   end
 
-  create_table "settings", force: :cascade do |t|
-    t.boolean  "notifiable",   default: true
+  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.boolean  "notifiable",     default: true
     t.integer  "primary_site"
-    t.string   "time_zone",    default: "UTC"
+    t.integer  "overview_limit"
+    t.string   "time_zone",      default: "UTC"
     t.integer  "user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.index ["user_id"], name: "index_settings_on_user_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["user_id"], name: "index_settings_on_user_id", using: :btree
   end
 
-  create_table "sites", force: :cascade do |t|
+  create_table "sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "location"
     t.string   "description"
@@ -53,7 +54,7 @@ ActiveRecord::Schema.define(version: 20161007115717) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "supplies", force: :cascade do |t|
+  create_table "supplies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "quantity"
@@ -63,10 +64,10 @@ ActiveRecord::Schema.define(version: 20161007115717) do
     t.integer  "site_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.index ["site_id"], name: "index_supplies_on_site_id"
+    t.index ["site_id"], name: "index_supplies_on_site_id", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -81,16 +82,16 @@ ActiveRecord::Schema.define(version: 20161007115717) do
     t.datetime "updated_at",                          null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "versions", force: :cascade do |t|
+  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "used",       default: 0
     t.integer  "supply_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.index ["supply_id"], name: "index_versions_on_supply_id"
+    t.index ["supply_id"], name: "index_versions_on_supply_id", using: :btree
   end
 
 end
