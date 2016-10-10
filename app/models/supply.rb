@@ -1,6 +1,4 @@
 class Supply < ApplicationRecord
-  before_save :add_used_supplies, if: :quantity_changed?, on: :update
-
   has_many :device_supplies
   has_many :devices, through: :device_supplies
   has_many :versions, dependent: :destroy
@@ -13,8 +11,13 @@ class Supply < ApplicationRecord
 
   validate :check_associations
 
-  scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0") }
+  scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0")
+                           .order("quantity").limit(10) }
   scope :most_used, -> { where("used > 0").order("used DESC").limit(10) }
+
+  before_save :add_used_supplies, :notify, if: :quantity_changed?, on: :update
+
+  # searchkick
 
   private
 
@@ -28,6 +31,15 @@ class Supply < ApplicationRecord
     # Add substracted amount to :used attribute
     if !quantity_was.nil? && quantity < quantity_was
       self.used += quantity_was - quantity
+    end
+  end
+
+  def notify
+    if quantity <= threshold && !notified
+      SupplyMailer.ending_notification(self).deliver_later
+      self.notified = true
+    elsif quantity > threshold && notified
+      self.notified = false
     end
   end
 end

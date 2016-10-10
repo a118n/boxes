@@ -74,8 +74,27 @@
   </div>  <!-- Col -->
 </div>  <!-- Row -->
 
-<div class="fixed-action-btn tooltipped" style="bottom: 45px; right: 24px;" data-position="left" data-delay="50" data-tooltip="Assign Devices">
-  <%= link_to assign_site_supply_path(@site, @supply), class: "btn-floating btn-large blue" do %>
-    <i class="material-icons">assignment</i>
-  <% end %>
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <a class="btn-floating btn-large red">
+    <i class="material-icons">menu</i>
+  </a>
+  <ul>
+
+    <li>
+      <div class="tooltipped" data-position="left" data-delay="50" data-tooltip="Assign Devices">
+        <%= link_to assign_site_supply_path(@site, @supply), class: "btn-floating green" do %>
+          <i class="material-icons">assignment</i>
+        <% end %>
+      </div>
+    </li>
+
+    <li>
+      <div class="tooltipped" data-position="left" data-delay="50" data-tooltip="Withdraw">
+        <%= link_to site_supply_path(@site, @supply, withdraw: true), method: :patch, class: "btn-floating blue" do %>
+          <i class="material-icons">exposure_neg_1</i>
+        <% end %>
+      </div>
+    </li>
+
+  </ul>
 </div>

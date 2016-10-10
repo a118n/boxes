@@ -9,7 +9,9 @@ class Device < ApplicationRecord
   validates :state, presence: true
   validate :check_associations
 
-  scope :in_repair, -> { where(state: "In Repair") }
+  scope :in_repair, -> { where(state: "In Repair").order("name") }
+
+  # searchkick
 
   private
 

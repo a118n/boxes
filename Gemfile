@@ -74,3 +74,5 @@ gem 'devise'
 gem 'sidekiq'
 # Scheduler for Sidekiq
 gem 'sidekiq-scheduler'
+# Elasticsearch integration
+gem 'searchkick'
