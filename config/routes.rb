@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   get 'about', to: 'static_pages#about'
+  get 'search', to: 'static_pages#search'
 
   authenticate :user do
     mount Sidekiq::Web => "/sidekiq"

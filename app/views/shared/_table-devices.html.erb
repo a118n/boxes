@@ -15,7 +15,7 @@
         <th>Serial Number</th>
       <% end %>
 
-      <% if action?("overview") || controller?("devices") && action?("all") %>
+      <% if action?("overview") && @primary_site.nil? || controller?("devices") && action?("all") %>
         <th>Site</th>
       <% end %>
 
@@ -52,7 +52,7 @@
           <td><%= device.sn %></td>
         <% end %>
 
-        <% if action?("overview") || controller?("devices") && action?("all") %>
+        <% if action?("overview") && @primary_site.nil? || controller?("devices") && action?("all") %>
           <td><%= link_to device.site.name, device.site %></td>
         <% end %>
 

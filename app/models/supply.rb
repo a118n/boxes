@@ -17,7 +17,7 @@ class Supply < ApplicationRecord
 
   before_save :add_used_supplies, :notify, if: :quantity_changed?, on: :update
 
-  # searchkick
+  searchkick callbacks: :async
 
   private
 

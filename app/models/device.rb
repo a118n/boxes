@@ -11,7 +11,7 @@ class Device < ApplicationRecord
 
   scope :in_repair, -> { where(state: "In Repair").order("name") }
 
-  # searchkick
+  searchkick callbacks: :async
 
   private
 

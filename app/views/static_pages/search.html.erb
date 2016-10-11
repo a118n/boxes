@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
+
+        <i class="material-icons left">search</i>
+
+        <!-- Card title -->
+        <span class="card-title">Here's what I found:</span>
+
+        <% if @results.any? %>
+
+          <table class="highlight">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Site</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @results.each do |item| %>
+                <tr>
+                  <td><%= link_to item.name, [item.site, item] %></td>
+                  <td><%= item.model_name.human %></td>
+                  <td><%= item.site.name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        <% else %>
+          <h5 style="font-size: 1.2em;">Nothing</h5>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
