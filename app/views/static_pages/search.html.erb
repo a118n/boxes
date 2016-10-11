@@ -5,10 +5,10 @@
 
         <i class="material-icons left">search</i>
 
+        <% if @results.any? %>
+
         <!-- Card title -->
         <span class="card-title">Here's what I found:</span>
-
-        <% if @results.any? %>
 
           <table class="highlight">
             <thead>
@@ -31,7 +31,8 @@
           </table>
 
         <% else %>
-          <h5 style="font-size: 1.2em;">Nothing</h5>
+          <!-- Card title -->
+          <span class="card-title">Search for devices and supplies at the top bar</span>
         <% end %>
 
       </div>
