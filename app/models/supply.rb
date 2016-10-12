@@ -17,7 +17,14 @@ class Supply < ApplicationRecord
 
   before_save :add_used_supplies, :notify, if: :quantity_changed?, on: :update
 
-  searchkick callbacks: :async
+  searchkick word_middle: [:name, :description], callbacks: :async
+
+  def search_data
+    {
+      name: name,
+      description: description
+    }
+  end
 
   private
 

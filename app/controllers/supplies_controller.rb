@@ -31,7 +31,7 @@ class SuppliesController < ApplicationController
     @supply = @site.supplies.build(supply_params)
     if @supply.save
       flash[:success] = "Supply added"
-      redirect_to site_supply_url(@site, @supply)
+      redirect_to site_supply_path(@site, @supply)
     else
       render 'new'
     end
@@ -44,12 +44,12 @@ class SuppliesController < ApplicationController
     if params[:withdraw]
       if @supply.quantity == 0
         flash[:danger] = "Supply quantity is already 0"
-        redirect_to site_supply_url(@site, @supply)
+        redirect_to site_supply_path(@site, @supply)
       else
         @supply.quantity -= 1
         @supply.save
         flash[:warning] = "#{@supply.name} quantity has changed to: #{@supply.quantity}"
-        redirect_to site_supply_url(@site, @supply)
+        redirect_to site_supply_path(@site, @supply)
       end
 
     else
@@ -57,7 +57,7 @@ class SuppliesController < ApplicationController
         flash[:success] = "#{@supply.name} saved"
         # Needed for changing Site in form, for site_id to be updated for the redirect
         @supply.reload
-        redirect_to site_supply_url(@site, @supply)
+        redirect_to site_supply_path(@site, @supply)
       else
         render 'edit'
       end
@@ -67,7 +67,7 @@ class SuppliesController < ApplicationController
   def destroy
     Supply.find(params[:id]).destroy
     flash[:warning] = "Supply deleted"
-    redirect_to site_supplies_url
+    redirect_to site_supplies_path
   end
 
   def assign

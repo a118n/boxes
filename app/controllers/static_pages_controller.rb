@@ -7,31 +7,27 @@ class StaticPagesController < ApplicationController
   end
 
   def overview
-    if params[:query]
-      redirect_to search_path(query: params[:query])
+    @sites = Site.all
+    @devices = Device.all
+    @supplies = Supply.all
+    @primary_site =  current_user.settings.primary_site
+    @overview_limit = current_user.settings.overview_limit
+    if @primary_site.nil?
+      @supplies_ending = Supply.includes(:site).ending_soon
+                                               .limit(@overview_limit)
+      @supplies_most_used = Supply.includes(:site).most_used
+                                                  .limit(@overview_limit)
+      @devices_repair = Device.includes(:site).in_repair
     else
-      @sites = Site.all
-      @devices = Device.all
-      @supplies = Supply.all
-      @primary_site =  current_user.settings.primary_site
-      @overview_limit = current_user.settings.overview_limit
-      if @primary_site.nil?
-        @supplies_ending = Supply.includes(:site).ending_soon
-                                                 .limit(@overview_limit)
-        @supplies_most_used = Supply.includes(:site).most_used
-                                                    .limit(@overview_limit)
-        @devices_repair = Device.includes(:site).in_repair
-      else
-        @primary_site_name = Site.find(@primary_site).name
-        @supplies_ending = Supply.includes(:site).where(site_id: @primary_site)
-                                                 .ending_soon
-                                                 .limit(@overview_limit)
-        @supplies_most_used = Supply.includes(:site).where(site_id: @primary_site)
-                                                    .most_used
-                                                    .limit(@overview_limit)
-        @devices_repair = Device.includes(:site).where(site_id: @primary_site)
-                                                .in_repair
-      end
+      @primary_site_name = Site.find(@primary_site).name
+      @supplies_ending = Supply.includes(:site).where(site_id: @primary_site)
+                                               .ending_soon
+                                               .limit(@overview_limit)
+      @supplies_most_used = Supply.includes(:site).where(site_id: @primary_site)
+                                                  .most_used
+                                                  .limit(@overview_limit)
+      @devices_repair = Device.includes(:site).where(site_id: @primary_site)
+                                              .in_repair
     end
   end
 
@@ -39,7 +35,10 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    @results = Searchkick.search(params[:query]).results
+    @results = Searchkick.search(params[:query],
+                                 fields: [:name, :model, :location, :sn,
+                                          :description],
+                                 match: :word_middle).results
   end
 
 end

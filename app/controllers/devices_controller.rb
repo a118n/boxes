@@ -31,7 +31,7 @@ class DevicesController < ApplicationController
     @device = @site.devices.build(device_params)
     if @device.save
       flash[:success] = "Device added"
-      redirect_to site_device_url(@site, @device)
+      redirect_to site_device_path(@site, @device)
     else
       render 'new'
     end
@@ -44,7 +44,7 @@ class DevicesController < ApplicationController
       flash[:success] = "#{@device.name} saved"
       # Needed for changing Site in form, for site_id to be updated for the redirect
       @device.reload
-      redirect_to site_device_url(@site, @device)
+      redirect_to site_device_path(@site, @device)
     else
       render 'edit'
     end
@@ -53,7 +53,7 @@ class DevicesController < ApplicationController
   def destroy
     Device.find(params[:id]).destroy
     flash[:warning] = "Device deleted"
-    redirect_to site_devices_url
+    redirect_to site_devices_path
   end
 
   def assign
