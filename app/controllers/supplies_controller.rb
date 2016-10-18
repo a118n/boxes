@@ -57,7 +57,7 @@ class SuppliesController < ApplicationController
         flash[:success] = "#{@supply.name} saved"
         # Needed for changing Site in form, for site_id to be updated for the redirect
         @supply.reload
-        redirect_to site_supply_path(@site, @supply)
+        redirect_to site_supply_path(@supply.site, @supply)
       else
         render 'edit'
       end

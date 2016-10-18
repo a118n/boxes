@@ -44,7 +44,7 @@ class DevicesController < ApplicationController
       flash[:success] = "#{@device.name} saved"
       # Needed for changing Site in form, for site_id to be updated for the redirect
       @device.reload
-      redirect_to site_device_path(@site, @device)
+      redirect_to site_device_path(@device.site, @device)
     else
       render 'edit'
     end
