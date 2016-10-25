@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/a118n/boxes.svg?branch=master)](https://travis-ci.org/a118n/boxes)
+[![Code Climate](https://codeclimate.com/github/electricdrop/boxes/badges/gpa.svg)](https://codeclimate.com/github/electricdrop/boxes)
+
 # Boxes
 Boxes is an asset management web application written in Rails and Materialize frameworks.
 
