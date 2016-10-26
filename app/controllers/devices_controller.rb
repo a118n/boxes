@@ -84,7 +84,8 @@ class DevicesController < ApplicationController
 
   def device_params
     params.require(:device).permit(:name, :devtype, :model, :state, :ip,
-                                   :location, :sn, :site_id, supply_ids: [])
+                                   :location, :sn, :notes, :site_id,
+                                   supply_ids: [])
   end
 
 end

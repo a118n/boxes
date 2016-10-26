@@ -25,13 +25,14 @@ ActiveRecord::Schema.define(version: 20161007115717) do
     t.string   "name"
     t.string   "devtype"
     t.string   "model"
-    t.string   "state",      default: "Active"
+    t.string   "state",                    default: "Active"
     t.string   "ip"
     t.string   "location"
     t.string   "sn"
+    t.text     "notes",      limit: 65535
     t.integer  "site_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.index ["site_id"], name: "index_devices_on_site_id", using: :btree
   end
 

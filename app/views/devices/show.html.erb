@@ -72,6 +72,15 @@
           </div>
         </div>
 
+        <!-- Device notes -->
+        <% if @device.notes %>
+          <div class="row">
+            <div class="col s12">
+              <blockquote class="left"><%= @device.notes %></blockquote>
+            </div>
+          </div>
+        <% end %>
+
         <%= render 'layouts/assets-popout-device' %>
 
       </div>  <!-- Card content -->
