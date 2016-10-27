@@ -13,6 +13,7 @@
 
       <% unless action?("overview") %>
         <th>Serial Number</th>
+        <th>SKU</th>
       <% end %>
 
       <% if action?("overview") && @primary_site.nil? || controller?("devices") && action?("all") %>
@@ -50,6 +51,7 @@
 
         <% unless action?("overview") %>
           <td><%= device.sn %></td>
+          <td><%= device.sku %></td>
         <% end %>
 
         <% if action?("overview") && @primary_site.nil? || controller?("devices") && action?("all") %>
