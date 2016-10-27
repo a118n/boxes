@@ -46,6 +46,7 @@
                   <th>State</th>
                   <th>Location</th>
                   <th>Serial Number</th>
+                  <th>SKU</th>
                   <th>Site</th>
                 </tr>
               </thead>
@@ -65,6 +66,7 @@
                   </td>
                   <td><%= @device.location %></td>
                   <td><%= @device.sn %></td>
+                  <td><%= @device.sku %></td>
                   <td><%= link_to @device.site.name, @site %></td>
                 </tr>
               </tbody>

@@ -52,20 +52,27 @@
               </div>
             </div>
 
-            <!-- Location -->
-            <div class="row">
-              <div class="input-field col s12">
-                <%= f.label :location, class: "active" %>
-                <%= f.text_field :location %>
-              </div>
-            </div>
-
             <div class="row">
 
               <!-- Serial Number -->
               <div class="input-field col s6">
                 <%= f.label :sn, "Serial Number", class: "active" %>
                 <%= f.text_field :sn %>
+              </div>
+
+              <!-- SKU -->
+              <div class="input-field col s6">
+                <%= f.label :sku, "SKU", class: "active" %>
+                <%= f.text_field :sku %>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <!-- Location -->
+              <div class="input-field col s6">
+                <%= f.label :location, class: "active" %>
+                <%= f.text_field :location %>
               </div>
 
               <!-- Site -->
