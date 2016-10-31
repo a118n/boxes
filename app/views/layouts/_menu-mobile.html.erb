@@ -17,6 +17,17 @@
   <a><span class="white-text email"><%= current_user.email %></span></a>
 </div></li>
 
+<!-- Search bar -->
+<li style="padding: 0 15px 0 15px;">
+  <div class="search-wrapper card">
+    <form style="height: 44px !important;">
+      <div class="input-field">
+        <%= text_field_tag :query, params[:query], placeholder: "Search", type: "search" %>
+      </div>
+    </form>
+  </div>
+</li>
+
 <!-- Home button -->
 <li>
   <%= link_to root_path, class: "waves-effect" do %>
