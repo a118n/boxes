@@ -1,0 +1,22 @@
+<h3>Supplies usage for <%= @month %> <%= @year %></h3>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Site</th>
+      <th>Used</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @supplies.each do |supply| %>
+      <tr>
+        <td><%= link_to supply.name, site_supply_url(supply.site, supply) %></td>
+        <td><%= supply.description %></td>
+        <td><%= supply.site.name %></td>
+        <td><%= supply.used %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

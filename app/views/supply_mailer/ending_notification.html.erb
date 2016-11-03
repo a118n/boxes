@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <p>You have received this notification, because one of the supplies has reached its quantity threshold.</p>
-    <br>
-    <p>Supply name: <%= @supply.name %></p>
-    <p>Quantity: <%= @supply.quantity %></p>
-  </body>
-</html>
+<h3>You have received this notification, because one of the supplies has passed its quantity threshold.</h3>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Site</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to @supply.name, site_supply_url(@supply.site, @supply) %></td>
+      <td><%= @supply.description %></td>
+      <td><%= @supply.site.name %></td>
+      <td><%= @supply.quantity %></td>
+    </tr>
+  </tbody>
+</table>

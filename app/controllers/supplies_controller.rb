@@ -50,6 +50,7 @@ class SuppliesController < ApplicationController
         @supply.save
         flash[:warning] = "#{@supply.name} quantity has changed to: #{@supply.quantity}"
         redirect_to site_supply_path(@site, @supply)
+        notify
       end
 
     else
@@ -58,6 +59,7 @@ class SuppliesController < ApplicationController
         # Needed for changing Site in form, for site_id to be updated for the redirect
         @supply.reload
         redirect_to site_supply_path(@supply.site, @supply)
+        notify
       else
         render 'edit'
       end
@@ -103,6 +105,15 @@ class SuppliesController < ApplicationController
   end
 
   private
+
+  def notify
+    if @supply.quantity <= @supply.threshold && !@supply.notified
+      SupplyMailer.ending_notification(@supply).deliver_later
+      @supply.update_attribute(:notified, true)
+    elsif @supply.quantity > @supply.threshold && @supply.notified
+      @supply.update_attribute(:notified, false)
+    end
+  end
 
   def supply_params
     params.require(:supply).permit(:name, :description, :quantity, :threshold,

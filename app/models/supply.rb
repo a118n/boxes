@@ -11,11 +11,11 @@ class Supply < ApplicationRecord
 
   validate :check_associations
 
+  before_save :add_used_supplies, if: :quantity_changed?, on: :update
+
   scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0")
                            .order("quantity") }
   scope :most_used, -> { where("used > 0").order("used DESC") }
-
-  before_save :add_used_supplies, :notify, if: :quantity_changed?, on: :update
 
   searchkick word_middle: [:name, :description], callbacks: :async
 
@@ -41,12 +41,4 @@ class Supply < ApplicationRecord
     end
   end
 
-  def notify
-    if quantity <= threshold && !notified
-      SupplyMailer.ending_notification(self).deliver_later
-      self.notified = true
-    elsif quantity > threshold && notified
-      self.notified = false
-    end
-  end
 end
