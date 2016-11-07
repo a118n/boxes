@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20161007115717) do
     t.boolean  "notifiable",     default: true
     t.integer  "primary_site"
     t.integer  "overview_limit"
-    t.string   "time_zone",      default: "UTC"
     t.integer  "user_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false

@@ -5,13 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :redirect_to_search, except: :search
 
-  # around_action :set_time_zone, if: :current_user
-
   private
-
-  # def set_time_zone(&block)
-  #   Time.use_zone(current_user.settings.time_zone, &block)
-  # end
 
   def redirect_to_search
     if params[:query]
