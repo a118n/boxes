@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   after_create { create_settings }
 
+  scope :notifiable, -> { joins(:settings).where(settings: { notifiable: true }) }
+
   def full_name
     if first_name && last_name
       [first_name, last_name].join(' ')
