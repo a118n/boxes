@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'static_pages#about'
   get 'search', to: 'static_pages#search'
+  get 'reports', to: 'static_pages#reports'
 
   authenticate :user do
     mount Sidekiq::Web => "/sidekiq"

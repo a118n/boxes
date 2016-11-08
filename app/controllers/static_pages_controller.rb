@@ -41,4 +41,13 @@ class StaticPagesController < ApplicationController
                                  match: :word_middle).results
   end
 
+  def reports
+    if params[:report]
+      @month = params[:report][:month]
+      @month_name = Date::MONTHNAMES[params[:report][:month].to_i]
+      @year = params[:report][:year]
+      @versions = Version.includes(:supply).by_year(@year).by_month(@month)
+    end
+  end
+
 end

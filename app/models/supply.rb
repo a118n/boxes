@@ -15,7 +15,8 @@ class Supply < ApplicationRecord
 
   scope :ending_soon, -> { where("quantity <= threshold AND threshold != 0")
                            .order("quantity") }
-  scope :most_used, -> { where("used > 0").order("used DESC") }
+  scope :all_used, -> { where("used > 0").order("used DESC") }
+  scope :most_used, -> { all_used.limit(30) }
 
   searchkick word_middle: [:name, :description], callbacks: :async
 
@@ -36,9 +37,7 @@ class Supply < ApplicationRecord
 
   def add_used_supplies
     # Add substracted amount to :used attribute
-    if !quantity_was.nil? && quantity < quantity_was
-      self.used += quantity_was - quantity
-    end
+    self.used += quantity_was - quantity if !quantity_was.nil? && quantity < quantity_was
   end
 
 end

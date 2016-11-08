@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
+
+        <i class="material-icons left">assessment</i>
+
+        <!-- Card title -->
+        <span class="card-title">Supplies Usage Reports</span>
+
+        <div class="row">
+          <form>
+            <div class="input-field col s12">
+              <%= select_date Date::today, prefix: "report", discard_day: true %>
+            </div>
+            <%= submit_tag "View Report", class: "btn waves-effect waves-light" %>
+          </form>
+        </div>
+
+        <% if params[:report] %>
+
+          <div class="row">
+            <div class="col s12">
+
+              <% if @versions.try(:any?) %>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Site</th>
+                      <th>Used</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @versions.each do |version| %>
+                      <tr>
+                        <td><%= link_to version.supply.name, site_supply_path(version.supply.site, version.supply) %></td>
+                        <td><%= version.supply.description %></td>
+                        <td><%= link_to version.supply.site.name, site_path(version.supply.site) %></td>
+                        <td><%= version.used %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+
+              <% else %>
+                <h5 style="font-size: 1.3em;">Nothing found for <%= @month_name %> <%= @year %></h5>
+              <% end %>
+            </div>
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,7 +11,7 @@ class SupplyMailer < ApplicationMailer
     @month = month
     @year = year
     # Get all the supplies using scope defined in Model
-    @supplies = Supply.most_used
+    @supplies = Supply.all_used
     @users = User.notifiable
     @users.each do |user|
       mail(to: user.email, subject: "Supplies usage for #{@month} #{@year}")
