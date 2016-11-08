@@ -15,7 +15,7 @@
                 <%= select_month(Date.today, prefix: "report_date") %>
               </div>
               <div class="input-field col s6">
-                <%= select_year(Date.today, prefix: "report_date") %>
+                <%= select_year(Date.today, prefix: "report_date", end_year: Date.today.year) %>
               </div>
             </div>
             <div class="row">
