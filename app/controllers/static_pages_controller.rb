@@ -42,10 +42,10 @@ class StaticPagesController < ApplicationController
   end
 
   def reports
-    if params[:report]
-      @month = params[:report][:month]
-      @month_name = Date::MONTHNAMES[params[:report][:month].to_i]
-      @year = params[:report][:year]
+    if params[:report_date]
+      @month = params[:report_date][:month]
+      @month_name = Date::MONTHNAMES[@month.to_i]
+      @year = params[:report_date][:year]
       @versions = Version.includes(:supply).by_year(@year).by_month(@month)
     end
   end
