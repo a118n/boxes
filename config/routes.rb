@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   get 'about', to: 'static_pages#about'
-  get 'search', to: 'static_pages#search'
-  get 'reports', to: 'static_pages#reports'
 
   authenticate :user do
     mount Sidekiq::Web => "/sidekiq"
 
     get 'overview', to: 'static_pages#overview'
-
+    get 'search', to: 'static_pages#search'
+    get 'reports', to: 'static_pages#reports'
+    
     resource :settings, only: [:edit, :update]
 
     resources :sites do
