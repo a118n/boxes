@@ -4,6 +4,8 @@
 # Boxes
 Boxes is an asset management web application written primarily for managing printers, MFPs and their supplies. It may prove handy in large offices and corporations where you have to keep track of multitude of devices and supplies they use.
 
+Note: it is in active development.
+
 ![screenshot](screenshot.png)
 
 ### Features:
