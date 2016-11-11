@@ -17,8 +17,8 @@ Boxes is an asset management web application written primarily for managing prin
 
 
 ### Installation
-    Note: This instruction describes a sample installation on a clean Ubuntu server with NGINX as a web server.
-##### Application Stack
+Note: This instruction describes a sample installation on a clean Ubuntu server with NGINX as a web server.
+#### Application Stack
 The following software is required before installing the application. For a detailed instructions please refer to software providers and distribution manuals.
 * Ruby ≥ 2.3.1
 * [Phusion Passenger](https://www.phusionpassenger.com/)
@@ -28,18 +28,25 @@ The following software is required before installing the application. For a deta
 * MariaDB (or MySQL)
 * Node.js
 
-##### Install required packages
-```sudo apt-get install build-essential ruby ruby-dev git libmysqlclient-dev mariadb-server elasticsearch redis-server nodejs```
+#### Install required packages
+
+```sudo apt-get install build-essential ruby ruby-dev git libmysqlclient-dev mariadb-server elasticsearch redis-server```
 
 ```sudo gem install bundler```
 
-##### Clone the repo
+```curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install -y nodejs```
+
+#### Clone the repo
+
 ```git clone https://github.com/a118n/boxes.git && cd boxes```
 
-##### Bundle up
+#### Bundle up
+
 ```bundle install --path vendor/bundle```
 
-##### Set up database
+#### Set up database
+
 ``` sudo mysql_secure_installation```
 
 ```sudo mysql -u root```
@@ -51,10 +58,16 @@ MariaDB [(mysql)]>flush privileges;
 MariaDB [(mysql)]>exit
 ```
 
-```echo "export BOXES_DATABASE_PASSWORD='YourMySQLPassword'" >> ~/.bashrc```
+```echo "export BOXES_DATABASE_PASSWORD='YourMySQLRootPassword'" >> ~/.bashrc```
 
 ```echo "export SECRET_KEY_BASE='$(bundle exec rails secret)'" >> ~/.bashrc```
 
 ```source ~/.bashrc```
 
 ```RAILS_ENV=production bundle exec rails db:setup```
+
+#### Set up NGINX & Passenger
+
+[This guide](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) describes installation of NGINX with Passenger.
+
+[This guide](https://www.phusionpassenger.com/library/deploy/nginx/deploy/ruby/) describes application deployment.
