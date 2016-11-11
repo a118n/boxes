@@ -33,7 +33,7 @@ The following software is required before installing the application. For a deta
 
 Install required packages:
 
-```sudo apt-get install build-essential ruby ruby-dev git libmysqlclient-dev mariadb-server elasticsearch redis-server```
+```sudo apt-get install build-essential apt-transport-https ruby ruby-dev git libmysqlclient-dev mariadb-server default-jre redis-server```
 
 Install Bundler:
 
@@ -43,6 +43,14 @@ Install Node.js:
 
 ```curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 sudo apt-get install -y nodejs```
+
+Install ElasticSearch:
+
+```echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list```
+
+```sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D27D666CD88E42B4```
+
+```sudo apt-get update && sudo apt-get install elasticsearch```
 
 #### Clone the repo
 
@@ -109,4 +117,24 @@ See [this issue](https://github.com/sstephenson/execjs/issues/77).
 
 Copy `vendor/sidekiq.service` to `/lib/systemd/system`
 
-Edit `/lib/systemd/system/sidekiq.service` and make sure you define full path to the application in `WorkingDirectory` as well as your username and/or group in `User` and `Group` respectively.
+Edit `/lib/systemd/system/sidekiq.service` and make sure you define full path to the application in `WorkingDirectory` as well as your username and group in `User` and `Group` respectively.
+
+Enable and start the service:
+
+```sudo systemctl enable sidekiq && sudo systemctl start sidekiq```
+
+> Note: you can access Sidekiq WebUI by visiting http://boxes.yourdomain.com/sidekiq/
+
+#### Set up ElasticSearch
+
+Enable and start the service:
+
+```sudo systemctl enable elasticsearch && sudo systemctl start elasticsearch```
+
+Reindex:
+
+```RAILS_ENV=production bundle exec rails searchkick:reindex:all```
+
+#### Reboot
+
+At this point everything should be set up. Reboot the server and verify the app is running.

@@ -34,7 +34,7 @@ WorkingDirectory=/path/to/the/app
 # ExecStart=/bin/bash -lc 'bundle exec sidekiq -e production'
 # If you use the system's ruby:
 
-ExecStart=/usr/local/bin/bundle exec sidekiq -e production -C config/sidekiq.yml
+ExecStart=/usr/local/bin/bundle exec sidekiq -e production -C config/sidekiq.yml -L log/sidekiq.log
 
 # Any member of adm group can run this
 Group=adm
