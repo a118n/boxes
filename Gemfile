@@ -76,3 +76,5 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 # Elasticsearch integration
 gem 'searchkick'
+# Charts
+gem 'chartkick'

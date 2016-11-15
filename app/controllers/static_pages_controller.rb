@@ -48,6 +48,7 @@ class StaticPagesController < ApplicationController
       @month_name = Date::MONTHNAMES[@month.to_i]
       @year = params[:report_date][:year]
       @versions = Version.includes(:supply).by_year(@year).by_month(@month)
+      @pie_chart_data =  @versions.map { |v| [v.supply.name, v.used] }.to_h
     end
   end
 
