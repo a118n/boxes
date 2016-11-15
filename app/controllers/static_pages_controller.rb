@@ -42,6 +42,7 @@ class StaticPagesController < ApplicationController
   end
 
   def reports
+    @start_year = (Version.first.try(:created_at) || Date.today).year
     if params[:report_date]
       @month = params[:report_date][:month]
       @month_name = Date::MONTHNAMES[@month.to_i]
