@@ -143,13 +143,13 @@ Copy `vendor/sidekiq.service` to `/lib/systemd/system`
 
 Edit the following fields in `/lib/systemd/system/sidekiq.service`:
 
- * `WorkingDirectory` - Path to the app
+ * `WorkingDirectory` Path to the app
 
-* `User` and `Group` - should be self-explanatory
+* `User` and `Group` Should be self-explanatory
 
-* `Environment=BOXES_DATABASE_PASSWORD=` - Password to MySQL
+* `Environment=BOXES_DATABASE_PASSWORD=` Password to MySQL
 
-* `Environment=SECRET_KEY_BASE=` - Secret Key (As defined earlier)
+* `Environment=SECRET_KEY_BASE=` Secret Key (As defined earlier)
 
 Enable and start the service:
 
