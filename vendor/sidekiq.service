@@ -30,14 +30,18 @@ After=syslog.target network.target redis-server.service
 Type=simple
 WorkingDirectory=/path/to/the/app
 
+Environment=BOXES_DATABASE_PASSWORD='YourMySQLRootPassword'
+Environment=SECRET_KEY_BASE='YourSecretKey'
+
 # If you use rbenv:
 # ExecStart=/bin/bash -lc 'bundle exec sidekiq -e production'
 # If you use the system's ruby:
 
 ExecStart=/usr/local/bin/bundle exec sidekiq -e production -C config/sidekiq.yml -L log/sidekiq.log
 
-# Any member of adm group can run this
-Group=adm
+# Specify user and group to run under
+User=
+Group=
 UMask=0002
 
 # if we crash, restart
@@ -45,8 +49,8 @@ RestartSec=1
 Restart=on-failure
 
 # output goes to /var/log/syslog
-StandardOutput=syslog
-StandardError=syslog
+# StandardOutput=syslog
+# StandardError=syslog
 
 # This will default to "bundler" if we don't specify it
 SyslogIdentifier=sidekiq

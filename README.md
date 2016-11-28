@@ -33,40 +33,56 @@ The following software is required before installing the application. For a deta
 
 Install required packages:
 
-```sudo apt-get install build-essential apt-transport-https ruby ruby-dev git libmysqlclient-dev mariadb-server default-jre redis-server```
+```
+sudo apt-get install build-essential ruby ruby-dev libmysqlclient-dev mariadb-server default-jre redis-server
+```
 
 Install Bundler:
 
-```sudo gem install bundler```
+```
+sudo gem install bundler
+```
 
 Install Node.js:
 
-```curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-sudo apt-get install -y nodejs```
+```
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 
 Install ElasticSearch:
 
-```echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list```
+```
+echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
 
-```sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D27D666CD88E42B4```
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D27D666CD88E42B4
 
-```sudo apt-get update && sudo apt-get install elasticsearch```
+sudo apt-get update && sudo apt-get install elasticsearch
+```
 
 #### Clone the repo
 
-```git clone https://github.com/a118n/boxes.git && cd boxes```
+```
+git clone https://github.com/a118n/boxes.git && cd boxes
+```
 
 #### Bundle up
 
-```bundle install```
+```
+bundle install
+```
 
 #### Set up database
 
-``` sudo mysql_secure_installation```
+```
+sudo mysql_secure_installation
+```
 
 Disable `auth_socket` plugin because it doesn't play nice with Rails:
 
-```sudo mysql -u root```
+```
+sudo mysql -u root
+```
 
 ```
 MariaDB [(none)]>use mysql;
@@ -77,19 +93,27 @@ MariaDB [(mysql)]>exit
 
 Set up your root MySQL password as an environment variable:
 
-```echo "export BOXES_DATABASE_PASSWORD='YourMySQLRootPassword'" | sudo tee -a /etc/profile```
+```
+echo "export BOXES_DATABASE_PASSWORD='YourMySQLRootPassword'" | sudo tee -a /etc/profile
+```
 
 Set up production secret key as an environment variable:
 
-```echo "export SECRET_KEY_BASE='$(bundle exec rails secret)'" | sudo tee -a /etc/profile```
+```
+echo "export SECRET_KEY_BASE='$(bundle exec rails secret)'" | sudo tee -a /etc/profile
+```
 
 Load these variables into the shell:
 
-```source /etc/profile```
+```
+source /etc/profile
+```
 
 Set up production database:
 
-```RAILS_ENV=production bundle exec rails db:setup```
+```
+RAILS_ENV=production bundle exec rails db:setup
+```
 
 #### Set up ActionMailer
 
@@ -117,11 +141,21 @@ See [this issue](https://github.com/sstephenson/execjs/issues/77).
 
 Copy `vendor/sidekiq.service` to `/lib/systemd/system`
 
-Edit `/lib/systemd/system/sidekiq.service` and make sure you define full path to the application in `WorkingDirectory` as well as your username and group in `User` and `Group` respectively.
+Edit the following fields in `/lib/systemd/system/sidekiq.service`:
+
+ * `WorkingDirectory` - Path to the app
+
+* `User` and `Group` - should be self-explanatory
+
+* `Environment=BOXES_DATABASE_PASSWORD=` - Password to MySQL
+
+* `Environment=SECRET_KEY_BASE=` - Secret Key (As defined earlier)
 
 Enable and start the service:
 
-```sudo systemctl enable sidekiq && sudo systemctl start sidekiq```
+```
+sudo systemctl enable sidekiq && sudo systemctl start sidekiq
+```
 
 > Note: you can access Sidekiq WebUI by visiting http://boxes.yourdomain.com/sidekiq/
 
@@ -129,11 +163,15 @@ Enable and start the service:
 
 Enable and start the service:
 
-```sudo systemctl enable elasticsearch && sudo systemctl start elasticsearch```
+```
+sudo systemctl enable elasticsearch && sudo systemctl start elasticsearch
+```
 
 Reindex:
 
-```RAILS_ENV=production bundle exec rails searchkick:reindex:all```
+```
+RAILS_ENV=production bundle exec rails searchkick:reindex:all
+```
 
 #### Reboot
 
