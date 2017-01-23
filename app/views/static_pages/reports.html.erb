@@ -8,25 +8,25 @@
         <!-- Card title -->
         <span class="card-title">Supplies Usage Reports</span>
 
-          <form>
-            <div class="row">
-              <!-- Month Select -->
-              <div class="input-field col s6">
-                <%= select_month(Date.today, prefix: "report_date") %>
-              </div>
-              <!-- Year Select -->
-              <div class="input-field col s6">
-                <%= select_year(Date.today, prefix: "report_date", start_year: @start_year, end_year: Date.today.year) %>
-              </div>
+        <form>
+          <div class="row">
+            <!-- Month Select -->
+            <div class="input-field col s6">
+              <%= select_month(Date.today, prefix: "report_date") %>
             </div>
-            <!-- Submit Button -->
-            <div class="row">
-              <div class="col s12">
-                <%= submit_tag "View Report", class: "btn waves-effect waves-light" %>
-              </div>
+            <!-- Year Select -->
+            <div class="input-field col s6">
+              <%= select_year(Date.today, prefix: "report_date", start_year: @start_year, end_year: Date.today.year) %>
             </div>
-            <br>
-          </form>
+          </div>
+          <!-- Submit Button -->
+          <div class="row">
+            <div class="col s12">
+              <%= submit_tag "View Report", class: "btn waves-effect waves-light" %>
+            </div>
+          </div>
+          <br>
+        </form>
 
         <% if params[:report_date] %>
 

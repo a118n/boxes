@@ -7,11 +7,39 @@
         <i class="material-icons left">web_asset</i>
 
         <!-- Supply name -->
-        <span class="card-title"><%= @supply.name %> - Usage History for <%= Date.current.year %></span>
+        <span class="card-title"><%= @supply.name %> - Usage History for <%= @year || Date.today.year %></span>
+
+        <form>
+          <div class="row">
+            <!-- Year Select -->
+            <div class="input-field col s12">
+              <%= select_year(Date.today, prefix: "report_date", start_year: @start_year, end_year: Date.today.year) %>
+            </div>
+          </div>
+          <!-- Submit Button -->
+          <div class="row">
+            <div class="col s12">
+              <%= submit_tag "View Report", class: "btn waves-effect waves-light" %>
+            </div>
+          </div>
+          <br>
+        </form>
 
         <!-- Usage information -->
-            <% if @versions.any? %>
+        <% if params[:report_date] %>
 
+          <% if @versions.try(:any?) %>
+
+          <!-- Pie Chart -->
+          <div class="row">
+            <div class="col s12">
+              <%= pie_chart @pie_chart_data %>
+            </div>
+          </div>
+
+            <!-- Table -->
+            <div class="row">
+              <div class="col s12">
               <table class="highlight">
                 <thead>
                   <tr>
@@ -20,26 +48,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @versions.each do |v| %>
+                  <% @versions.each do |version| %>
                     <tr>
-                      <td><%= v.created_at.strftime("%B") %></td>
-                      <td><%= v.used %></td>
+                      <td><%= version.created_at.strftime("%B") %></td>
+                      <td><%= version.used %></td>
                     </tr>
                   <% end %>
                 </tbody>
               </table>
-
-            <% else %>
-              <br>
-              <br>
-              <p>Nothing</p>
-              <br>
-            <% end %>
+              </div>
+            </div>
+          <% else %>
+            <!-- Nothing -->
+            <div class="row">
+              <div class="col s12">
+                <h5 style="font-size: 1.3em;">Nothing found for <%= @year %></h5>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
 
       </div>  <!-- Card content -->
 
       <div class="card-action">
-
         <!-- Back button -->
         <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
       </div>
