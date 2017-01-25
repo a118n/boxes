@@ -1,7 +1,7 @@
 <% headers = ['Name', 'Description', 'Quantity', 'Used', 'Device Models', 'Site'] %>
-<%= CSV.generate_line(headers, { col_sep: "\t" }) %>
+<%= CSV.generate_line(headers, { col_sep: "," }) %>
 <%- @supplies.each do |supply| -%>
 <%= CSV.generate_line( [ supply.name, supply.description, supply.quantity,
-                         supply.used, supply.devices.pluck(:model).uniq.join(", "),
-                         supply.site.name ], {col_sep: "\t"} ).html_safe %>
+                         supply.used, supply.devices.pluck(:model).uniq.join("; "),
+                         supply.site.name ], {col_sep: ","} ).html_safe %>
 <% end %>

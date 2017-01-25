@@ -17,7 +17,7 @@ Boxes is an asset management web application written primarily for managing prin
 
 
 ### Installation
-> Note: This instruction describes a sample installation on a clean Ubuntu 16.04 LTS server.
+> Note: This guide describes a sample installation on a clean Ubuntu 16.04 LTS server.
 
 #### Application Stack
 The following software is required before installing the application. For a detailed instructions please refer to software providers and distribution manuals.
