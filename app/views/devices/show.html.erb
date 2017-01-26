@@ -75,7 +75,7 @@
         </div>
 
         <!-- Device notes -->
-        <% if @device.notes %>
+        <% if @device.notes && !@device.notes.empty?  %>
           <div class="row">
             <div class="col s12">
               <blockquote class="left"><%= @device.notes %></blockquote>
