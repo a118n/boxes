@@ -40,8 +40,6 @@ group :development, :test do
   gem 'faker'
   # Simulate users' interactions with application
   gem 'capybara'
-  # Beautification of output in the console
-  gem 'awesome_print', require: 'ap'
 end
 
 group :test do
@@ -78,3 +76,5 @@ gem 'sidekiq-scheduler'
 gem 'searchkick'
 # Charts
 gem 'chartkick'
+# Beautification of output in the console
+gem 'awesome_print', require: 'ap'
