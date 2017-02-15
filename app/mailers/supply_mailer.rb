@@ -5,12 +5,12 @@ class SupplyMailer < ApplicationMailer
     mail(to: @users.map(&:email).uniq, subject: "Supply #{@supply.name} is ending")
   end
 
-  def monthly_usage(month, year)
+  def monthly_usage(month, year, site)
     @month = month
     @year = year
-    # Get all the supplies using scope defined in Model
-    @supplies = Supply.all_used
+    @site = site
     @users = User.notifiable
-    mail(to: @users.map(&:email).uniq, subject: "Supplies usage for #{@month} #{@year}")
+    @supplies = Supply.where(site_id: @site.id).all_used
+    mail(to: @users.map(&:email).uniq, subject: "Supplies usage in #{@site.name} for #{@month} #{@year}")
   end
 end

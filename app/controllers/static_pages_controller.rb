@@ -44,10 +44,11 @@ class StaticPagesController < ApplicationController
   def reports
     @start_year = (Version.first.try(:created_at) || Date.today).year
     if params[:report_date]
+      @site = params[:site_id][:site_id]
       @month = params[:report_date][:month]
       @month_name = Date::MONTHNAMES[@month.to_i]
       @year = params[:report_date][:year]
-      @versions = Version.includes(:supply).by_year(@year).by_month(@month)
+      @versions = Version.where(site_id: @site).includes(:supply).by_year(@year).by_month(@month)
       @pie_chart_data =  @versions.map { |v| [v.supply.name, v.used] }.to_h
     end
   end

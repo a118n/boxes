@@ -1,5 +1,6 @@
 class Version < ApplicationRecord
   belongs_to :supply
+  belongs_to :site
 
   validates :used, presence: true, numericality: { greater_than_or_equal_to: 0,
                                                    less_than: 2147483648 }

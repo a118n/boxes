@@ -10,12 +10,16 @@
 
         <form>
           <div class="row">
+            <!-- Site Select -->
+            <div class="input-field col s4">
+              <%= collection_select(:site_id, :site_id, Site.all, :id, :name) %>
+            </div>
             <!-- Month Select -->
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <%= select_month(Date.today, prefix: "report_date") %>
             </div>
             <!-- Year Select -->
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <%= select_year(Date.today, prefix: "report_date", start_year: @start_year, end_year: Date.today.year) %>
             </div>
           </div>
