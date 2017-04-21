@@ -67,18 +67,11 @@
               </div>
             </div>
 
+            <!-- Location -->
             <div class="row">
-
-              <!-- Location -->
-              <div class="input-field col s6">
+              <div class="input-field col s12">
                 <%= f.label :location, class: "active" %>
                 <%= f.text_field :location %>
-              </div>
-
-              <!-- Site -->
-              <div class="input-field col s6">
-                <%= f.label :site, class: "active" %>
-                <%= f.collection_select(:site_id, Site.all, :id, :name) %>
               </div>
             </div>
 

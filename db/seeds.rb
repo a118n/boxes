@@ -8,3 +8,5 @@
 if Rails.env.development? || Rails.env.test?
   3.times { FactoryGirl.create(:site_with_everything) }
 end
+
+User.create(first_name: "Default", last_name: "Admin", email: "admin@boxes.yourdomain.com", password: "Qazwsx123", admin: true)

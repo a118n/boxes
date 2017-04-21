@@ -12,7 +12,7 @@
           <div class="row">
             <!-- Site Select -->
             <div class="input-field col s4">
-              <%= collection_select(:site_id, :site_id, Site.all, :id, :name) %>
+              <%= collection_select(:site_id, :site_id, @sites, :id, :name) %>
             </div>
             <!-- Month Select -->
             <div class="input-field col s4">

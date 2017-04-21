@@ -1,4 +1,5 @@
 class DevicesController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @site = Site.includes(:devices).find(params[:site_id])
@@ -6,7 +7,7 @@ class DevicesController < ApplicationController
   end
 
   def all
-    @devices = Device.all.includes(:site)
+    @devices = Device.all.includes(:site).accessible_by(current_ability)
     redirect_to root_path unless Site.any?
   end
 
@@ -64,9 +65,9 @@ class DevicesController < ApplicationController
 
   def export
     if params[:repair]
-      @devices = Device.includes(:site).in_repair
+      @devices = Device.includes(:site).in_repair.accessible_by(current_ability)
     elsif params[:all]
-      @devices = Device.includes(:site).all
+      @devices = Device.includes(:site).accessible_by(current_ability)
     else
       @site = Site.find(params[:site_id])
       @devices = @site.devices

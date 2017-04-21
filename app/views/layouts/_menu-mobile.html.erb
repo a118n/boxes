@@ -60,7 +60,7 @@
   <% end %>
 </li>
 
-<!-- Report button -->
+<!-- Reports button -->
 <li>
   <%= link_to reports_path, class: "waves-effect" do %>
     <i class="material-icons left">assessment</i>
@@ -69,6 +69,25 @@
 </li>
 
 <li><div class="divider" style="margin-top: 15px; margin-bottom: 15px;"></div></li>
+
+<% if current_user.admin? %>
+<!-- Users button -->
+<li>
+  <%= link_to users_admin_index_path, class: "waves-effect" do %>
+    <i class="material-icons left">face</i>
+    Users
+  <% end %>
+</li>
+
+<!-- Sidekiq -->
+<li>
+  <%= link_to sidekiq_web_path, class: "waves-effect", target: :_blank do %>
+    <i class="material-icons left">work</i>
+    Sidekiq
+  <% end %>
+</li>
+
+<% end %>
 
 <!-- Settings -->
 <li>

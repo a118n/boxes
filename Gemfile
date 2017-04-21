@@ -78,3 +78,5 @@ gem 'searchkick'
 gem 'chartkick'
 # Beautification of output in the console
 gem 'awesome_print', require: 'ap'
+# Authorization
+gem 'cancancan'

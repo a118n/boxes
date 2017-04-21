@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
+
+        <i class="material-icons left">face</i>
+
+        <!-- Card Title -->
+        <span class="card-title">Edit Account</span>
+
+        <!-- Form container-->
+        <div class="container">
+
+          <%= form_for @user, url: users_admin_path(@user)  do |f| %>
+
+            <!-- First & Last name fields -->
+            <div class="row">
+              <!-- First name -->
+              <div class="input-field col s6">
+                <i class="material-icons prefix">text_fields</i>
+                <%= f.text_field :first_name %>
+                <%= f.label :first_name, class: "active" %>
+              </div>
+
+              <!-- Last name -->
+              <div class="input-field col s6">
+                <%= f.text_field :last_name %>
+                <%= f.label :last_name, class: "active" %>
+              </div>
+            </div>
+
+            <!-- Email field -->
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">mail_outline</i>
+                <%= f.email_field :email, class: "validate" %>
+                <%= f.label :email, class: "active" %>
+              </div>
+
+              <div class="input-field col s6">
+                <%= f.label :site, class: "active" %>
+                <%= f.collection_select(:site, Site.all, :id, :name, include_blank: "None") %>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.check_box :admin %>
+                <%= f.label :admin, class: "active" %>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col s12">
+
+                <!-- Update button -->
+                <button class="btn waves-effect waves-light" style="margin-top: 10px; margin-bottom: 10px;">
+                  <%= f.submit "Save" %>
+                </button>
+
+                <!-- Back button -->
+                <%= link_to "Back", :back, class: "btn-flat waves-effect waves-light" %>
+              </div>
+            </div>
+
+          <% end %>  <!-- Form end -->
+
+        </div>  <!-- Form container-->
+
+        <!-- Delete account button -->
+        <div class="row">
+          <div class="col s12">
+            <%= button_to "Delete account", users_admin_path(@user), data: { confirm: "Are you sure? You're about to delete this account. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
+          </div>
+        </div>
+
+      </div><!-- Card content -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->

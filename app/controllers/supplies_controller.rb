@@ -1,4 +1,5 @@
 class SuppliesController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @site = Site.includes(:supplies).find(params[:site_id])
@@ -6,7 +7,7 @@ class SuppliesController < ApplicationController
   end
 
   def all
-    @supplies = Supply.all.includes(:site)
+    @supplies = Supply.all.includes(:site).accessible_by(current_ability)
     redirect_to root_path unless Site.any?
   end
 
@@ -80,11 +81,11 @@ class SuppliesController < ApplicationController
 
   def export
     if params[:ending]
-      @supplies = Supply.includes(:site).ending_soon
+      @supplies = Supply.includes(:site).ending_soon.accessible_by(current_ability)
     elsif params[:most_used]
-      @supplies = Supply.includes(:site).most_used
+      @supplies = Supply.includes(:site).most_used.accessible_by(current_ability)
     elsif params[:all]
-      @supplies = Supply.includes(:site).all
+      @supplies = Supply.includes(:site).accessible_by(current_ability)
     else
       @site = Site.find(params[:site_id])
       @supplies = @site.supplies

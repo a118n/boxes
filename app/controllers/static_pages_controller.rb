@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  authorize_resource class: false
 
   def home
     if user_signed_in?
@@ -7,17 +8,20 @@ class StaticPagesController < ApplicationController
   end
 
   def overview
-    @sites = Site.all
-    @devices = Device.all
-    @supplies = Supply.all
+    @sites = Site.accessible_by(current_ability)
+    @devices = Device.accessible_by(current_ability)
+    @supplies = Supply.accessible_by(current_ability)
     @primary_site =  current_user.settings.primary_site
     @overview_limit = current_user.settings.overview_limit
     if @primary_site.nil?
       @supplies_ending = Supply.includes(:site).ending_soon
+                                               .accessible_by(current_ability)
                                                .limit(@overview_limit)
       @supplies_most_used = Supply.includes(:site).most_used
+                                                  .accessible_by(current_ability)
                                                   .limit(@overview_limit)
       @devices_repair = Device.includes(:site).in_repair
+                                              .accessible_by(current_ability)
     else
       @primary_site_name = Site.find(@primary_site).name
       @supplies_ending = Supply.includes(:site).where(site_id: @primary_site)
@@ -43,6 +47,7 @@ class StaticPagesController < ApplicationController
 
   def reports
     @start_year = (Version.first.try(:created_at) || Date.today).year
+    @sites = Site.accessible_by(current_ability)
     if params[:report_date]
       @site = params[:site_id][:site_id]
       @month = params[:report_date][:month]
