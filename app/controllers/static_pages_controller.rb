@@ -26,10 +26,15 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    @results = Searchkick.search(params[:query],
-                                 fields: [:name, :model, :location, :sn,
-                                          :description],
-                                 match: :word_middle).results
+    @devices = Device.search(params[:query],
+                             fields: ["name^10", "model", "location", "sn", "description"],
+                             match: :word_middle).records.accessible_by(current_ability)
+
+    @supplies = Supply.search(params[:query],
+                              fields: ["name^10", "description"],
+                              match: :word_middle).records.accessible_by(current_ability)
+
+    @results = @devices + @supplies
   end
 
   def reports
