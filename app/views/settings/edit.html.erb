@@ -26,14 +26,16 @@
               </div>
             </div>
 
-            <!-- Primary site -->
-            <div class="row">
-              <div class="input-field col s12">
-                <%= f.label :primary_site, class: "active" %>
-                <%= f.collection_select(:primary_site, Site.all, :id, :name, include_blank: "None") %>
-                <h6 class="grey-text">(Select to display overview information for this site only)</h6>
+            <% if current_user.admin? %>
+              <!-- Primary site -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <%= f.label :primary_site, class: "active" %>
+                  <%= f.collection_select(:primary_site, Site.all, :id, :name, include_blank: "None") %>
+                  <h6 class="grey-text">(Select to display overview information for this site only)</h6>
+                </div>
               </div>
-            </div>
+            <% end %>
 
             <!-- Overview limit -->
             <div class="row">

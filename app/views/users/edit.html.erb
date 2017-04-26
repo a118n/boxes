@@ -37,6 +37,7 @@
                 <%= f.label :email, class: "active" %>
               </div>
 
+              <!-- Site field -->
               <div class="input-field col s6">
                 <%= f.label :site, class: "active" %>
                 <%= f.collection_select(:site, Site.all, :id, :name, include_blank: "None") %>
