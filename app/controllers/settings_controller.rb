@@ -18,7 +18,6 @@ class SettingsController < ApplicationController
   private
 
   def settings_params
-    params.require(:settings).permit(:notifiable, :primary_site,
-                                     :overview_limit)
+    params.require(:settings).permit(:notifiable, :overview_limit)
   end
 end

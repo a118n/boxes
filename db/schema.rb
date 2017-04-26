@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20170418083413) do
 
   create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean  "notifiable",     default: true
-    t.integer  "primary_site"
     t.integer  "overview_limit"
     t.integer  "user_id"
     t.datetime "created_at",                    null: false
