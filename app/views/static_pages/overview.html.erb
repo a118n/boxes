@@ -2,7 +2,11 @@
 
   <div class="row">
     <div class="col s12">
-      <h5>All Sites</h5>
+      <% if current_user.try(:site) %>
+        <h5><%= Site.find(current_user.site).name %></h5>
+      <% else %>
+        <h5>All Sites</h5>
+      <% end %>
     </div>
   </div>
 
