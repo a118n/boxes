@@ -2,19 +2,19 @@ class DevicesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @site = Site.includes(:devices).find(params[:site_id])
-    @devices = @site.devices
+    @site = Site.find(params[:site_id])
+    @devices = @site.devices.order("name")
   end
 
   def all
-    @devices = Device.all.includes(:site).accessible_by(current_ability)
+    @devices = Device.includes(:site).accessible_by(current_ability).order("name")
     redirect_to root_path unless Site.any?
   end
 
   def show
     @site = Site.find(params[:site_id])
     @device = @site.devices.find(params[:id])
-    @device_supplies = @device.supplies.includes(:site)
+    @device_supplies = @device.supplies.includes(:site).order("name")
   end
 
   def new

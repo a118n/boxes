@@ -2,19 +2,19 @@ class SuppliesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @site = Site.includes(:supplies).find(params[:site_id])
-    @supplies = @site.supplies
+    @site = Site.find(params[:site_id])
+    @supplies = @site.supplies.order("name")
   end
 
   def all
-    @supplies = Supply.all.includes(:site).accessible_by(current_ability)
+    @supplies = Supply.includes(:site).accessible_by(current_ability).order("name")
     redirect_to root_path unless Site.any?
   end
 
   def show
     @site = Site.find(params[:site_id])
     @supply = @site.supplies.find(params[:id])
-    @supply_devices = @supply.devices.includes(:site)
+    @supply_devices = @supply.devices.includes(:site).order("name")
   end
 
   def new
