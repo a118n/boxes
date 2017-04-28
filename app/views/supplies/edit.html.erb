@@ -22,8 +22,16 @@
                 <%= f.text_field :name, required: true %>
               </div>
 
-              <!-- Description -->
+              <!-- Vendor -->
               <div class="input-field col s6">
+                <%= f.label :vendor, class: "active" %>
+                <%= f.text_field :vendor, required: true %>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Description -->
+              <div class="input-field col s12">
                 <%= f.label :description, class: "active" %>
                 <%= f.text_field :description %>
               </div>

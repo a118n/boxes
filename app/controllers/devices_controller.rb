@@ -32,7 +32,7 @@ class DevicesController < ApplicationController
     @device = @site.devices.build(device_params)
     if @device.save
       flash[:success] = "Device added"
-      redirect_to site_device_path(@site, @device)
+      redirect_to site_devices_path(@site)
     else
       render 'new'
     end

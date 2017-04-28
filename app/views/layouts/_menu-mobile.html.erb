@@ -8,7 +8,11 @@
   <%= image_tag("cover", alt: "Cover", class: "background") %>
 
   <!-- Userpic stub -->
-  <a><i class="material-icons medium white-text">face</i></a>
+  <% if current_user.admin? %>
+    <a><i class="material-icons medium white-text">supervisor_account</i></a>
+  <% else %>
+    <a><i class="material-icons medium white-text">face</i></a>
+  <% end %>
 
   <!-- Full name -->
   <a><span class="white-text name"><%= current_user.full_name %></span></a>

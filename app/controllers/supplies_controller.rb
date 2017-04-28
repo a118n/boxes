@@ -32,7 +32,7 @@ class SuppliesController < ApplicationController
     @supply = @site.supplies.build(supply_params)
     if @supply.save
       flash[:success] = "Supply added"
-      redirect_to site_supply_path(@site, @supply)
+      redirect_to site_supplies_path(@site)
     else
       render 'new'
     end
@@ -123,7 +123,7 @@ class SuppliesController < ApplicationController
 
   def supply_params
     params.require(:supply).permit(:name, :description, :quantity, :threshold,
-                                   :site_id, device_ids: [])
+                                   :vendor, :site_id, device_ids: [])
   end
 
 end

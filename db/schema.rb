@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418083413) do
+ActiveRecord::Schema.define(version: 20170428085954) do
 
   create_table "device_supplies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "device_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170418083413) do
 
   create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean  "notifiable",     default: true
+    t.integer  "primary_site"
     t.integer  "overview_limit"
     t.integer  "user_id"
     t.datetime "created_at",                    null: false
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20170418083413) do
     t.integer  "site_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "vendor"
     t.index ["site_id"], name: "index_supplies_on_site_id", using: :btree
   end
 
