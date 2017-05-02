@@ -31,7 +31,7 @@
               </div>
 
               <!-- State -->
-              <div class="input-field col s6">
+              <div class="input-field col s6" id="state">
                 <%= f.label :state, class: "active" %>
                 <%= f.select :state, ['Active', 'Inactive', 'In Repair'] %>
               </div>
@@ -68,7 +68,7 @@
             </div>
 
             <!-- Location -->
-            <div class="row">
+            <div class="row" id="location">
               <div class="input-field col s12">
                 <%= f.label :location, class: "active" %>
                 <%= f.text_field :location %>
@@ -104,7 +104,7 @@
         <!-- Delete device button -->
         <div class="row">
           <div class="col s12">
-            <%= button_to "Delete device", site_device_path(@site, @device), data: { confirm: "Are you sure? You're about to delete this Device. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
+            <%= button_to "Delete device", site_device_path(@site, @device), data: { confirm: "Are you sure? You're about to delete this device. This action is irreversible." }, method: :delete, class: "btn btn-flat waves-effect waves-red red-text" %>
           </div>
         </div>
 
@@ -112,3 +112,16 @@
     </div>  <!-- Card -->
   </div>  <!-- Col -->
 </div>  <!-- Row -->
+
+<script>
+  $(document).ready(function() {
+    var initialText = $('#state :selected').text();
+    if (initialText == "Inactive") { $('#location').hide(); }
+
+    $('#state').change(function () {
+      var selected = $('#state :selected').text();
+      if (selected == "Inactive") { $('#location').hide(); }
+      else { $('#location').show(); }
+    });
+  });
+</script>
