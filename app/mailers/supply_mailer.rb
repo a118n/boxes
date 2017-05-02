@@ -9,7 +9,7 @@ class SupplyMailer < ApplicationMailer
     @month = month
     @year = year
     @site = site
-    @users = User.where(site: @supply.site_id).or(User.where(admin: true)).notifiable
+    @users = User.where(site: @site.id).or(User.where(admin: true)).notifiable
     @supplies = Supply.where(site_id: @site.id).all_used
     mail(to: @users.map(&:email).uniq, subject: "Supplies usage in #{@site.name} for #{@month} #{@year}")
   end
