@@ -4,8 +4,8 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Vendor</th>
       <th>Description</th>
-      <th>Site</th>
       <th>Used</th>
     </tr>
   </thead>
@@ -13,8 +13,8 @@
     <% @supplies.each do |supply| %>
       <tr>
         <td><%= link_to supply.name, site_supply_url(supply.site, supply) %></td>
+        <td><%= supply.vendor %></td>
         <td><%= supply.description %></td>
-        <td><%= supply.site.name %></td>
         <td><%= supply.used %></td>
       </tr>
     <% end %>
