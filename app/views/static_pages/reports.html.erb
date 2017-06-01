@@ -12,7 +12,7 @@
           <div class="row">
             <!-- Site Select -->
             <div class="input-field col s4">
-              <%= collection_select(:site_id, :site_id, Site.all, :id, :name) %>
+              <%= collection_select(:site_id, :site_id, @sites, :id, :name) %>
             </div>
             <!-- Month Select -->
             <div class="input-field col s4">
@@ -50,6 +50,7 @@
                 <thead>
                   <tr>
                     <th>Name</th>
+                    <th>Vendor</th>
                     <th>Description</th>
                     <th>Site</th>
                     <th>Used</th>
@@ -59,6 +60,7 @@
                   <% @versions.each do |version| %>
                     <tr>
                       <td><%= link_to version.supply.name, site_supply_path(version.supply.site, version.supply) %></td>
+                      <td><%= version.supply.vendor %></td>
                       <td><%= version.supply.description %></td>
                       <td><%= link_to version.supply.site.name, site_path(version.supply.site) %></td>
                       <td><%= version.used %></td>

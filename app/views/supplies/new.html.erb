@@ -20,9 +20,17 @@
                 <%= f.text_field :name, required: true, autofocus: true %>
               </div>
 
-              <!-- Description -->
+              <!-- Vendor -->
               <div class="input-field col s6">
-                <%= f.label :description %>
+                <%= f.label :vendor, class: "active" %>
+                <%= f.text_field :vendor, required: true %>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Description -->
+              <div class="input-field col s12">
+                <%= f.label :description, class: "active" %>
                 <%= f.text_field :description %>
               </div>
             </div>
@@ -52,7 +60,7 @@
                 </button>
 
                 <!-- Back button -->
-                <%= link_to "Back", :back, class: "btn btn-flat waves-effect waves-light" %>
+                <%= link_to "Back", site_path(@site), class: "btn btn-flat waves-effect waves-light" %>
               </div>
             </div>  <!-- Buttons -->
 

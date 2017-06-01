@@ -1,19 +1,24 @@
 class SuppliesController < ApplicationController
+  load_and_authorize_resource
 
   def index
-    @site = Site.includes(:supplies).find(params[:site_id])
-    @supplies = @site.supplies
+    @site = Site.find(params[:site_id])
+    @supplies = @site.supplies.order("name")
   end
 
   def all
-    @supplies = Supply.all.includes(:site)
-    redirect_to root_path unless Site.any?
+    if current_user.admin?
+      @supplies = Supply.includes(:site).accessible_by(current_ability).order("name")
+      redirect_to root_path unless Site.any?
+    else
+      redirect_to site_supplies_path(current_user.site)
+    end
   end
 
   def show
     @site = Site.find(params[:site_id])
     @supply = @site.supplies.find(params[:id])
-    @supply_devices = @supply.devices.includes(:site)
+    @supply_devices = @supply.devices.includes(:site).order("name")
   end
 
   def new
@@ -31,7 +36,7 @@ class SuppliesController < ApplicationController
     @supply = @site.supplies.build(supply_params)
     if @supply.save
       flash[:success] = "Supply added"
-      redirect_to site_supply_path(@site, @supply)
+      redirect_to site_supplies_path(@site)
     else
       render 'new'
     end
@@ -80,11 +85,11 @@ class SuppliesController < ApplicationController
 
   def export
     if params[:ending]
-      @supplies = Supply.includes(:site).ending_soon
+      @supplies = Supply.includes(:site).ending_soon.accessible_by(current_ability)
     elsif params[:most_used]
-      @supplies = Supply.includes(:site).most_used
+      @supplies = Supply.includes(:site).most_used.accessible_by(current_ability)
     elsif params[:all]
-      @supplies = Supply.includes(:site).all
+      @supplies = Supply.includes(:site).accessible_by(current_ability)
     else
       @site = Site.find(params[:site_id])
       @supplies = @site.supplies
@@ -122,7 +127,7 @@ class SuppliesController < ApplicationController
 
   def supply_params
     params.require(:supply).permit(:name, :description, :quantity, :threshold,
-                                   :site_id, device_ids: [])
+                                   :vendor, :site_id, device_ids: [])
   end
 
 end

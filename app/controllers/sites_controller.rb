@@ -1,7 +1,8 @@
 class SitesController < ApplicationController
+  load_and_authorize_resource
 
   def index
-    @sites = Site.all
+    @sites = Site.accessible_by(current_ability)
     if @sites.empty?
       redirect_to root_path
     end

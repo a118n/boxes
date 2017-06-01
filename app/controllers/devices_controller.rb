@@ -1,19 +1,24 @@
 class DevicesController < ApplicationController
+  load_and_authorize_resource
 
   def index
-    @site = Site.includes(:devices).find(params[:site_id])
-    @devices = @site.devices
+    @site = Site.find(params[:site_id])
+    @devices = @site.devices.order("name")
   end
 
   def all
-    @devices = Device.all.includes(:site)
-    redirect_to root_path unless Site.any?
+    if current_user.admin?
+      @devices = Device.includes(:site).accessible_by(current_ability).order("name")
+      redirect_to root_path unless Site.any?
+    else
+      redirect_to site_devices_path(current_user.site)
+    end
   end
 
   def show
     @site = Site.find(params[:site_id])
     @device = @site.devices.find(params[:id])
-    @device_supplies = @device.supplies.includes(:site)
+    @device_supplies = @device.supplies.includes(:site).order("name")
   end
 
   def new
@@ -31,7 +36,7 @@ class DevicesController < ApplicationController
     @device = @site.devices.build(device_params)
     if @device.save
       flash[:success] = "Device added"
-      redirect_to site_device_path(@site, @device)
+      redirect_to site_devices_path(@site)
     else
       render 'new'
     end
@@ -64,9 +69,9 @@ class DevicesController < ApplicationController
 
   def export
     if params[:repair]
-      @devices = Device.includes(:site).in_repair
+      @devices = Device.includes(:site).in_repair.accessible_by(current_ability)
     elsif params[:all]
-      @devices = Device.includes(:site).all
+      @devices = Device.includes(:site).accessible_by(current_ability)
     else
       @site = Site.find(params[:site_id])
       @devices = @site.devices

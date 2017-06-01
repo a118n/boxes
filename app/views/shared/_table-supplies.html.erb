@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Vendor</th>
       <th>Description</th>
       <th>Quantity</th>
       <th>Used</th>
@@ -10,7 +11,7 @@
         <th>Ending Threshold</th>
       <% end %>
 
-      <% if action?("overview") && @primary_site.nil? || controller?("supplies") && action?("all") %>
+      <% if action?("overview") && current_user.site.nil? || controller?("supplies") && action?("all") %>
         <th>Site</th>
       <% end %>
 
@@ -25,6 +26,7 @@
     <% object.each do |supply| %>
       <tr>
         <td><%= link_to supply.name, site_supply_path(supply.site, supply) %></td>
+        <td><%= supply.vendor%></td>
         <td><%= supply.description %></td>
         <td><%= supply.quantity %></td>
         <td><%= supply.used %></td>
@@ -33,7 +35,7 @@
           <td><%= supply.threshold %></td>
         <% end %>
 
-        <% if action?("overview") && @primary_site.nil? || controller?("supplies") && action?("all") %>
+        <% if action?("overview") && current_user.site.nil? || controller?("supplies") && action?("all") %>
           <td><%= link_to supply.site.name, supply.site %></td>
         <% end %>
 
@@ -59,7 +61,7 @@
               <li>
                 <%= link_to edit_site_supply_path(supply.site, supply) do %>
                   <i class="material-icons left">edit</i>
-                  Edit supply
+                  Edit
                 <% end %>
               </li>
             </ul>  <!-- Dropdown -->

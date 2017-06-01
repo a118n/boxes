@@ -9,6 +9,8 @@ class Device < ApplicationRecord
   validates :state, presence: true
   validate :check_associations
 
+  before_save :remove_location_if_inactive, if: :state_changed?, on: :update
+
   scope :in_repair, -> { where(state: "In Repair").order("name") }
 
   searchkick word_middle: [:name, :model, :location, :sn, :sku], callbacks: :async
@@ -29,5 +31,9 @@ class Device < ApplicationRecord
     if supplies.any? && site_id_changed?
       errors.add(:site_id, "cannot be changed. Remove assigned supplies first.")
     end
+  end
+
+  def remove_location_if_inactive
+    self.location = "" if self.state == "Inactive"
   end
 end

@@ -4,8 +4,8 @@ class Supply < ApplicationRecord
   has_many :versions, dependent: :destroy
   belongs_to :site
 
-  validates :name, presence: true, uniqueness: { scope: :site,
-                                                 case_sensitive: false }
+  validates :name, presence: true
+  validates :vendor, presence: true
   validates :quantity, :threshold, :used, presence: true,
             numericality: { greater_than_or_equal_to: 0, less_than: 2147483648 }
 

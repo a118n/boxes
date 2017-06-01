@@ -2,19 +2,17 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   require 'sidekiq-scheduler/web'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   root 'static_pages#home'
 
   get 'about', to: 'static_pages#about'
 
   authenticate :user do
-    mount Sidekiq::Web => "/sidekiq"
-
     get 'overview', to: 'static_pages#overview'
     get 'search', to: 'static_pages#search'
     get 'reports', to: 'static_pages#reports'
-    
+
     resource :settings, only: [:edit, :update]
 
     resources :sites do
@@ -34,4 +32,10 @@ Rails.application.routes.draw do
     get 'export_supplies', to: 'supplies#export'
 
   end
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+    resources :users_admin, controller: 'users'
+  end
+
 end
