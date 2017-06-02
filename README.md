@@ -176,3 +176,13 @@ RAILS_ENV=production bundle exec rails searchkick:reindex:all
 #### Reboot
 
 At this point everything should be set up. Reboot the server and verify the app is running.
+
+#### Login
+
+You can login with automatically created admin account:
+
+Email: `admin@boxes.yourdomain.com`
+
+Password: `Qazwsx123`
+
+> Note: you can tweak this in db/seeds.rb file
