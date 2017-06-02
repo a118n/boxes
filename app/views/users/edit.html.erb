@@ -16,14 +16,13 @@
             <!-- First & Last name fields -->
             <div class="row">
               <!-- First name -->
-              <div class="input-field col s6">
-                <i class="material-icons prefix">text_fields</i>
+              <div class="input-field col s12 l6">
                 <%= f.text_field :first_name %>
                 <%= f.label :first_name, class: "active" %>
               </div>
 
               <!-- Last name -->
-              <div class="input-field col s6">
+              <div class="input-field col s12 l6">
                 <%= f.text_field :last_name %>
                 <%= f.label :last_name, class: "active" %>
               </div>
@@ -31,14 +30,13 @@
 
             <!-- Email field -->
             <div class="row">
-              <div class="input-field col s6">
-                <i class="material-icons prefix">mail_outline</i>
+              <div class="input-field col s12 l6">
                 <%= f.email_field :email, class: "validate" %>
                 <%= f.label :email, class: "active" %>
               </div>
 
               <!-- Site field -->
-              <div class="input-field col s6">
+              <div class="input-field col s12 l6">
                 <%= f.label :site, class: "active" %>
                 <%= f.collection_select(:site, Site.all, :id, :name, include_blank: "None") %>
               </div>
