@@ -80,3 +80,5 @@ gem 'chartkick'
 gem 'awesome_print', require: 'ap'
 # Authorization
 gem 'cancancan'
+# Roles
+gem 'rolify'

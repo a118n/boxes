@@ -1,4 +1,5 @@
 class Supply < ApplicationRecord
+  resourcify
   has_many :device_supplies
   has_many :devices, through: :device_supplies
   has_many :versions, dependent: :destroy

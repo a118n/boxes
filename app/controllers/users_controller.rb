@@ -28,13 +28,13 @@ class UsersController < ApplicationController
   private
 
   def redirect_unless_admin
-    unless current_user.try(:admin?)
+    unless current_user.has_role? :admin
       flash[:error] = "Only admins can do that"
       redirect_to root_path
     end
   end
 
   def user_params
-  params.require(:user).permit(:first_name, :last_name, :email, :admin, :site)
+  params.require(:user).permit(:first_name, :last_name, :email)
   end
 end

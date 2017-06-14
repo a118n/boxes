@@ -11,7 +11,7 @@
         <th>Ending Threshold</th>
       <% end %>
 
-      <% if action?("overview") && current_user.site.nil? || controller?("supplies") && action?("all") %>
+      <% if action?("overview") || controller?("supplies") && action?("all") %>
         <th>Site</th>
       <% end %>
 
@@ -35,7 +35,7 @@
           <td><%= supply.threshold %></td>
         <% end %>
 
-        <% if action?("overview") && current_user.site.nil? || controller?("supplies") && action?("all") %>
+        <% if action?("overview") || controller?("supplies") && action?("all") %>
           <td><%= link_to supply.site.name, supply.site %></td>
         <% end %>
 

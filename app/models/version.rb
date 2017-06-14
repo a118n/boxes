@@ -1,4 +1,5 @@
 class Version < ApplicationRecord
+  resourcify
   belongs_to :supply
   belongs_to :site
 

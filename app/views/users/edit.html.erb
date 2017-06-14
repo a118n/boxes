@@ -34,20 +34,6 @@
                 <%= f.email_field :email, class: "validate" %>
                 <%= f.label :email, class: "active" %>
               </div>
-
-              <!-- Site field -->
-              <div class="input-field col s12 l6">
-                <%= f.label :site, class: "active" %>
-                <%= f.collection_select(:site, Site.all, :id, :name, include_blank: "None") %>
-              </div>
-
-            </div>
-
-            <div class="row">
-              <div class="input-field col s12">
-                <%= f.check_box :admin %>
-                <%= f.label :admin, class: "active" %>
-              </div>
             </div>
 
             <!-- Buttons -->

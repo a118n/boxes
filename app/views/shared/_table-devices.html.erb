@@ -16,7 +16,7 @@
         <th>SKU</th>
       <% end %>
 
-      <% if action?("overview") && current_user.site.nil? || controller?("devices") && action?("all") %>
+      <% if action?("overview") || controller?("devices") && action?("all") %>
         <th>Site</th>
       <% end %>
 
@@ -54,7 +54,7 @@
           <td><%= device.sku %></td>
         <% end %>
 
-        <% if action?("overview") && current_user.site.nil? || controller?("devices") && action?("all") %>
+        <% if action?("overview") || controller?("devices") && action?("all") %>
           <td><%= link_to device.site.name, device.site %></td>
         <% end %>
 

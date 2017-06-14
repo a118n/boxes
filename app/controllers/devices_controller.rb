@@ -7,12 +7,8 @@ class DevicesController < ApplicationController
   end
 
   def all
-    if current_user.admin?
-      @devices = Device.includes(:site).accessible_by(current_ability).order("name")
-      redirect_to root_path unless Site.any?
-    else
-      redirect_to site_devices_path(current_user.site)
-    end
+    @devices = Device.includes(:site).accessible_by(current_ability).order("name")
+    redirect_to root_path unless Site.any?
   end
 
   def show

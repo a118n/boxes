@@ -7,12 +7,8 @@ class SuppliesController < ApplicationController
   end
 
   def all
-    if current_user.admin?
-      @supplies = Supply.includes(:site).accessible_by(current_ability).order("name")
-      redirect_to root_path unless Site.any?
-    else
-      redirect_to site_supplies_path(current_user.site)
-    end
+    @supplies = Supply.includes(:site).accessible_by(current_ability).order("name")
+    redirect_to root_path unless Site.any?
   end
 
   def show

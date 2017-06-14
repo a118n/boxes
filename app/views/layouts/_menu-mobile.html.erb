@@ -8,7 +8,7 @@
   <%= image_tag("cover", alt: "Cover", class: "background") %>
 
   <!-- Userpic stub -->
-  <% if current_user.admin? %>
+  <% if current_user.has_role? :admin %>
     <a><i class="material-icons medium white-text">supervisor_account</i></a>
   <% else %>
     <a><i class="material-icons medium white-text">face</i></a>
@@ -74,7 +74,7 @@
 
 <li><div class="divider" style="margin-top: 15px; margin-bottom: 15px;"></div></li>
 
-<% if current_user.admin? %>
+<% if current_user.has_role? :admin %>
 <!-- Users button -->
 <li>
   <%= link_to users_admin_index_path, class: "waves-effect" do %>
