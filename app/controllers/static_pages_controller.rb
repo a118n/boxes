@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
   end
 
   def overview
-    @sites = Site.accessible_by(current_ability)
+    @sites = Site.accessible_by(current_ability).order("name")
     @devices = Device.accessible_by(current_ability)
     @supplies = Supply.accessible_by(current_ability)
     @overview_limit = current_user.settings.overview_limit
