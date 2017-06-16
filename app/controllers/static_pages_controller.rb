@@ -39,7 +39,7 @@ class StaticPagesController < ApplicationController
 
   def reports
     @start_year = (Version.first.try(:created_at) || Date.today).year
-    @sites = Site.accessible_by(current_ability)
+    @sites = Site.accessible_by(current_ability).order("name")
     if params[:report_date]
       @site = params[:site_id][:site_id]
       @month = params[:report_date][:month]
