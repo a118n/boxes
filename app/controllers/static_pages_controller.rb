@@ -42,6 +42,7 @@ class StaticPagesController < ApplicationController
     @sites = Site.accessible_by(current_ability).order("name")
     if params[:report_date]
       @site = params[:site_id][:site_id]
+      @site_name = Site.find(@site).name
       @month = params[:report_date][:month]
       @month_name = Date::MONTHNAMES[@month.to_i]
       @year = params[:report_date][:year]

@@ -12,7 +12,7 @@
           <div class="row">
             <!-- Site Select -->
             <div class="input-field col s4">
-              <%= collection_select(:site_id, :site_id, @sites, :id, :name) %>
+              <%= collection_select(:site_id, :site_id, @sites, :id, :name, selected: @site) %>
             </div>
             <!-- Month Select -->
             <div class="input-field col s4">
@@ -74,7 +74,7 @@
             <!-- Nothing -->
             <div class="row">
               <div class="col s12">
-                <h5 style="font-size: 1.3em;">Nothing found for <%= @month_name %> <%= @year %></h5>
+                <h5 style="font-size: 1.3em;">Nothing found for <%= @month_name %> <%= @year %> in <%= @site_name %></h5>
               </div>
             </div>
           <% end %>
