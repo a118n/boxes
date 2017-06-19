@@ -5,7 +5,10 @@
       <th>Vendor</th>
       <th>Description</th>
       <th>Quantity</th>
-      <th>Used</th>
+      <% if controller?("devices") && action?("show") %>
+        <th>Used (This Device)</th>
+      <% end %>
+      <th>Used (Total)</th>
 
       <% unless action?("overview") %>
         <th>Ending Threshold</th>
@@ -29,6 +32,9 @@
         <td><%= supply.vendor%></td>
         <td><%= supply.description %></td>
         <td><%= supply.quantity %></td>
+        <% if controller?("devices") && action?("show") %>
+          <td><%= supply.device_supplies.where(device_id: @device.id).pluck(:used)[0] %></td>
+        <% end %>
         <td><%= supply.used %></td>
 
         <% unless action?("overview") %>
@@ -48,6 +54,15 @@
 
             <!-- Dropdown Structure -->
             <ul id="dropdown-supply-<%= supply.id %>" class="dropdown-content" style="min-width: 170px;">
+
+              <% if controller?("devices") && action?("show") %>
+                <li>
+                  <%= link_to use_site_supply_path(supply.site, supply, device_id: @device.id) do %>
+                    <i class="material-icons left">exposure_neg_1</i>
+                    Use
+                  <% end %>
+                </li>
+              <% end %>
 
               <!-- Supply history button-->
               <li>

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       end
 
       resources :supplies do
-        member { get :assign, :history }
+        member { get :assign, :history, :use }
       end
     end
 

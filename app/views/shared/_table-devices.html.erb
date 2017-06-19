@@ -20,6 +20,10 @@
         <th>Site</th>
       <% end %>
 
+      <% if controller?("supplies") && action?("show")%>
+        <th>Supply Usage</th>
+      <% end %>
+
       <% unless action?("overview") %>
         <th></th>
       <% end %>
@@ -56,6 +60,10 @@
 
         <% if action?("overview") || controller?("devices") && action?("all") %>
           <td><%= link_to device.site.name, device.site %></td>
+        <% end %>
+
+        <% if controller?("supplies") && action?("show")%>
+          <td><%= device.device_supplies.where(supply_id: @supply.id).pluck(:used)[0] %></td>
         <% end %>
 
         <% unless action?("overview") %>

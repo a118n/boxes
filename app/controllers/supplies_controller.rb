@@ -67,6 +67,25 @@ class SuppliesController < ApplicationController
     end
   end
 
+  def use
+    @site = Site.find(params[:site_id])
+    @supply = @site.supplies.find(params[:id])
+    @device = Device.find(params[:device_id])
+    @device_supply = DeviceSupply.find_by(device_id: @device.id, supply_id: @supply.id)
+    if @supply.quantity == 0
+      flash[:danger] = "Supply quantity is already 0"
+      redirect_to site_device_path(@site, @device)
+    else
+      @supply.quantity -= 1
+      @device_supply.used += 1
+      @supply.save
+      @device_supply.save
+      flash[:warning] = "#{@supply.name} quantity has changed to: #{@supply.quantity}"
+      redirect_to site_device_path(@site, @device)
+      notify
+    end
+  end
+
   def destroy
     Supply.find(params[:id]).destroy
     flash[:warning] = "Supply deleted"
