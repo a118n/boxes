@@ -42,28 +42,14 @@ class SuppliesController < ApplicationController
     @site = Site.find(params[:site_id])
     @supply = @site.supplies.find(params[:id])
 
-    if params[:withdraw]
-      if @supply.quantity == 0
-        flash[:danger] = "Supply quantity is already 0"
-        redirect_to site_supply_path(@site, @supply)
-      else
-        @supply.quantity -= 1
-        @supply.save
-        flash[:warning] = "#{@supply.name} quantity has changed to: #{@supply.quantity}"
-        redirect_to site_supply_path(@site, @supply)
-        notify
-      end
-
+    if @supply.update_attributes(supply_params)
+      flash[:success] = "#{@supply.name} saved"
+      # Needed for changing Site in form, for site_id to be updated for the redirect
+      @supply.reload
+      redirect_to site_supply_path(@supply.site, @supply)
+      notify
     else
-      if @supply.update_attributes(supply_params)
-        flash[:success] = "#{@supply.name} saved"
-        # Needed for changing Site in form, for site_id to be updated for the redirect
-        @supply.reload
-        redirect_to site_supply_path(@supply.site, @supply)
-        notify
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
