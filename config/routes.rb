@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   authenticate :user do
     get 'overview', to: 'static_pages#overview'
     get 'search', to: 'static_pages#search'
-    get 'reports', to: 'static_pages#reports'
 
     resource :settings, only: [:edit, :update]
 

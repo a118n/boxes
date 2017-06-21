@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :redirect_to_search, except: :search
 
+  before_action :set_paper_trail_whodunnit
+
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.html { redirect_to root_path, alert: exception.message }

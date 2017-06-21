@@ -1,16 +1,16 @@
 class Supply < ApplicationRecord
   resourcify
+  has_paper_trail
+
   has_many :device_supplies
   has_many :devices, through: :device_supplies
-  has_many :versions, dependent: :destroy
+
   belongs_to :site
 
   validates :name, presence: true
   validates :vendor, presence: true
   validates :quantity, :threshold, :used, presence: true,
             numericality: { greater_than_or_equal_to: 0, less_than: 2147483648 }
-
-  validate :check_associations
 
   before_save :add_used_supplies, if: :quantity_changed?, on: :update
 
@@ -29,12 +29,6 @@ class Supply < ApplicationRecord
   end
 
   private
-
-  def check_associations
-    if self.devices.any? && site_id_changed?
-      errors.add(:site_id, "cannot be changed. Remove assigned devices first.")
-    end
-  end
 
   def add_used_supplies
     # Add substracted amount to :used attribute

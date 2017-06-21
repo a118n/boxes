@@ -82,3 +82,5 @@ gem 'awesome_print', require: 'ap'
 gem 'cancancan'
 # Roles
 gem 'rolify'
+# Versioning
+gem 'paper_trail'

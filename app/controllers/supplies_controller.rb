@@ -110,8 +110,8 @@ class SuppliesController < ApplicationController
     @start_year = (@supply.versions.first.try(:created_at) || Date.today).year
     if params[:report_date]
       @year = params[:report_date][:year]
-      @versions = @supply.versions.by_year(@year).order("created_at DESC")
-      @pie_chart_data =  @versions.map { |v| [v.created_at.strftime("%B"), v.used] }.to_h
+      @versions # Stub!
+      # @pie_chart_data =  @versions.map { |v| [v.created_at.strftime("%B"), v.used] }.to_h
     end
   end
 

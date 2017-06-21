@@ -37,20 +37,4 @@ class StaticPagesController < ApplicationController
     @results = @devices + @supplies
   end
 
-  def reports
-    @start_year = (Version.first.try(:created_at) || Date.today).year
-    @sites = Site.accessible_by(current_ability).order("name")
-    if params[:report_date]
-      @site = params[:site_id][:site_id]
-      @site_name = Site.find(@site).name
-      @month = params[:report_date][:month]
-      @month_name = Date::MONTHNAMES[@month.to_i]
-      @year = params[:report_date][:year]
-      @versions = Version.where(site_id: @site).includes(:supply)
-                                               .by_year(@year)
-                                               .by_month(@month)
-      @pie_chart_data =  @versions.map { |v| [v.supply.name, v.used] }.to_h
-    end
-  end
-
 end

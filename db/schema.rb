@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619094013) do
+ActiveRecord::Schema.define(version: 20170621085658) do
 
   create_table "device_supplies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "device_id"
@@ -105,13 +105,14 @@ ActiveRecord::Schema.define(version: 20170619094013) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
   end
 
-  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "used", default: 0
-    t.integer "supply_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "site_id"
-    t.index ["supply_id"], name: "index_versions_on_supply_id"
+  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string "item_type", limit: 191, null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object", limit: 4294967295
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
 end
