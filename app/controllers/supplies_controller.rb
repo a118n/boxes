@@ -105,14 +105,16 @@ class SuppliesController < ApplicationController
   end
 
   def history
-    @site = Site.find(params[:site_id])
-    @supply = @site.supplies.find(params[:id])
-    @start_year = (@supply.versions.first.try(:created_at) || Date.today).year
-    if params[:report_date]
-      @year = params[:report_date][:year]
-      @versions # Stub!
-      # @pie_chart_data =  @versions.map { |v| [v.created_at.strftime("%B"), v.used] }.to_h
-    end
+    # @site = Site.find(params[:site_id])
+    # @supply = @site.supplies.find(params[:id])
+    # @start_year = (@supply.versions.first.try(:created_at) || Date.today).year
+    # if params[:report_date]
+    #   @year = params[:report_date][:year]
+    #   @versions # Stub!
+    #   # @pie_chart_data =  @versions.map { |v| [v.created_at.strftime("%B"), v.used] }.to_h
+    # end
+    flash[:alert] = "This feature is currently unavailable"
+    redirect_to site_supply_path
   end
 
   private
