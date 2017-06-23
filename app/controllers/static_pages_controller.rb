@@ -23,6 +23,7 @@ class StaticPagesController < ApplicationController
   end
 
   def about
+    redirect_to "https://github.com/a118n/boxes"
   end
 
   def search
