@@ -51,7 +51,7 @@
                   <% @versions.each do |version| %>
                     <tr>
                       <td><%= version.created_at.strftime("%B") %></td>
-                      <td><%= version.used %></td>
+                      <td><%= version.reify.used %></td>
                     </tr>
                   <% end %>
                 </tbody>
