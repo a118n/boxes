@@ -16,6 +16,9 @@ class Device < ApplicationRecord
 
   searchkick word_middle: [:name, :model, :location, :sn, :sku], callbacks: :async
 
+  DEVICE_TYPES = ['Printer', 'Scanner', 'Other']
+  DEVICE_STATES = ['Active', 'Inactive', 'In Repair']
+
   def search_data
     {
       name: name,

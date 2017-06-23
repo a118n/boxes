@@ -27,13 +27,13 @@
               <!-- Type -->
               <div class="input-field col s6">
                 <%= f.label :devtype, "Type", class: "active" %>
-                <%= f.select :devtype, ['Printer', 'Scanner', 'Other'] %>
+                <%= f.select :devtype, Device::DEVICE_TYPES %>
               </div>
 
               <!-- State -->
               <div class="input-field col s6" id="state">
                 <%= f.label :state, class: "active" %>
-                <%= f.select :state, ['Active', 'Inactive', 'In Repair'] %>
+                <%= f.select :state, Device::DEVICE_STATES %>
               </div>
             </div>
 
