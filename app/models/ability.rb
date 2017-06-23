@@ -9,7 +9,7 @@ class Ability
       can :read, Site, id: Site.with_role(:user, user).pluck(:id)
       can [:read, :update, :assign, :all, :export, :destroy], Device, site_id: Site.with_role(:user, user).pluck(:id)
       can :create, Device
-      can [:read, :update, :assign, :history, :all, :export, :destroy], Supply, site_id: Site.with_role(:user, user).pluck(:id)
+      can [:read, :update, :assign, :history, :all, :export, :destroy, :use], Supply, site_id: Site.with_role(:user, user).pluck(:id)
       can :create, Supply
       can :manage, :static_page
     else
