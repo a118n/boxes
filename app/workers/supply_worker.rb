@@ -11,5 +11,6 @@ class SupplyWorker
     end
 
     Supply.all_used.each { |s| s.update_attribute(:used, 0) }
+    DeviceSupply.all_used.each { |s| s.update_attribute(:used, 0) }
   end
 end
