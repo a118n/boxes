@@ -3,5 +3,5 @@
 <%- @supplies.each do |supply| -%>
 <%= CSV.generate_line( [ supply.name, supply.vendor, supply.description, supply.quantity,
                          supply.used, supply.devices.pluck(:model).uniq.join("; "),
-                         supply.site.name ], {col_sep: ","} ).html_safe %>
+                         supply.site.name ], {col_sep: ","} ).html_safe -%>
 <% end %>
