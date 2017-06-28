@@ -14,7 +14,7 @@ class Device < ApplicationRecord
 
   scope :in_repair, -> { where(state: "In Repair").order("name") }
 
-  searchkick word_middle: [:name, :model, :location, :sn, :sku], callbacks: :async
+  searchkick word_middle: [:name], callbacks: :async
 
   DEVICE_TYPES = ['Printer', 'Scanner', 'Other']
   DEVICE_STATES = ['Active', 'Inactive', 'In Repair']
@@ -22,8 +22,6 @@ class Device < ApplicationRecord
   def search_data
     {
       name: name,
-      model: model,
-      location: location,
       sn: sn,
       sku: sku
     }

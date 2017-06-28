@@ -27,13 +27,11 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    @devices = Device.search(params[:query],
-                             fields: ["name^10", "model", "location", "sn", "description"],
-                             match: :word_middle).records.accessible_by(current_ability)
+    @devices = Device.search(params[:query], fields: [{name: :word_middle}, :sn, :sku], misspellings: false)
+                     .records.accessible_by(current_ability)
 
-    @supplies = Supply.search(params[:query],
-                              fields: ["name^10", "description"],
-                              match: :word_middle).records.accessible_by(current_ability)
+    @supplies = Supply.search(params[:query], fields: [{name: :word_middle}], misspellings: false)
+                      .records.accessible_by(current_ability)
 
     @results = @devices + @supplies
   end

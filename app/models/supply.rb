@@ -19,12 +19,11 @@ class Supply < ApplicationRecord
   scope :all_used, -> { where("used > 0").order("used DESC") }
   scope :most_used, -> { all_used.limit(30) }
 
-  searchkick word_middle: [:name, :description], callbacks: :async
+  searchkick word_middle: [:name], callbacks: :async
 
   def search_data
     {
-      name: name,
-      description: description
+      name: name
     }
   end
 
