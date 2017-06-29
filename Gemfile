@@ -66,6 +66,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Use Materialize Framework
 gem 'materialize-sass'
+# Material icons from Google
+gem 'material_icons'
 # Use Devise for authentication
 gem 'devise'
 # Use Sidekiq as jobs backend
