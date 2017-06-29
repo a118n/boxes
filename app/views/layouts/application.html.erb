@@ -4,7 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 
-    <title>Boxes</title>
+    <% if Rails.env.production? %>
+      <title>Boxes</title>
+    <% else %>
+      <title>Boxes-DEV</title>
+    <% end %>
 
     <%= csrf_meta_tags %>
 
@@ -29,7 +33,7 @@
       <%= yield %>
     </div>
 
-    <% if controller.controller_name == "static_pages" && controller.action_name == "home" %>
+    <% if controller?("static_pages") && action?("home") %>
       <%= render 'layouts/footer' %>
     <% end %>
 
