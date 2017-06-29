@@ -28,10 +28,10 @@
                 <%= f.select :devtype, Device::DEVICE_TYPES %>
               </div>
 
-              <!-- State -->
-              <div class="input-field col s6" id="state">
-                <%= f.label :state, class: "active" %>
-                <%= f.select :state, Device::DEVICE_STATES %>
+              <!-- Status -->
+              <div class="input-field col s6" id="status">
+                <%= f.label :status, class: "active" %>
+                <%= f.select :status, Device::DEVICE_STATUSES %>
               </div>
             </div>
 
@@ -58,10 +58,10 @@
                 <%= f.text_field :sn %>
               </div>
 
-              <!-- SKU -->
+              <!-- Asset Tag -->
               <div class="input-field col s6">
-                <%= f.label :sku, "SKU", class: "active" %>
-                <%= f.text_field :sku %>
+                <%= f.label :asset_tag, "Asset Tag", class: "active" %>
+                <%= f.text_field :asset_tag %>
               </div>
             </div>
 
@@ -105,11 +105,11 @@
 
 <script>
   $(document).ready(function() {
-    var initialText = $('#state :selected').text();
+    var initialText = $('#status :selected').text();
     if (initialText == "Inactive") { $('#location').hide(); }
 
-    $('#state').change(function () {
-      var selected = $('#state :selected').text();
+    $('#status').change(function () {
+      var selected = $('#status :selected').text();
       if (selected == "Inactive") { $('#location').hide(); }
       else { $('#location').show(); }
     });

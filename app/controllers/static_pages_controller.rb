@@ -27,7 +27,7 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    @devices = Device.search(params[:query], fields: [{name: :word_middle}, :sn, :sku], misspellings: false)
+    @devices = Device.search(params[:query], fields: [{name: :word_middle}, :sn, :asset_tag], misspellings: false)
                      .records.accessible_by(current_ability)
 
     @supplies = Supply.search(params[:query], fields: [{name: :word_middle}], misspellings: false)

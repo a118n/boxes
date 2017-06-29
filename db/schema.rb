@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20170621085658) do
     t.string "name"
     t.string "devtype"
     t.string "model"
-    t.string "state", default: "Active"
+    t.string "status", default: "Active"
     t.string "ip"
     t.string "location"
     t.string "sn"
-    t.string "sku"
+    t.string "asset_tag"
     t.text "notes"
     t.integer "site_id"
     t.datetime "created_at", null: false

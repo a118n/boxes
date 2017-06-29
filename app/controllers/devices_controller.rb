@@ -43,8 +43,6 @@ class DevicesController < ApplicationController
     @device = @site.devices.find(params[:id])
     if @device.update_attributes(device_params)
       flash[:success] = "#{@device.name} saved"
-      # Needed for changing Site in form, for site_id to be updated for the redirect
-      @device.reload
       redirect_to site_device_path(@device.site, @device)
     else
       render 'edit'
@@ -84,8 +82,8 @@ class DevicesController < ApplicationController
   private
 
   def device_params
-    params.require(:device).permit(:name, :devtype, :model, :state, :ip,
-                                   :location, :sn, :sku, :notes, :site_id,
+    params.require(:device).permit(:name, :devtype, :model, :status, :ip,
+                                   :location, :sn, :asset_tag, :notes, :site_id,
                                    supply_ids: [])
   end
 

@@ -20,7 +20,7 @@ RSpec.describe Device, type: :model do
     context "valid data" do
       it { should validate_presence_of :name }
       it { should validate_presence_of :devtype }
-      it { should validate_presence_of :state }
+      it { should validate_presence_of :status }
       # Seems like scoped_to is bugged, see: https://github.com/thoughtbot/shoulda-matchers/issues/814
       xit { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:site) }
     end
@@ -32,8 +32,8 @@ RSpec.describe Device, type: :model do
       it "is not valid without a type" do
         expect(build(:device, devtype: nil)).not_to be_valid
       end
-      it "is not valid without a state" do
-        expect(build(:device, state: nil)).not_to be_valid
+      it "is not valid without a status" do
+        expect(build(:device, status: nil)).not_to be_valid
       end
     end
   end

@@ -6,14 +6,14 @@
       <th>Model</th>
 
       <% unless action?("overview") %>
-        <th>State</th>
+        <th>Status</th>
       <% end %>
 
       <th>Location</th>
 
       <% unless action?("overview") %>
         <th>Serial Number</th>
-        <th>SKU</th>
+        <th>Asset Tag</th>
       <% end %>
 
       <% if action?("overview") || controller?("devices") && action?("all") %>
@@ -40,14 +40,14 @@
 
         <% unless action?("overview") %>
           <td>
-            <% if device.state == "Inactive" %>
+            <% if device.status == "Inactive" %>
               <i class="material-icons left">clear</i>
-            <% elsif device.state == "In Repair" %>
+            <% elsif device.status == "In Repair" %>
               <i class="material-icons left">build</i>
             <% else %>
               <i class="material-icons left">check</i>
             <% end %>
-            <%= device.state %>
+            <%= device.status %>
           </td>
         <% end %>
 
@@ -55,7 +55,7 @@
 
         <% unless action?("overview") %>
           <td><%= device.sn %></td>
-          <td><%= device.sku %></td>
+          <td><%= device.asset_tag %></td>
         <% end %>
 
         <% if action?("overview") || controller?("devices") && action?("all") %>

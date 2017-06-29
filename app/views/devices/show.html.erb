@@ -43,10 +43,10 @@
                 <tr>
                   <th>Type</th>
                   <th>Model</th>
-                  <th>State</th>
+                  <th>Status</th>
                   <th>Location</th>
                   <th>Serial Number</th>
-                  <th>SKU</th>
+                  <th>Asset Tag</th>
                   <th>Site</th>
                 </tr>
               </thead>
@@ -55,18 +55,18 @@
                   <td><%= @device.devtype %></td>
                   <td><%= @device.model %></td>
                   <td>
-                    <% if @device.state == "Inactive" %>
+                    <% if @device.status == "Inactive" %>
                       <i class="material-icons left">clear</i>
-                    <% elsif @device.state == "In Repair" %>
+                    <% elsif @device.status == "In Repair" %>
                       <i class="material-icons left">build</i>
                     <% else %>
                       <i class="material-icons left">check</i>
                     <% end %>
-                    <%= @device.state %>
+                    <%= @device.status %>
                   </td>
                   <td><%= @device.location %></td>
                   <td><%= @device.sn %></td>
-                  <td><%= @device.sku %></td>
+                  <td><%= @device.asset_tag %></td>
                   <td><%= link_to @device.site.name, @site %></td>
                 </tr>
               </tbody>

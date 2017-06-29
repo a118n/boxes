@@ -7,35 +7,28 @@ class Device < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :site,
                                                  case_sensitive: false }
   validates :devtype, presence: true
-  validates :state, presence: true
-  validate :check_associations
+  validates :status, presence: true
 
-  before_save :remove_location_if_inactive, if: :state_changed?, on: :update
+  before_save :remove_location_if_inactive, if: :status_changed?, on: :update
 
-  scope :in_repair, -> { where(state: "In Repair").order("name") }
+  scope :in_repair, -> { where(status: "In Repair").order("name") }
 
   searchkick word_middle: [:name], callbacks: :async
 
   DEVICE_TYPES = ['Printer', 'Scanner', 'Other']
-  DEVICE_STATES = ['Active', 'Inactive', 'In Repair']
+  DEVICE_STATUSES = ['Active', 'Inactive', 'In Repair']
 
   def search_data
     {
       name: name,
       sn: sn,
-      sku: sku
+      asset_tag: asset_tag
     }
   end
 
   private
 
-  def check_associations
-    if supplies.any? && site_id_changed?
-      errors.add(:site_id, "cannot be changed. Remove assigned supplies first.")
-    end
-  end
-
   def remove_location_if_inactive
-    self.location = "" if self.state == "Inactive"
+    self.location = "" if self.status == "Inactive"
   end
 end

@@ -1,9 +1,9 @@
-<% headers = ['Name', 'Type', 'Model', 'Location', 'State', 'Serial Number',
-              'SKU', 'Supplies', 'Site'] %>
+<% headers = ['Name', 'Type', 'Model', 'Location', 'Status', 'Serial Number',
+              'Asset Tag', 'Supplies', 'Site'] %>
 <%= CSV.generate_line(headers, { col_sep: "," }) %>
 <%- @devices.each do |device| -%>
 <%= CSV.generate_line( [ device.name, device.devtype, device.model,
-                         device.state, device.location, device.sn, device.sku,
+                         device.status, device.location, device.sn, device.asset_tag,
                          device.supplies.pluck(:name).uniq.join("; "),
                          device.site.name ], {col_sep: ","} ).html_safe -%>
 <% end %>
