@@ -116,7 +116,7 @@ class SuppliesController < ApplicationController
         @version = @supply.paper_trail.version_at(@date)
         @versions << @version unless @version.nil?
       end
-      @pie_chart_data =  @versions.map { |v| [v.created_at.strftime("%B"), v.reify.used] }.to_h
+      @pie_chart_data =  @versions.map { |v| [v.created_at.strftime("%B"), v.used] }.to_h
     end
   end
 
