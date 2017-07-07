@@ -116,7 +116,7 @@ class SuppliesController < ApplicationController
         @version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
         @versions << @version unless @version.nil?
       end
-      @pie_chart_data =  @versions.map { |v| [v.created_at.strftime("%B"), v.reify.used] }.to_h
+      @pie_chart_data =  @versions.map { |v| [v.created_at.prev_month.strftime("%B"), v.reify.used] }.to_h
     end
   end
 

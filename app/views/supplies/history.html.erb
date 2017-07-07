@@ -50,7 +50,7 @@
                 <tbody>
                   <% @versions.each do |version| %>
                     <tr>
-                      <td><%= version.created_at.strftime("%B") %></td>
+                      <td><%= version.created_at.prev_month.strftime("%B") %></td>
                       <td><%= version.reify.used %></td>
                     </tr>
                   <% end %>
