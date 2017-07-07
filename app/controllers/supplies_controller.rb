@@ -112,8 +112,8 @@ class SuppliesController < ApplicationController
       @year = params[:report_date][:year].to_i
       @versions = []
       (1..12).each do |month|
-        @date = Date.new(@year, month, -1)
-        @version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).last
+        @date = Date.new(@year, month, -1).end_of_day
+        @version = @supply.paper_trail.version_at(@date)
         @versions << @version unless @version.nil?
       end
       @pie_chart_data =  @versions.map { |v| [v.created_at.strftime("%B"), v.reify.used] }.to_h
