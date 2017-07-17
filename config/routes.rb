@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
       resources :devices do
         member { get :assign }
+        resources :repairs
       end
 
       resources :supplies do

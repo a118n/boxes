@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
+
+        <i class="material-icons left">build</i>
+
+        <!-- Card title -->
+        <span class="card-title"><%= @device.name %> - New Repair</span>
+
+        <div class="container">
+
+          <%= form_for [@site, @device, @repair] do |f| %>
+
+            <!-- Ticket ID -->
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :ticket_id, "Ticket ID", class: "active" %>
+                <%= f.text_field :ticket_id, required: true, autofocus: true %>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :description, class: "active" %>
+                <%= f.text_field :description, required: true %>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col s12">
+
+                <!-- Create button -->
+                <button class="btn waves-effect waves-light">
+                  <%= f.submit "Create" %>
+                </button>
+
+                <!-- Back button -->
+                <%= link_to "Back", site_device_path(@site, @device), class: "btn btn-flat waves-effect waves-light" %>
+              </div>
+            </div>  <!-- Buttons -->
+
+          <% end %>
+
+        </div>  <!-- Form container -->
+      </div>  <!-- Card content -->
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->

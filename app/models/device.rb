@@ -2,6 +2,7 @@ class Device < ApplicationRecord
   resourcify
   has_many :device_supplies
   has_many :supplies, through: :device_supplies
+  has_many :repairs
   belongs_to :site
 
   validates :name, presence: true, uniqueness: { scope: :site,

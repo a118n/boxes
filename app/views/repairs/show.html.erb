@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card hoverable">
+
+      <div class="card-content">
+
+        <i class="material-icons left">build</i>
+
+        <span class="card-title"><%= @device.name %> - View Repair</span>
+
+        <div class="row">
+          <div class="col s12">
+            <table class="highlight">
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>Ticket ID</th>
+                  <th>Created</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @repair.status %></td>
+                  <td><%= @repair.ticket_id %></td>
+                  <td><%= @repair.created_at.to_formatted_s(:long) %></td>
+                  <td><%= @repair.updated_at.to_formatted_s(:long) %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <blockquote class="left"><%= @repair.description %></blockquote>
+          </div>
+        </div>
+
+      </div>  <!-- Card content -->
+
+      <div class="card-action">
+
+
+        <!-- Back button -->
+        <%= link_to "Back", site_device_repairs_path(@device.site, @device), class: "btn btn-flat waves-effect waves-light" %>
+      </div>
+
+    </div>  <!-- Card -->
+  </div>  <!-- Col -->
+</div>  <!-- Row -->

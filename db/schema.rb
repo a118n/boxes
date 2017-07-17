@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621085658) do
+ActiveRecord::Schema.define(version: 20170629103142) do
 
   create_table "device_supplies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "device_id"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 20170621085658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_devices_on_site_id"
+  end
+
+  create_table "repairs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "ticket_id"
+    t.text "description"
+    t.integer "status", default: 2
+    t.bigint "device_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_repairs_on_device_id"
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -115,4 +125,5 @@ ActiveRecord::Schema.define(version: 20170621085658) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "repairs", "devices"
 end

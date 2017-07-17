@@ -15,6 +15,7 @@ class DevicesController < ApplicationController
     @site = Site.find(params[:site_id])
     @device = @site.devices.find(params[:id])
     @device_supplies = @device.supplies.includes(:site).order("name")
+    @repairs = @device.repairs.limit(5).order("created_at DESC")
   end
 
   def new
@@ -40,10 +41,16 @@ class DevicesController < ApplicationController
 
   def update
     @site = Site.find(params[:site_id])
-    @device = @site.devices.find(params[:id])
+    @device = Device.find(params[:id])
     if @device.update_attributes(device_params)
       flash[:success] = "#{@device.name} saved"
-      redirect_to site_device_path(@device.site, @device)
+      if @device.previous_changes.any? && @device.previous_changes["status"][1] == "In Repair"
+        redirect_to new_site_device_repair_path(@site, @device)
+      elsif @device.previous_changes.any? && @device.previous_changes["status"][0] == "In Repair"
+        redirect_to edit_site_device_repair_path(@site, @device, @device.repairs.last)
+      else
+        redirect_to site_device_path(@site, @device)
+      end
     else
       render 'edit'
     end
