@@ -46,7 +46,7 @@ class DevicesController < ApplicationController
       flash[:success] = "#{@device.name} saved"
       if @device.previous_changes.any? && @device.previous_changes["status"][1] == "In Repair"
         redirect_to new_site_device_repair_path(@site, @device)
-      elsif @device.previous_changes.any? && @device.previous_changes["status"][0] == "In Repair"
+      elsif @device.repairs.any? && @device.previous_changes.any? && @device.previous_changes["status"][0] == "In Repair"
         redirect_to edit_site_device_repair_path(@site, @device, @device.repairs.last)
       else
         redirect_to site_device_path(@site, @device)
