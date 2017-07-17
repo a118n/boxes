@@ -4,7 +4,7 @@ class CreateRepairs < ActiveRecord::Migration[5.1]
       t.string :ticket_id
       t.text :description
       t.integer :status, default: 2
-      t.references :device, foreign_key: true
+      t.references :device
 
       t.timestamps
     end
