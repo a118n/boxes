@@ -116,11 +116,11 @@
 <script>
   $(document).ready(function() {
     var initialText = $('#status :selected').text();
-    if (initialText == "Inactive") { $('#location').hide(); }
+    if (initialText === "Inactive") { $('#location').hide(); }
 
     $('#status').change(function () {
       var selected = $('#status :selected').text();
-      if (selected == "Inactive") { $('#location').hide(); }
+      if (selected === "Inactive") { $('#location').hide(); }
       else { $('#location').show(); }
     });
   });
