@@ -44,7 +44,7 @@ class Supply < ApplicationRecord
   def get_monthly_usage_data(year, month)
     @supply = self
     @date = Date.new(year, month, 1)
-    @results = []
+    @results = {}
 
     @supply_version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
 
@@ -56,12 +56,12 @@ class Supply < ApplicationRecord
         device_supply_version = device.device_supplies.where(supply_id: @supply.id).first.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
         unless device_supply_version.nil?
           used = device_supply_version.reify.used
-          @results << [name, used]
+          @results.store(name, used)
           @unaccounted -= used
         end
       end
 
-      @results << ["Unaccounted", @unaccounted] unless @unaccounted == 0
+      @results.store("Unaccounted", @unaccounted) unless @unaccounted == 0
     end
     
     return @results
