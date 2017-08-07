@@ -27,6 +27,46 @@ class Supply < ApplicationRecord
     }
   end
 
+  def get_yearly_usage_data(year)
+    @supply = self
+    @year = year
+    @results = {}
+
+    (1..12).each do |month|
+      @date = Date.new(@year, month, 1)
+      @version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
+      @results.store(@date.prev_month.strftime("%B"), @version.reify.used) unless @version.nil?
+    end
+
+    return @results
+  end
+
+  def get_monthly_usage_data(year, month)
+    @supply = self
+    @date = Date.new(year, month, 1)
+    @results = []
+
+    @supply_version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
+
+    unless @supply_version.nil?
+      @unaccounted = @supply_version.reify.used
+
+      @supply.devices.each do |device|
+        name = device.name
+        device_supply_version = device.device_supplies.where(supply_id: @supply.id).first.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
+        unless device_supply_version.nil?
+          used = device_supply_version.reify.used
+          @results << [name, used]
+          @unaccounted -= used
+        end
+      end
+
+      @results << ["Unaccounted", @unaccounted] unless @unaccounted == 0
+    end
+    
+    return @results
+  end
+
   private
 
   def add_used_supplies

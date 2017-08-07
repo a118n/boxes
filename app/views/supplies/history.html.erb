@@ -28,12 +28,12 @@
         <!-- Usage information -->
         <% if params[:report_date] %>
 
-          <% if @versions.try(:any?) %>
+          <% if @results.try(:any?) %>
 
           <!-- Pie Chart -->
           <div class="row">
             <div class="col s12">
-              <%= pie_chart @pie_chart_data %>
+              <%= pie_chart @results %>
             </div>
           </div>
 
@@ -48,10 +48,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @versions.each do |version| %>
+                  <% @results.each do |month, used| %>
                     <tr>
-                      <td><%= version.created_at.prev_month.strftime("%B") %></td>
-                      <td><%= version.reify.used %></td>
+                      <td><%= month %></td>
+                      <td><%= used %></td>
                     </tr>
                   <% end %>
                 </tbody>

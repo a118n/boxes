@@ -110,13 +110,8 @@ class SuppliesController < ApplicationController
     @start_year = (@supply.versions.first.try(:created_at) || Date.today).year
     if params[:report_date]
       @year = params[:report_date][:year].to_i
-      @versions = []
-      (1..12).each do |month|
-        @date = Date.new(@year, month, 1)
-        @version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
-        @versions << @version unless @version.nil?
-      end
-      @pie_chart_data =  @versions.map { |v| [v.created_at.prev_month.strftime("%B"), v.reify.used] }.to_h
+      @results = @supply.get_yearly_usage_data(@year)
+      @pie_chart_data =  @results.to_h
     end
   end
 

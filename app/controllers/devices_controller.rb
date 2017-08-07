@@ -44,8 +44,10 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
     if @device.update_attributes(device_params)
       flash[:success] = "#{@device.name} saved"
+      # Device status changes to 'In Repair'
       if @device.previous_changes.any? && @device.previous_changes["status"][1] == "In Repair"
         redirect_to new_site_device_repair_path(@site, @device)
+      # Device status changes from 'In Repair' to something else
       elsif @device.repairs.any? && @device.previous_changes.any? && @device.previous_changes["status"][0] == "In Repair"
         redirect_to edit_site_device_repair_path(@site, @device, @device.repairs.last)
       else
