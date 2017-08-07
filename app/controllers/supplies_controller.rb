@@ -111,7 +111,6 @@ class SuppliesController < ApplicationController
     if params[:report_date]
       @year = params[:report_date][:year].to_i
       @results = @supply.get_yearly_usage_data(@year)
-      @pie_chart_data =  @results.to_h
     end
   end
 
