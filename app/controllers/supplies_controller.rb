@@ -112,8 +112,10 @@ class SuppliesController < ApplicationController
       @year = params[:report_date][:year].to_i
       @month = params[:report_date][:month].to_i
       if params[:report_types][:report_type] == "Yearly"
+        @header = "Month"
         @results = @supply.get_yearly_usage_data(@year)
       elsif params[:report_types][:report_type] == "Monthly"
+        @header = "Device"
         @results = @supply.get_monthly_usage_data(@year, @month)
       end
     end

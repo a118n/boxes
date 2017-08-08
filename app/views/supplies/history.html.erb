@@ -58,15 +58,15 @@
               <table class="highlight">
                 <thead>
                   <tr>
-                    <th>Month</th>
+                    <th><%= @header %></th>
                     <th>Used</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% @results.each do |month, used| %>
+                  <% @results.each do |key, value| %>
                     <tr>
-                      <td><%= month %></td>
-                      <td><%= used %></td>
+                      <td><%= key %></td>
+                      <td><%= value %></td>
                     </tr>
                   <% end %>
                 </tbody>
