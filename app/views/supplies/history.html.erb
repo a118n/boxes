@@ -7,15 +7,30 @@
         <i class="material-icons left">web_asset</i>
 
         <!-- Supply name -->
-        <span class="card-title"><%= @supply.name %> - Usage History for <%= @year || Date.today.year %></span>
+        <span class="card-title"><%= @supply.name %> - Usage History</span>
 
         <form>
           <div class="row">
+            <!-- Report Type Select -->
+            <div class="input-field col s12 l4">
+              <label class="active">Report Type</label>
+              <%= select(:report_types, :report_type, ["Yearly", "Monthly"], selected: "Monthly") %>
+            </div>
+
             <!-- Year Select -->
-            <div class="input-field col s12">
+            <div class="input-field col s12 l4">
+              <label class="active">Year</label>
               <%= select_year(Date.today, prefix: "report_date", start_year: @start_year, end_year: Date.today.year) %>
             </div>
+
+            <!-- Month Select -->
+            <div class="input-field col s12 l4">
+              <label class="active">Month</label>
+              <%= select_month(Date.today.prev_month, prefix: "report_date") %>
+            </div>
+
           </div>
+
           <!-- Submit Button -->
           <div class="row">
             <div class="col s12">
@@ -62,7 +77,7 @@
             <!-- Nothing -->
             <div class="row">
               <div class="col s12">
-                <h5 style="font-size: 1.3em;">Nothing found for <%= @year %></h5>
+                <h5 style="font-size: 1.3em;">Nothing found</h5>
               </div>
             </div>
           <% end %>

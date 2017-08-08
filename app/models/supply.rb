@@ -31,13 +31,11 @@ class Supply < ApplicationRecord
     @supply = self
     @year = year
     @results = {}
-
     (1..12).each do |month|
       @date = Date.new(@year, month, 1)
       @version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
       @results.store(@date.prev_month.strftime("%B"), @version.reify.used) unless @version.nil?
     end
-
     return @results
   end
 
@@ -45,12 +43,9 @@ class Supply < ApplicationRecord
     @supply = self
     @date = Date.new(year, month, 1)
     @results = {}
-
     @supply_version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
-
     unless @supply_version.nil?
       @unaccounted = @supply_version.reify.used
-
       @supply.devices.each do |device|
         name = device.name
         device_supply_version = device.device_supplies.where(supply_id: @supply.id).first.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
@@ -60,10 +55,9 @@ class Supply < ApplicationRecord
           @unaccounted -= used
         end
       end
-
       @results.store("Unaccounted", @unaccounted) unless @unaccounted == 0
     end
-    
+    @results = @results.sort_by { |key, value| value }.reverse.to_h
     return @results
   end
 

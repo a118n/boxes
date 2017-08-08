@@ -110,7 +110,12 @@ class SuppliesController < ApplicationController
     @start_year = (@supply.versions.first.try(:created_at) || Date.today).year
     if params[:report_date]
       @year = params[:report_date][:year].to_i
-      @results = @supply.get_yearly_usage_data(@year)
+      @month = params[:report_date][:month].to_i
+      if params[:report_types][:report_type] == "Yearly"
+        @results = @supply.get_yearly_usage_data(@year)
+      elsif params[:report_types][:report_type] == "Monthly"
+        @results = @supply.get_monthly_usage_data(@year, @month)
+      end
     end
   end
 
