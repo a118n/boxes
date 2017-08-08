@@ -118,6 +118,7 @@ class SuppliesController < ApplicationController
         @header = "Device"
         @results = @supply.get_monthly_usage_data(@year, @month)
       end
+      @total = @results.values.reduce(:+)
     end
   end
 
