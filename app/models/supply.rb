@@ -32,7 +32,7 @@ class Supply < ApplicationRecord
     @year = year
     @results = {}
     (1..12).each do |month|
-      @date = Date.new(@year, month, 1)
+      @date = Date.new(@year, month, 1).next_month
       @version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
       @results.store(@date.prev_month.strftime("%B"), @version.reify.used) unless @version.nil?
     end
