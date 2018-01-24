@@ -7,16 +7,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-      @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-      @user = User.find(params[:id])
-      if @user.update_attributes(user_params)
-        redirect_to users_admin_index_path, notice: "User updated"
-      else
-        render :edit
-      end
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to users_admin_index_path, notice: "User updated"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -35,6 +35,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-  params.require(:user).permit(:first_name, :last_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :email)
   end
 end

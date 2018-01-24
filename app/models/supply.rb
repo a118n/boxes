@@ -41,8 +41,8 @@ class Supply < ApplicationRecord
 
   def get_monthly_usage_data(year, month)
     @supply = self
-    # Result for the month we pass are in fact available on the next month, i.e. July's results are available in August, because we reset counters on the first day of each month, thus +1 in date
-    @date = Date.new(year, month + 1, 1)
+    # Result for the month we pass are in fact available on the next month, i.e. July's results are available in August, because we reset counters on the first day of each month, thus .next_month in date
+    @date = Date.new(year, month, 1).next_month
     @results = {}
     @supply_version = @supply.versions.where(created_at: @date.beginning_of_day .. @date.end_of_day).first
     unless @supply_version.nil?
