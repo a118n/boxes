@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/a118n/boxes.svg?branch=master)](https://travis-ci.org/a118n/boxes)
 [![Code Climate](https://codeclimate.com/github/a118n/boxes/badges/gpa.svg)](https://codeclimate.com/github/a118n/boxes)
 
+> Note: This project is no longer developed and supported.
+
 # Boxes
 Boxes is an asset management web application written primarily for managing printers, MFPs and their supplies. It may prove handy in large offices and corporations where you have to keep track of multitude of devices and supplies they use.
-
-> Note: Currently under active development.
 
 ![screenshot](screenshot.png)
 
